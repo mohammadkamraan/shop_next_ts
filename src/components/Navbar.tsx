@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const Navbar = () => {
   return (
     <header className='flex flex-col w-full pt-4 font-patrick bg-gray-100'>
@@ -59,7 +61,69 @@ const Navbar = () => {
           </span>
         </span>
       </div>
-      <div className=''></div>
+      <div className='flex items-center mt-6 mb-2 text-slate-600'>
+        <svg
+          xmlns='http://www.w3.org/2000/svg'
+          className='h-6 w-6 ml-6'
+          fill='none'
+          viewBox='0 0 24 24'
+          stroke='currentColor'
+          strokeWidth={2}
+        >
+          <path strokeLinecap='round' strokeLinejoin='round' d='M4 6h16M4 12h16M4 18h16' />
+        </svg>
+        <p className='font-black text-lg text-slate-800 ml-2 inline'>Category of Goods</p>
+        <div className='w-0.5 h-7 bg-neutral-300 rounded-lg mx-3' />
+        <Link href='/'>
+          <a className='text-lg'>%Offers and Discounts</a>
+        </Link>
+        <Link href='/'>
+          <a className='ml-10 flex grow items-center'>
+            <svg xmlns='http://www.w3.org/2000/svg' className='h-5 w-5' viewBox='0 0 20 20' fill='currentColor'>
+              <path
+                fillRule='evenodd'
+                d='M12.395 2.553a1 1 0 00-1.45-.385c-.345.23-.614.558-.822.88-.214.33-.403.713-.57 1.116-.334.804-.614 1.768-.84 2.734a31.365 31.365 0 00-.613 3.58 2.64 2.64 0 01-.945-1.067c-.328-.68-.398-1.534-.398-2.654A1 1 0 005.05 6.05 6.981 6.981 0 003 11a7 7 0 1011.95-4.95c-.592-.591-.98-.985-1.348-1.467-.363-.476-.724-1.063-1.207-2.03zM12.12 15.12A3 3 0 017 13s.879.5 2.5.5c0-1 .5-4 1.25-4.5.5 1 .786 1.293 1.371 1.879A2.99 2.99 0 0113 13a2.99 2.99 0 01-.879 2.121z'
+                clipRule='evenodd'
+              />
+            </svg>
+            The Best-Sells
+          </a>
+        </Link>
+        <span className='inline-flex items-center mr-6'>
+          <p className='font-bold pr-2'>En</p>
+          <svg
+            xmlns='http://www.w3.org/2000/svg'
+            className='h-6 w-6'
+            fill='none'
+            viewBox='0 0 24 24'
+            stroke='currentColor'
+            strokeWidth={2}
+          >
+            <path
+              strokeLinecap='round'
+              strokeLinejoin='round'
+              d='M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9'
+            />
+          </svg>
+        </span>
+        <button className='mr-4'>
+          <svg
+            xmlns='http://www.w3.org/2000/svg'
+            className='h-6 w-6'
+            fill='none'
+            viewBox='0 0 24 24'
+            stroke='currentColor'
+            strokeWidth={2}
+          >
+            <path
+              strokeLinecap='round'
+              strokeLinejoin='round'
+              d='M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z'
+            />
+          </svg>
+        </button>
+      </div>
+      <hr className='bg-slate-800' />
     </header>
   );
 };
