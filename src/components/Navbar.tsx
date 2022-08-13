@@ -1,8 +1,13 @@
 import Link from "next/link";
+import { useReducer } from "react";
 
 const Navbar = () => {
+  const [languageSelect, setLanguageSelect] = useReducer(state => {
+    return !state;
+  }, false);
+
   return (
-    <header className='flex flex-col w-full pt-4 font-patrick bg-gray-100'>
+    <header className='flex flex-col w-full pt-4 font-patrick bg-gray-100 sticky top-0'>
       <div className='flex items-center'>
         <p className='font-caveat font-black text-4xl text-rose-500 px-4'>M shop</p>
         <div className='flex-grow'>
@@ -89,23 +94,49 @@ const Navbar = () => {
             The Best-Sells
           </a>
         </Link>
-        <span className='inline-flex items-center mr-6'>
-          <p className='font-bold pr-2'>En</p>
-          <svg
-            xmlns='http://www.w3.org/2000/svg'
-            className='h-6 w-6'
-            fill='none'
-            viewBox='0 0 24 24'
-            stroke='currentColor'
-            strokeWidth={2}
+        <div className='mr-6 relative'>
+          <button onClick={setLanguageSelect} className='inline-flex items-center'>
+            <p className='font-bold pr-2'>En</p>
+            <svg
+              xmlns='http://www.w3.org/2000/svg'
+              className='h-6 w-6'
+              fill='none'
+              viewBox='0 0 24 24'
+              stroke='currentColor'
+              strokeWidth={2}
+            >
+              <path
+                strokeLinecap='round'
+                strokeLinejoin='round'
+                d='M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9'
+              />
+            </svg>
+          </button>
+          <div
+            className={`absolute ${
+              !languageSelect && "hidden"
+            } -bottom-24 -left-28 w-40 h-24 bg-white rounded-md shadow-md z-50 px-6 py-3 font-bold text-lg`}
           >
-            <path
-              strokeLinecap='round'
-              strokeLinejoin='round'
-              d='M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9'
+            <input
+              id='en'
+              type='radio'
+              name='language'
+              value='en'
+              className='accent-rose-500 w-4 h-4 mr-3 mb-5 inline-flex'
             />
-          </svg>
-        </span>
+            <label htmlFor='en'>En - english</label>
+            <input
+              id='fa'
+              type='radio'
+              name='language'
+              value='fa'
+              className=' accent-rose-500 w-4 h-4 mr-3 inline-flex'
+            />
+            <label htmlFor='fa' className='font-vazir'>
+              Fa - فارسی
+            </label>
+          </div>
+        </div>
         <button className='mr-4'>
           <svg
             xmlns='http://www.w3.org/2000/svg'
