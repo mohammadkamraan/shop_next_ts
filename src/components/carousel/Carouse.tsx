@@ -6,10 +6,6 @@ export const CarouselItem = (prop: any) => {
 const Carousel = (props: any) => {
   const [currentSlide, setCurrentSlide] = useState<number>(0);
 
-  const translateValue = (number: number) => {
-    return `-translate-x-[${number}px]`;
-  };
-
   return (
     <div className='w-11/12 h-[70vh] overflow-hidden relative '>
       <div className='absolute left-0  z-10 w-24 h-full bg-stone-50 bg-opacity-0 flex justify-center items-center cursor-pointer transition-all duration-500  hover:bg-opacity-10'>
@@ -53,7 +49,7 @@ const Carousel = (props: any) => {
         })}
       </ul>
       <div
-        className={`whitespace-nowrap w-full h-full transition-all duration-500 ${translateValue(50)}`}
+        className={`whitespace-nowrap w-full h-full transition-all duration-500`}
         style={{ transform: `translateX(-${2 * 100}%)` }}
       >
         {React.Children.map(props.children, (child: any) => {
