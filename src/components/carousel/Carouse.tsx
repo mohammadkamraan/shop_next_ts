@@ -17,18 +17,18 @@ const Carousel = (props: any) => {
     setCurrentSlide(newSlideIndex);
   };
 
-  // useEffect(() => {
-  //   const interval = setInterval(() => {
-  //     if (!stopCarousel) {
-  //       updateSliede(currentSlide + 1);
-  //     }
-  //   }, 5000);
-  //   return () => {
-  //     if (interval) {
-  //       clearInterval(interval);
-  //     }
-  //   };
-  // }, [currentSlide, stopCarousel]);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (!stopCarousel) {
+        updateSliede(currentSlide + 1);
+      }
+    }, 5000);
+    return () => {
+      if (interval) {
+        clearInterval(interval);
+      }
+    };
+  }, [currentSlide, stopCarousel]);
 
   return (
     <div
