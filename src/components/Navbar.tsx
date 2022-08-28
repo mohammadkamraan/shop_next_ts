@@ -57,7 +57,7 @@ const Navbar = () => {
           <div
             className={`absolute ${
               !languageSelect && "hidden"
-            } -bottom-24 -left-28 w-40 h-24 bg-white rounded-md shadow-md z-10 px-6 py-3 font-bold text-lg`}
+            } -bottom-24 -left-28 w-40 h-24 bg-white rounded-md shadow-md z-50 px-6 py-3 font-bold text-lg`}
           >
             <input
               id='en'
@@ -66,15 +66,17 @@ const Navbar = () => {
               value='en'
               className='accent-rose-500 w-4 h-4 mr-3 mb-5 inline-flex'
             />
-            <label htmlFor='en'>En - english</label>
+            <label htmlFor='en' className='cursor-pointer'>
+              En - english
+            </label>
             <input
               id='fa'
               type='radio'
               name='language'
               value='fa'
-              className=' accent-rose-500 w-4 h-4 mr-3 inline-flex'
+              className=' accent-rose-500 w-4 h-4 mr-3 inline-flex z-50'
             />
-            <label htmlFor='fa' className='font-vazir'>
+            <label htmlFor='fa' className='font-vazir cursor-pointer'>
               Fa - فارسی
             </label>
           </div>

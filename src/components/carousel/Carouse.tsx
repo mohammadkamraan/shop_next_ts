@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 export const CarouselItem = (prop: any) => {
-  return <div className='inline-flex h-full w-full'>{prop.children}</div>;
+  return <div className='inline-flex h-[90%] md:h-full w-full'>{prop.children}</div>;
 };
 
 const Carousel = (props: any) => {
@@ -32,7 +32,7 @@ const Carousel = (props: any) => {
 
   return (
     <div
-      className='w-11/12 h-[20vh] md:h-[70vh] overflow-hidden relative'
+      className='w-11/12 h-[30vh] md:h-[70vh] overflow-hidden relative'
       onMouseEnter={() => setStopCarousel(true)}
       onMouseLeave={() => setStopCarousel(false)}
     >
@@ -40,7 +40,7 @@ const Carousel = (props: any) => {
         onClick={() => {
           updateSliede(currentSlide - 1);
         }}
-        className='absolute left-0  z-10 w-12 md:w-24 h-full bg-stone-50 bg-opacity-0 flex justify-center items-center cursor-pointer transition-all duration-500  hover:bg-opacity-10'
+        className='absolute left-0 z-10 w-12 md:w-24 h-full bg-stone-50 bg-opacity-0 flex justify-center items-center cursor-pointer transition-all duration-500  hover:bg-opacity-10'
       >
         <div className='bg-white bg-opacity-75 shadow-2xl rounded-full w-6 md:w-9 h-6 md:h-9 inline-flex items-center justify-center text-slate-700'>
           <svg
@@ -74,16 +74,16 @@ const Carousel = (props: any) => {
           </svg>
         </div>
       </div>
-      <ul className='inline-flex justify-center z-50 absolute bottom-0 w-full h-6'>
+      <ul className='inline-flex items-center justify-center z-50 absolute bottom-0 w-full h-6'>
         {React.Children.map(props.children, (child: any, index: number) => {
           return (
             <li
               key={index}
-              className='inline-flex items-center justify-center border border-slate-800 w-3 h-3 rounded-full mx-6 cursor-pointer overflow-hidden'
+              className='inline-flex items-center justify-center border border-slate-800 w-1 h-1 md:w-3 md:h-3 rounded-full mx-6 cursor-pointer overflow-hidden'
             >
               <button
                 onClick={() => setCurrentSlide(index)}
-                className={`${index === currentSlide && "bg-slate-800"} w-full h-full`}
+                className={`${index === currentSlide && "bg-slate-800"} w-full h-full rounded-full`}
               />
             </li>
           );
