@@ -1,13 +1,13 @@
 interface componentProps {
-  items: any[];
-  itemPropsName: "string";
+  items: any;
+  itemPropsName: string;
   itemComponent: any;
 }
 
 const ListCreator = ({ items, itemPropsName, itemComponent: ItemComponent }: componentProps) => {
   return (
     <>
-      {items.map((item, index: number) => (
+      {items.map((item: any, index: number) => (
         <ItemComponent key={index} {...{ [itemPropsName]: item }} />
       ))}
     </>
