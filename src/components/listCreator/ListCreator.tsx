@@ -5,7 +5,13 @@ interface componentProps {
 }
 
 const ListCreator = ({ items, itemPropsName, itemComponent: ItemComponent }: componentProps) => {
-  return items.map((item, index: number) => <ItemComponent key={index} {...{ [itemPropsName]: item }} />);
+  return (
+    <>
+      {items.map((item, index: number) => (
+        <ItemComponent key={index} {...{ [itemPropsName]: item }} />
+      ))}
+    </>
+  );
 };
 
 export default ListCreator;
