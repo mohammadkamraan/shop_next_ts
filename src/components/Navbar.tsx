@@ -7,7 +7,7 @@ const Navbar = () => {
   }, false);
 
   return (
-    <header className='flex flex-col w-full font-patrick bg-gray-100 sticky z-10 top-0 '>
+    <header className='flex flex-col w-full font-patrick bg-gray-100 sticky z-10 top-0 border-b border-neutral-400-800 '>
       <div className='flex justify-between md:justify-start items-center mt-6 mb-2 text-slate-600 md:order-2 mx-6 md:mx-0'>
         <svg
           xmlns='http://www.w3.org/2000/svg'

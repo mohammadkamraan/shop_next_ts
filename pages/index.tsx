@@ -1,19 +1,23 @@
 import type { NextPage } from "next";
 import Link from "next/link";
 import Carousel, { CarouselItem } from "../src/components/carousel/Carouse";
+import Possibilities from "../src/components/possibilities/Possibilities";
+
+// import salam from "../public/images/horizontal-banner-online-fashion-sale_23-2148585404.webp";
 
 // const carouselData = [{
 
 // }];
 
 const Home: NextPage = () => {
+  // ../src/images/horizontal-banner-online-fashion-sale_23-2148585404.webp
   return (
     <>
-      <div className='flex justify-center w-full bg-gray-100 pt-8 font-patrick'>
+      <div className='flex justify-center w-full bg-gray-100 pt-10 font-patrick'>
         <Carousel>
           <CarouselItem>
             <div
-              className='bg-[url("../src/images/horizontal-banner-online-fashion-sale_23-2148585404.webp")]
+              className='bg-[url("../public/images/fashion-banner.webp")]
               w-full h-full bg-contain md:bg-cover bg-center bg-no-repeat relative overflow-hidden'
             >
               <Link href='/'>
@@ -32,8 +36,8 @@ const Home: NextPage = () => {
           </CarouselItem>
           <CarouselItem>
             <div
-              className='bg-[url("../src/images/elektronik-footer-banner.webp")]
-              w-full h-full bg-contain md:bg-cover bg-no-repeat relative'
+              className='bg-[url("../public/images/digital-banner.webp")]
+              w-full h-full bg-contain md:bg-cover bg-center bg-no-repeat relative overflow-hidden'
             >
               <Link href='/'>
                 <a className='block'>
@@ -51,6 +55,7 @@ const Home: NextPage = () => {
           </CarouselItem>
         </Carousel>
       </div>
+      <Possibilities />
     </>
   );
 };
