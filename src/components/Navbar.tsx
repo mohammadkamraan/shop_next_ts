@@ -1,15 +1,20 @@
 import Link from "next/link";
-import { useReducer } from "react";
+import { ReactElement, useReducer, useState } from "react";
+import Backdrop from "./backdrop/Backdrop";
+import Sidebar from "./sidebar/Sidebar";
 
 const Navbar = () => {
   const [languageSelect, setLanguageSelect] = useReducer(state => {
     return !state;
   }, false);
 
+  const [showSidebar, setShowSidebar] = useState<boolean>(false);
+
   return (
     <header className='flex flex-col w-full font-patrick bg-gray-100 sticky z-10 top-0 border-b border-neutral-400-800 '>
       <div className='flex justify-between md:justify-start items-center mt-6 mb-2 text-slate-600 md:order-2 mx-6 md:mx-0'>
         <svg
+          onClick={() => setShowSidebar(true)}
           xmlns='http://www.w3.org/2000/svg'
           className='h-6 w-6 ml-0 md:ml-6'
           fill='none'
@@ -25,15 +30,20 @@ const Navbar = () => {
           <a className='text-lg hidden md:inline'>%Offers and Discounts</a>
         </Link>
         <Link href='/'>
-          <a className='hidden md:flex md:grow md:items-center md:ml-10'>
-            <svg xmlns='http://www.w3.org/2000/svg' className='h-5 w-5' viewBox='0 0 20 20' fill='currentColor'>
+          <a className='hidden md:flex md:grow md:items-center md:ml-10 cursor-auto'>
+            <svg
+              xmlns='http://www.w3.org/2000/svg'
+              className='h-5 w-5 cursor-pointer'
+              viewBox='0 0 20 20'
+              fill='currentColor'
+            >
               <path
                 fillRule='evenodd'
                 d='M12.395 2.553a1 1 0 00-1.45-.385c-.345.23-.614.558-.822.88-.214.33-.403.713-.57 1.116-.334.804-.614 1.768-.84 2.734a31.365 31.365 0 00-.613 3.58 2.64 2.64 0 01-.945-1.067c-.328-.68-.398-1.534-.398-2.654A1 1 0 005.05 6.05 6.981 6.981 0 003 11a7 7 0 1011.95-4.95c-.592-.591-.98-.985-1.348-1.467-.363-.476-.724-1.063-1.207-2.03zM12.12 15.12A3 3 0 017 13s.879.5 2.5.5c0-1 .5-4 1.25-4.5.5 1 .786 1.293 1.371 1.879A2.99 2.99 0 0113 13a2.99 2.99 0 01-.879 2.121z'
                 clipRule='evenodd'
               />
             </svg>
-            The Best-Sells
+            <p className='cursor-pointer'>The Best-Sells</p>
           </a>
         </Link>
         <div className='mr-6 relative hidden md:inline'>
@@ -195,7 +205,8 @@ const Navbar = () => {
           </span>
         </span>
       </div>
-      {/* <hr className='bg-slate-800' /> */}
+      <Sidebar show={showSidebar} setClose={setShowSidebar} />
+      <Backdrop show={showSidebar} setClose={setShowSidebar} />
     </header>
   );
 };

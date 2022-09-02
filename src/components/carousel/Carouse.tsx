@@ -40,7 +40,7 @@ const Carousel = (props: any) => {
         onClick={() => {
           updateSliede(currentSlide - 1);
         }}
-        className='absolute left-0 z-10 w-12 md:w-24 h-full bg-stone-50 bg-opacity-0 flex justify-center items-center cursor-pointer transition-all duration-500  hover:bg-opacity-10'
+        className='absolute left-0 z-[1] w-12 md:w-24 h-full bg-stone-50 bg-opacity-0 flex justify-center items-center cursor-pointer transition-all duration-500  hover:bg-opacity-10'
       >
         <div className='bg-white bg-opacity-75 shadow-2xl rounded-full w-6 md:w-9 h-6 md:h-9 inline-flex items-center justify-center text-slate-700'>
           <svg
@@ -56,7 +56,7 @@ const Carousel = (props: any) => {
         </div>
       </div>
       <div
-        className='absolute right-0 z-10 w-12 md:w-24 h-full bg-stone-50 bg-opacity-0 flex justify-center items-center cursor-pointer transition-all duration-500  hover:bg-opacity-10'
+        className='absolute right-0 z-[1] w-12 md:w-24 h-full bg-stone-50 bg-opacity-0 flex justify-center items-center cursor-pointer transition-all duration-500  hover:bg-opacity-10'
         onClick={() => {
           updateSliede(currentSlide + 1);
         }}
@@ -74,7 +74,7 @@ const Carousel = (props: any) => {
           </svg>
         </div>
       </div>
-      <ul className='inline-flex items-center justify-center z-50 absolute bottom-0 w-full h-6'>
+      <ul className='inline-flex items-center justify-center z-[1] absolute bottom-0 w-full h-6'>
         {React.Children.map(props.children, (child: any, index: number) => {
           return (
             <li

@@ -13,7 +13,7 @@ const Home: NextPage = () => {
   // ../src/images/horizontal-banner-online-fashion-sale_23-2148585404.webp
   return (
     <>
-      <div className='flex justify-center w-full bg-gray-100 pt-10 font-patrick'>
+      <div className='flex justify-center w-full bg-gray-100 pt-2 md:pt-10 font-patrick'>
         <Carousel>
           <CarouselItem>
             <div
