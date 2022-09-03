@@ -50,6 +50,36 @@ export const sidebarItemsData: ReadonlyArray<sidebarItems> = [
           { product: "MSI", link: "/" },
         ],
       },
+      {
+        itemName: "Mobile and Accessories",
+        products: [
+          { product: "Samsung", link: "/" },
+          { product: "Apple", link: "/" },
+          { product: "Nokia", link: "/" },
+          { product: "Xiaomi", link: "/" },
+          { product: "Motorola", link: "/" },
+          { product: "LG", link: "/" },
+          { product: "sony", link: "/" },
+        ],
+      },
+      {
+        itemName: "Computer and Accessories",
+        products: [
+          { product: "Monitor", link: "/" },
+          { product: "Mouse", link: "/" },
+          { product: "Keyboard", link: "/" },
+          { product: "Hard,Flash,memory and SSD", link: "/" },
+        ],
+      },
+      {
+        itemName: "other",
+        products: [
+          { product: "Tablet", link: "/" },
+          { product: "Power Bank", link: "/" },
+          { product: "Bluetooth,speaker and wire", link: "/" },
+          { product: "Headphone,Headset and Hands free", link: "/" },
+        ],
+      },
     ],
   },
   {
@@ -76,7 +106,7 @@ export const sidebarItemsData: ReadonlyArray<sidebarItems> = [
     exists: true,
     productsInCategory: [
       {
-        itemName: "men's Fation",
+        itemName: "Men's Fashion",
         products: [
           { product: "Shirt", link: "/" },
           { product: "Pants", link: "/" },
@@ -84,6 +114,37 @@ export const sidebarItemsData: ReadonlyArray<sidebarItems> = [
           { product: "T-shirt", link: "/" },
           { product: "Shoes", link: "/" },
           { product: "Jeans", link: "/" },
+        ],
+      },
+      {
+        itemName: "Women's Fashion",
+        products: [
+          { product: "Dress", link: "/" },
+          { product: "Skirt", link: "/" },
+          { product: "Jeans", link: "/" },
+          { product: "Pants", link: "/" },
+          { product: "T-shirt", link: "/" },
+          { product: "Shoes", link: "/" },
+          { product: "Scarf", link: "/" },
+        ],
+      },
+      {
+        itemName: "Child's Fashion",
+        products: [
+          { product: "Overalls", link: "/" },
+          { product: "Mittens", link: "/" },
+          { product: "Baby Apron", link: "/" },
+          { product: "Shoes", link: "/" },
+          { product: "T-shirt", link: "/" },
+        ],
+      },
+      {
+        itemName: "Other",
+        products: [
+          { product: "Watch", link: "/" },
+          { product: "Wallet", link: "/" },
+          { product: "Hat", link: "/" },
+          { product: "Belt", link: "/" },
         ],
       },
     ],

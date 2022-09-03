@@ -219,7 +219,7 @@ const Navbar = () => {
         setMenuItems={setSidebarMenuItems}
       />
       <SidebarMenu show={showSidebarMenu} setClose={setShowSidebarMenu} menuItems={sidebarMenuItems} />
-      <Backdrop show={showSidebar} setClose={setShowSidebar} />
+      <Backdrop show={showSidebar} setClose={setShowSidebar} setCloseMenu={setShowSidebarMenu} />
     </header>
   );
 };
