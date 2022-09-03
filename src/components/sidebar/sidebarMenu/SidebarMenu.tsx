@@ -1,6 +1,9 @@
 import Link from "next/link";
 import { Dispatch, SetStateAction } from "react";
 import { items } from "../../../data/sidebarData/Sidebar";
+import ListCreator from "../../listCreator/ListCreator";
+import SidebarItem from "../sidebarItem/SidebarItem";
+import SidebarMenuItem from "./sidebarMenuItem/SidebarMenuItem";
 
 interface componentProps {
   // menuProducts: ReadonlyArray<items>;
@@ -9,7 +12,7 @@ interface componentProps {
   menuItems: ReadonlyArray<items>;
 }
 
-const SidebarMenu = ({ show, setClose }: componentProps) => {
+const SidebarMenu = ({ show, setClose, menuItems }: componentProps) => {
   return (
     <div
       className={`fixed top-0 h-screen w-5/6 bg-neutral-50 z-[2] md:hidden transition-all duration-500 flex flex-col text-slate-700 ${
@@ -46,6 +49,7 @@ const SidebarMenu = ({ show, setClose }: componentProps) => {
         </a>
       </Link>
       <hr className='mt-5 bg-neutral-600' />
+      <ListCreator itemPropsName='menuItem' items={menuItems} itemComponent={SidebarMenuItem} />
     </div>
   );
 };

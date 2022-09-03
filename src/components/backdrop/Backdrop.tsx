@@ -9,7 +9,7 @@ const Backdrop = ({ show, setClose }: componentProps) => {
   return (
     <div
       onClick={() => setClose(false)}
-      className={`fixed top-0 bottom-0 left-0 right-0 bg-neutral-700 bg-opacity-50 ${!show && "hidden"}`}
+      className={`md:hidden fixed top-0 bottom-0 left-0 right-0 bg-neutral-700 bg-opacity-50 ${!show && "hidden"}`}
     />
   );
 };

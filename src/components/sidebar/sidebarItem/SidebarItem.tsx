@@ -11,11 +11,13 @@ const SidebarItem = ({ sidebarItem, toggleMenu, setMenuItems }: componentProps) 
   return (
     <div
       onClick={() => {
-        sidebarItem.exists && toggleMenu(true);
-        sidebarItem.productsInCategory?.length && setMenuItems(sidebarItem.productsInCategory);
+        if (sidebarItem.productsInCategory) {
+          toggleMenu(true);
+          setMenuItems(sidebarItem.productsInCategory);
+        }
       }}
       className={`w-full inline-flex items-center mt-10 text-xl font-bold ${
-        sidebarItem.exists ? "text-slate-700" : "text-slate-500"
+        sidebarItem?.exists ? "text-slate-700" : "text-slate-500"
       }`}
     >
       <div className='inline-flex grow items-center'>

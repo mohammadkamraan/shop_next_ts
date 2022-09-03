@@ -18,7 +18,7 @@ export interface sidebarItems {
   productsInCategory?: ReadonlyArray<items>;
 }
 
-export const sidebarItems: ReadonlyArray<sidebarItems> = [
+export const sidebarItemsData: ReadonlyArray<sidebarItems> = [
   {
     id: 0,
     svg: (

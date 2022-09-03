@@ -1,6 +1,6 @@
 import Link from "next/link";
-import { Dispatch, SetStateAction, useState } from "react";
-import { sidebarItems, items } from "../../data/sidebarData/Sidebar";
+import { Dispatch, SetStateAction } from "react";
+import { sidebarItemsData, items } from "../../data/sidebarData/Sidebar";
 import ListCreator from "../listCreator/ListCreator";
 import SidebarItem from "./sidebarItem/SidebarItem";
 
@@ -12,8 +12,6 @@ interface componentProps {
 }
 
 const Sidebar = ({ show, setClose, toggleMenu, setMenuItems }: componentProps) => {
-  const [] = useState();
-
   return (
     <div
       className={`fixed top-0 h-screen w-5/6 bg-neutral-50 z-[2] md:hidden transition-all duration-500 ${
@@ -81,7 +79,7 @@ const Sidebar = ({ show, setClose, toggleMenu, setMenuItems }: componentProps) =
         <h3 className='text-2xl font-bold text-slate-700'>Category of Goods</h3>
         <ul className='flex flex-col'>
           <ListCreator
-            items={sidebarItems}
+            items={sidebarItemsData}
             itemPropsName='sidebarItem'
             itemComponent={SidebarItem}
             extraProps={{ toggleMenu, setMenuItems }}
