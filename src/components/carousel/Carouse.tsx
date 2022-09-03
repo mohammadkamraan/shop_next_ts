@@ -40,9 +40,9 @@ const Carousel = (props: any) => {
         onClick={() => {
           updateSliede(currentSlide - 1);
         }}
-        className='absolute left-0 z-[1] w-12 md:w-24 h-full bg-stone-50 bg-opacity-0 flex justify-center items-center cursor-pointer transition-all duration-500  hover:bg-opacity-10'
+        className='absolute left-0 z-[1] w-12 md:w-24 h-full bg-stone-50 dark:bg-stone-600 dark:bg-opacity-0 bg-opacity-0 flex justify-center items-center cursor-pointer transition-all duration-500  hover:bg-opacity-10 dark:hover:bg-opacity-10'
       >
-        <div className='bg-white bg-opacity-75 shadow-2xl rounded-full w-6 md:w-9 h-6 md:h-9 inline-flex items-center justify-center text-slate-700'>
+        <div className='bg-white dark:bg-slate-900 dark:bg-opacity-75 bg-opacity-75 shadow-2xl rounded-full w-6 md:w-9 h-6 md:h-9 inline-flex items-center justify-center text-slate-700 dark:text-slate-300'>
           <svg
             xmlns='http://www.w3.org/2000/svg'
             className='h-6 w-6'
@@ -56,12 +56,12 @@ const Carousel = (props: any) => {
         </div>
       </div>
       <div
-        className='absolute right-0 z-[1] w-12 md:w-24 h-full bg-stone-50 bg-opacity-0 flex justify-center items-center cursor-pointer transition-all duration-500  hover:bg-opacity-10'
+        className='absolute right-0 z-[1] w-12 md:w-24 h-full bg-stone-50 dark:bg-stone-600 dark:bg-opacity-0 bg-opacity-0 flex justify-center items-center cursor-pointer transition-all duration-500  hover:bg-opacity-10 dark:hover:bg-opacity-10'
         onClick={() => {
           updateSliede(currentSlide + 1);
         }}
       >
-        <div className='bg-white bg-opacity-75 shadow-2xl rounded-full w-6 md:w-9 h-6 md:h-9 inline-flex items-center justify-center text-slate-700'>
+        <div className='bg-white dark:bg-slate-900 dark:bg-opacity-75 bg-opacity-75 shadow-2xl rounded-full w-6 md:w-9 h-6 md:h-9 inline-flex items-center justify-center text-slate-700 dark:text-slate-300'>
           <svg
             xmlns='http://www.w3.org/2000/svg'
             className='h-6 w-6'

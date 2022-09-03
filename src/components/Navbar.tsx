@@ -6,10 +6,18 @@ import SidebarMenu from "./sidebar/sidebarMenu/SidebarMenu";
 
 import { items } from "../data/sidebarData/Sidebar";
 
+import { useTheme } from "next-themes";
+
 const Navbar = () => {
   const [languageSelect, setLanguageSelect] = useReducer(state => {
     return !state;
   }, false);
+
+  const [showSetting, setShowSetting] = useReducer(state => {
+    return !state;
+  }, false);
+
+  const { theme, setTheme } = useTheme();
 
   const [showSidebar, setShowSidebar] = useState<boolean>(false);
 
@@ -17,9 +25,16 @@ const Navbar = () => {
 
   const [sidebarMenuItems, setSidebarMenuItems] = useState<ReadonlyArray<items>>([]);
 
+  const toggleThemeMode = () => {
+    setTheme(theme === "light" ? "dark" : "light");
+  };
+
   return (
-    <header className='flex flex-col w-full font-patrick bg-gray-100 sticky z-10 top-0 border-b border-neutral-400-800 '>
-      <div className='flex justify-between md:justify-start items-center mt-6 mb-2 text-slate-600 md:order-2 mx-6 md:mx-0'>
+    <header
+      className='flex flex-col w-full font-patrick bg-gray-100 sticky z-10 top-0 border-b 
+     dark:bg-slate-900'
+    >
+      <div className='flex justify-between md:justify-start items-center mt-6 mb-2  text-slate-600 dark:text-slate-300 md:order-2 mx-6 md:mx-0'>
         <svg
           onClick={() => setShowSidebar(true)}
           xmlns='http://www.w3.org/2000/svg'
@@ -31,7 +46,7 @@ const Navbar = () => {
         >
           <path strokeLinecap='round' strokeLinejoin='round' d='M4 6h16M4 12h16M4 18h16' />
         </svg>
-        <p className='hidden font-black text-lg text-slate-800 ml-2 md:inline'>Category of Goods</p>
+        <p className='hidden font-black text-lg text-slate-800 dark:text-slate-300 ml-2 md:inline'>Category of Goods</p>
         <div className='w-0.5 h-7 bg-neutral-300 rounded-lg mx-3 hidden md:inline' />
         <Link href='/'>
           <a className='text-lg hidden md:inline'>%Offers and Discounts</a>
@@ -101,7 +116,7 @@ const Navbar = () => {
         <div className='inline md:hidden'>
           <p className='font-caveat font-black text-4xl text-rose-500 px-4'>M shop</p>
         </div>
-        <button className='mr-4 hidden md:inline'>
+        <button onClick={toggleThemeMode} className='mr-4 hidden md:inline'>
           <svg
             xmlns='http://www.w3.org/2000/svg'
             className='h-6 w-6'
@@ -117,7 +132,8 @@ const Navbar = () => {
             />
           </svg>
         </button>
-        <button className='inline md:hidden'>
+        {/* what i want */}
+        <button onClick={setShowSetting} className='inline md:hidden relative'>
           <svg
             xmlns='http://www.w3.org/2000/svg'
             fill='none'
@@ -133,12 +149,79 @@ const Navbar = () => {
             />
             <path strokeLinecap='round' strokeLinejoin='round' d='M15 12a3 3 0 11-6 0 3 3 0 016 0z' />
           </svg>
+          <div
+            className={`absolute -bottom-[17rem] -left-36 w-44 h-64 bg-white dark:bg-slate-800 z-[1] rounded-lg ${
+              !showSetting && "hidden"
+            } md:hidden flex flex-col text-slate-800 dark:text-slate-300`}
+          >
+            <p className='pl-6 pt-3 text-start text-2xl'>Language:</p>
+            <div className='inline-flex items-center mx-auto text-xl pt-3'>
+              <input
+                id='en'
+                type='radio'
+                name='language'
+                value='en'
+                className='accent-rose-500 w-3 h-3 inline-flex mr-4'
+              />
+              <label htmlFor='en' className='cursor-pointer'>
+                En - english
+              </label>
+            </div>
+            <div className='inline-flex items-center mx-auto text-xl pt-3'>
+              <input
+                id='fa'
+                type='radio'
+                name='language'
+                value='fa'
+                className=' accent-rose-500 h-3 inline-flex w-3 mr-4'
+              />
+              <label htmlFor='fa' className='font-vazir cursor-pointer'>
+                Fa - فارسی
+              </label>
+            </div>
+            <hr className='w-5/6 mx-auto mt-3' />
+            <p className='pl-6 pt-3 text-start text-2xl'>theme:</p>
+            <button onClick={toggleThemeMode} className='inline-flex items-center pt-3 pl-6 text-xl'>
+              {theme === "light" ? (
+                <svg
+                  xmlns='http://www.w3.org/2000/svg'
+                  fill='none'
+                  viewBox='0 0 24 24'
+                  strokeWidth={1.5}
+                  stroke='currentColor'
+                  className='w-6 h-6'
+                >
+                  <path
+                    strokeLinecap='round'
+                    strokeLinejoin='round'
+                    d='M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z'
+                  />
+                </svg>
+              ) : (
+                <svg
+                  xmlns='http://www.w3.org/2000/svg'
+                  fill='none'
+                  viewBox='0 0 24 24'
+                  strokeWidth={1.5}
+                  stroke='currentColor'
+                  className='w-6 h-6'
+                >
+                  <path
+                    strokeLinecap='round'
+                    strokeLinejoin='round'
+                    d='M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z'
+                  />
+                </svg>
+              )}
+              <p className='ml-2'>{theme}</p>
+            </button>
+          </div>
         </button>
       </div>
       <div className='flex items-center md:order-1 w-full mt-3'>
         <p className='font-caveat font-black text-4xl text-rose-500 px-4 hidden md:inline'>M shop</p>
         <div className='flex-grow'>
-          <div className='md:w-3/5 w-full h-12 bg-gray-200 rounded-md ml-6 md:ml-4 flex items-center'>
+          <div className='md:w-3/5 w-full h-12 bg-gray-200 dark:bg-slate-800 rounded-md ml-6 md:ml-4 flex items-center'>
             <svg
               xmlns='http://www.w3.org/2000/svg'
               className='h-5 w-5 text-gray-500 ml-5'
@@ -175,7 +258,7 @@ const Navbar = () => {
           </svg>
           <p className='ml-2 hidden md:inline'>login | singup</p>
         </button>
-        <button className='inline md:hidden ml-12 text-slate-800'>
+        <button className='inline md:hidden ml-12 text-slate-800 dark:text-slate-300'>
           <svg
             xmlns='http://www.w3.org/2000/svg'
             className='h-7 w-7'
@@ -195,7 +278,7 @@ const Navbar = () => {
         <span className='relative mr-5 ml-5'>
           <svg
             xmlns='http://www.w3.org/2000/svg'
-            className='h-7 w-7 text-slate-700 ml-3'
+            className='h-7 w-7 text-slate-700 ml-3 dark:text-slate-300'
             fill='none'
             viewBox='0 0 24 24'
             stroke='currentColor'

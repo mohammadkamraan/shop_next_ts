@@ -17,7 +17,7 @@ const SidebarItem = ({ sidebarItem, toggleMenu, setMenuItems }: componentProps) 
         }
       }}
       className={`w-full inline-flex items-center mt-10 text-xl font-bold ${
-        sidebarItem?.exists ? "text-slate-700" : "text-slate-500"
+        sidebarItem?.exists ? "text-slate-700 dark:text-slate-300 " : "text-slate-500 dark:text-slate-500"
       }`}
     >
       <div className='inline-flex grow items-center'>

@@ -7,6 +7,8 @@ import { useRouter } from "next/router";
 import store from "../redux/store";
 import Navbar from "../src/components/Navbar";
 
+import { ThemeProvider } from "next-themes";
+
 function MyApp({ Component, pageProps }: AppProps) {
   const { pathname } = useRouter();
 
@@ -14,8 +16,12 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   return (
     <Provider store={store}>
-      {withoutNavbarPathes.indexOf(pathname) < 0 && <Navbar />}
-      <Component {...pageProps} />
+      <ThemeProvider attribute='class'>
+        <div className='bg-gray-100 dark:bg-slate-900'>
+          {withoutNavbarPathes.indexOf(pathname) < 0 && <Navbar />}
+          <Component {...pageProps} />
+        </div>
+      </ThemeProvider>
     </Provider>
   );
 }
