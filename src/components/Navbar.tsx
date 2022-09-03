@@ -1,7 +1,10 @@
 import Link from "next/link";
-import { ReactElement, useReducer, useState } from "react";
+import { useReducer, useState } from "react";
 import Backdrop from "./backdrop/Backdrop";
 import Sidebar from "./sidebar/Sidebar";
+import SidebarMenu from "./sidebar/sidebarMenu/SidebarMenu";
+
+import { items } from "../data/sidebarData/Sidebar";
 
 const Navbar = () => {
   const [languageSelect, setLanguageSelect] = useReducer(state => {
@@ -9,6 +12,10 @@ const Navbar = () => {
   }, false);
 
   const [showSidebar, setShowSidebar] = useState<boolean>(false);
+
+  const [showSidebarMenu, setShowSidebarMenu] = useState<boolean>(false);
+
+  const [sidebarMenuItems, setSidebarMenuItems] = useState<ReadonlyArray<items>>([]);
 
   return (
     <header className='flex flex-col w-full font-patrick bg-gray-100 sticky z-10 top-0 border-b border-neutral-400-800 '>
@@ -205,7 +212,13 @@ const Navbar = () => {
           </span>
         </span>
       </div>
-      <Sidebar show={showSidebar} setClose={setShowSidebar} />
+      <Sidebar
+        show={showSidebar}
+        setClose={setShowSidebar}
+        toggleMenu={setShowSidebarMenu}
+        setMenuItems={setSidebarMenuItems}
+      />
+      <SidebarMenu show={showSidebarMenu} setClose={setShowSidebarMenu} menuItems={sidebarMenuItems} />
       <Backdrop show={showSidebar} setClose={setShowSidebar} />
     </header>
   );

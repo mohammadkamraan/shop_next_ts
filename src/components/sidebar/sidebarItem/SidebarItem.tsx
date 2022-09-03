@@ -1,12 +1,19 @@
-import { sidebarItems } from "../Sidebar";
+import { Dispatch, SetStateAction } from "react";
+import { sidebarItems, items } from "../../../data/sidebarData/Sidebar";
 
 interface componentProps {
   sidebarItem: sidebarItems;
+  toggleMenu: Dispatch<SetStateAction<boolean>>;
+  setMenuItems: Dispatch<SetStateAction<ReadonlyArray<items>>>;
 }
 
-const SidebarItem = ({ sidebarItem }: componentProps) => {
+const SidebarItem = ({ sidebarItem, toggleMenu, setMenuItems }: componentProps) => {
   return (
     <div
+      onClick={() => {
+        sidebarItem.exists && toggleMenu(true);
+        sidebarItem.productsInCategory?.length && setMenuItems(sidebarItem.productsInCategory);
+      }}
       className={`w-full inline-flex items-center mt-10 text-xl font-bold ${
         sidebarItem.exists ? "text-slate-700" : "text-slate-500"
       }`}
