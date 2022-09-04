@@ -17,7 +17,9 @@ const Navbar = () => {
     return !state;
   }, false);
 
-  const { theme, setTheme } = useTheme();
+  // const { theme, setTheme } = useTheme();
+
+  const [theme] = useState("light");
 
   const [showSidebar, setShowSidebar] = useState<boolean>(false);
 
@@ -26,7 +28,8 @@ const Navbar = () => {
   const [sidebarMenuItems, setSidebarMenuItems] = useState<ReadonlyArray<items>>([]);
 
   const toggleThemeMode = () => {
-    setTheme(theme === "light" ? "dark" : "light");
+    // setTheme(theme === "light" ? "dark" : "light");
+    console.log("hello");
   };
 
   return (

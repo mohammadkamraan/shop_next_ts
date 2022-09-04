@@ -1,18 +1,18 @@
 import type { NextPage } from "next";
+import Head from "next/head";
 import Link from "next/link";
 import Carousel, { CarouselItem } from "../src/components/carousel/Carouse";
 import Possibilities from "../src/components/possibilities/Possibilities";
 
-// import salam from "../public/images/horizontal-banner-online-fashion-sale_23-2148585404.webp";
-
-// const carouselData = [{
-
-// }];
-
 const Home: NextPage = () => {
-  // ../src/images/horizontal-banner-online-fashion-sale_23-2148585404.webp
   return (
     <>
+      <Head>
+        <meta name='description' content='Nextjs online shop github project' />
+        <meta name='keywords' content='HTML,Tailwincss,Javascript,Reactjs,Nextjs,Redux,Redux-toolkit' />
+        <meta name='author' content='Mohammad mahdi Kamran' />
+        <title>M Shop</title>
+      </Head>
       <div className='flex justify-center w-full bg-gray-100 dark:bg-slate-900 pt-2 md:pt-10 font-patrick'>
         <Carousel>
           <CarouselItem>
