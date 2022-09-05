@@ -17,9 +17,7 @@ const Navbar = () => {
     return !state;
   }, false);
 
-  // const { theme, setTheme } = useTheme();
-
-  const [theme] = useState("light");
+  const { theme, setTheme } = useTheme();
 
   const [showSidebar, setShowSidebar] = useState<boolean>(false);
 
@@ -28,8 +26,7 @@ const Navbar = () => {
   const [sidebarMenuItems, setSidebarMenuItems] = useState<ReadonlyArray<items>>([]);
 
   const toggleThemeMode = () => {
-    // setTheme(theme === "light" ? "dark" : "light");
-    console.log("hello");
+    setTheme(theme === "light" ? "dark" : "light");
   };
 
   return (
@@ -92,7 +89,7 @@ const Navbar = () => {
           <div
             className={`absolute ${
               !languageSelect && "hidden"
-            } -bottom-24 -left-28 w-40 h-24 bg-white rounded-md shadow-md z-50 px-6 py-3 font-bold text-lg`}
+            } -bottom-24 -left-28 w-40 h-24 bg-white dark:bg-slate-800 rounded-md shadow-md z-50 px-6 py-3 font-bold text-lg`}
           >
             <input
               id='en'

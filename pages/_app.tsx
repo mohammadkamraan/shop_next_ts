@@ -16,12 +16,12 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   return (
     <Provider store={store}>
-      {/* <ThemeProvider attribute='class'> */}
-      {/* <div className='bg-gray-100 dark:bg-slate-900'> */}
-      {withoutNavbarPathes.indexOf(pathname) < 0 && <Navbar />}
-      <Component {...pageProps} />
-      {/* </div> */}
-      {/* </ThemeProvider> */}
+      <ThemeProvider attribute='class'>
+        <div className='bg-gray-100 dark:bg-slate-900'>
+          {withoutNavbarPathes.indexOf(pathname) < 0 && <Navbar />}
+          <Component {...pageProps} />
+        </div>
+      </ThemeProvider>
     </Provider>
   );
 }
