@@ -7,6 +7,7 @@ import SidebarMenu from "./sidebar/sidebarMenu/SidebarMenu";
 import { items } from "../data/sidebarData/Sidebar";
 
 import { useTheme } from "next-themes";
+import ProductMenu from "./producMenu/ProductMenu";
 
 const Navbar = () => {
   const { theme, setTheme } = useTheme();
@@ -23,7 +24,11 @@ const Navbar = () => {
 
   const [showSidebarMenu, setShowSidebarMenu] = useState<boolean>(false);
 
+  const [showProductMenu, setProductMenu] = useState(false);
+
   const [sidebarMenuItems, setSidebarMenuItems] = useState<ReadonlyArray<items>>([]);
+
+  console.log(sidebarMenuItems);
 
   const toggleThemeMode = () => {
     setTheme(theme === "light" ? "dark" : "light");
@@ -36,6 +41,7 @@ const Navbar = () => {
     >
       <div className='flex justify-between md:justify-start items-center mt-6 mb-2  text-slate-600 dark:text-slate-300 md:order-2 mx-6 md:mx-0'>
         <svg
+          onMouseEnter={() => setProductMenu(true)}
           onClick={() => setShowSidebar(true)}
           xmlns='http://www.w3.org/2000/svg'
           className='h-6 w-6 ml-0 md:ml-6'
@@ -46,7 +52,12 @@ const Navbar = () => {
         >
           <path strokeLinecap='round' strokeLinejoin='round' d='M4 6h16M4 12h16M4 18h16' />
         </svg>
-        <p className='hidden font-black text-lg text-slate-800 dark:text-slate-300 ml-2 md:inline'>Category of Goods</p>
+        <p
+          onMouseEnter={() => setProductMenu(true)}
+          className='hidden font-black text-lg text-slate-800 dark:text-slate-300 ml-2 md:inline'
+        >
+          Category of Goods
+        </p>
         <div className='w-0.5 h-7 bg-neutral-300 rounded-lg mx-3 hidden md:inline' />
         <Link href='/'>
           <a className='text-lg hidden md:inline'>%Offers and Discounts</a>
@@ -255,7 +266,7 @@ const Navbar = () => {
               d='M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1'
             />
           </svg>
-          <p className='ml-2 hidden md:inline'>login | singup</p>
+          <p className='ml-2 hidden md:inline px-2'>login | singup</p>
         </button>
         <button className='inline md:hidden ml-12 text-slate-800 dark:text-slate-300'>
           <svg
@@ -301,6 +312,12 @@ const Navbar = () => {
         setMenuItems={setSidebarMenuItems}
       />
       <SidebarMenu show={showSidebarMenu} setClose={setShowSidebarMenu} menuItems={sidebarMenuItems} />
+      <ProductMenu
+        show={showProductMenu}
+        showMenu={setProductMenu}
+        setProductItem={setSidebarMenuItems}
+        productItems={sidebarMenuItems}
+      />
       <Backdrop show={showSidebar} setClose={setShowSidebar} setCloseMenu={setShowSidebarMenu} />
     </header>
   );
