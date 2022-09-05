@@ -18,7 +18,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     <Provider store={store}>
       <ThemeProvider attribute='class'>
         <div className='bg-gray-100 dark:bg-slate-900'>
-          {withoutNavbarPathes.indexOf(pathname) < 0 && <Navbar />}
+          {!withoutNavbarPathes.includes(pathname) && <Navbar />}
           <Component {...pageProps} />
         </div>
       </ThemeProvider>

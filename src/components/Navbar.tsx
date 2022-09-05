@@ -9,6 +9,8 @@ import { items } from "../data/sidebarData/Sidebar";
 import { useTheme } from "next-themes";
 
 const Navbar = () => {
+  const { theme, setTheme } = useTheme();
+
   const [languageSelect, setLanguageSelect] = useReducer(state => {
     return !state;
   }, false);
@@ -16,8 +18,6 @@ const Navbar = () => {
   const [showSetting, setShowSetting] = useReducer(state => {
     return !state;
   }, false);
-
-  const { theme, setTheme } = useTheme();
 
   const [showSidebar, setShowSidebar] = useState<boolean>(false);
 
@@ -133,7 +133,7 @@ const Navbar = () => {
           </svg>
         </button>
         {/* what i want */}
-        <button onClick={setShowSetting} className='inline md:hidden relative'>
+        <div onClick={setShowSetting} className='inline md:hidden relative'>
           <svg
             xmlns='http://www.w3.org/2000/svg'
             fill='none'
@@ -213,10 +213,9 @@ const Navbar = () => {
                   />
                 </svg>
               )}
-              <p className='ml-2'>{theme}</p>
             </button>
           </div>
-        </button>
+        </div>
       </div>
       <div className='flex items-center md:order-1 w-full mt-3'>
         <p className='font-caveat font-black text-4xl text-rose-500 px-4 hidden md:inline'>M shop</p>
