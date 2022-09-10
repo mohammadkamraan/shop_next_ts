@@ -3,8 +3,11 @@ import Head from "next/head";
 import Link from "next/link";
 import Carousel, { CarouselItem } from "../src/components/carousel/Carouse";
 import Possibilities from "../src/components/possibilities/Possibilities";
+import SpecialOffers from "../src/components/specialOffers/SpecialOffers";
 
-const Home: NextPage = () => {
+import { dataFetcher } from "../src/util/dataFetcher";
+
+const Home: NextPage = ({ specialOfferProducts }: any) => {
   return (
     <>
       <Head>
@@ -56,8 +59,18 @@ const Home: NextPage = () => {
         </Carousel>
       </div>
       <Possibilities />
+      <SpecialOffers />
     </>
   );
+};
+
+export const getStaticProps = async () => {
+  const data = await dataFetcher("products");
+  return {
+    props: {
+      specialOfferProducts: data,
+    },
+  };
 };
 
 export default Home;

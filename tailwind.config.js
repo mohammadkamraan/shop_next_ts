@@ -9,6 +9,9 @@ module.exports = {
         patrick: "Patrick Hand",
         vazir: "Vazir",
       },
+      width: {
+        "90%": "90%",
+      },
     },
   },
   plugins: [],
