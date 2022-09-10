@@ -16,7 +16,7 @@ const ProudctMenuItem = ({ item, setProductItem }: componentProps) => {
           setProductItem(item.productsInCategory?.length ? item.productsInCategory : []);
         }}
         className={`inline-flex items-center justify-between transition-all duration-300 ${
-          item.exists ? "text-slate-700" : "text-slate-500"
+          item.exists ? "text-slate-700 dark:text-slate-400" : "text-slate-500"
         } ${item.exists ? "hover:text-rose-500" : "hover:text-pink-400"}  ${item.exists && "font-bold"} text-xl mb-10`}
       >
         <span className='inline-flex items-center'>

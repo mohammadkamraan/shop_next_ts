@@ -17,9 +17,9 @@ const ProductMenu = ({ show, showMenu, setProductItem, productItems }: component
   return (
     <div
       onMouseLeave={() => showMenu(false)}
-      className={`bg-white rounded-t-sm rounded-b-xl w-[97vw] h-[30rem] absolute top-full hidden transition-all duration-500  ${
+      className={`bg-white dark:bg-slate-900 rounded-t-sm rounded-b-xl w-[97vw] h-[30rem] absolute top-full hidden transition-all duration-500  ${
         show ? "opacity-100 visible" : "opacity-0 invisible"
-      } place-self-center z-[4] md:grid md:grid-cols-12 overflow-hidden`}
+      } place-self-center z-[4] md:grid md:grid-cols-12 overflow-hidden shadow-lg shadow-neutral-700 dark:shadow-stone-100`}
     >
       <div className='h-full py-5 px-3 col-span-2 flex flex-col border-r-2'>
         <ListCreator
@@ -44,12 +44,11 @@ const ProductMenu = ({ show, showMenu, setProductItem, productItems }: component
           </svg>
         </a>
       </Link> */}
-
       <div className='h-full col-span-10 flex'>
         {productItems.length ? (
           <ListCreator items={productItems} itemPropsName='item' itemComponent={ItemsMenu} />
         ) : (
-          <p className='text-slate-700 text-2xl my-auto text-center w-full'>
+          <p className='text-slate-700 dark:text-slate-400 text-2xl my-auto text-center w-full'>
             There are no products in this category yet! New products will be added soon.
           </p>
         )}

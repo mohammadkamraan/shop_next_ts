@@ -22,7 +22,7 @@ const LIHtmlTag = ({ product }: LIHtmlTagProps) => {
 
 const ItemsMenu = ({ item }: componentProps) => {
   return (
-    <div className='w-full flex flex-col p-10 text-slate-700'>
+    <div className='w-full flex flex-col p-10 text-slate-700 dark:text-slate-400'>
       <Link href='/'>
         <a className='border-l-2 border-rose-500 text-xl mt-3 mb-5 transition-all duration-300 hover:text-rose-500'>
           {item.itemName}

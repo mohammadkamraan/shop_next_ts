@@ -26,4 +26,6 @@ function MyApp({ Component, pageProps }: AppProps) {
   );
 }
 
+export const getServerSideProps = () => {};
+
 export default MyApp;
