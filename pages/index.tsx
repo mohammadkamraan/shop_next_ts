@@ -1,23 +1,24 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
-import Carousel, { CarouselItem } from "../src/components/carousel/Carouse";
+import Carousel, { CarouselItem } from "../src/components/carousel/Carousel";
 import Possibilities from "../src/components/possibilities/Possibilities";
 import SpecialOffers from "../src/components/specialOffers/SpecialOffers";
+import AllProductsContext from "../src/context/AllProductsContext";
 
 import { dataFetcher } from "../src/util/dataFetcher";
 
-const Home: NextPage = ({ specialOfferProducts }: any) => {
+const Home: NextPage<any> = ({ specialOfferProducts }) => {
   return (
-    <>
+    <AllProductsContext.Provider value={{ allProducts: specialOfferProducts }}>
       <Head>
         <meta name='description' content='Nextjs online shop github project' />
         <meta name='keywords' content='HTML,Tailwincss,Javascript,Reactjs,Nextjs,Redux,Redux-toolkit' />
         <meta name='author' content='Mohammad mahdi Kamran' />
         <title>M Shop</title>
       </Head>
-      <div className='flex justify-center w-full bg-gray-100 dark:bg-slate-900 pt-2 md:pt-10 font-patrick'>
-        <Carousel>
+      <div className='flex w-11/12 h-[30vh] md:h-[70vh] mx-auto bg-gray-100 dark:bg-slate-900 pt-2 md:pt-10 font-patrick'>
+        <Carousel withDots={true} hasFlow={true}>
           <CarouselItem>
             <div
               className='bg-[url("../public/images/fashion-banner.webp")]
@@ -60,7 +61,13 @@ const Home: NextPage = ({ specialOfferProducts }: any) => {
       </div>
       <Possibilities />
       <SpecialOffers />
-    </>
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+    </AllProductsContext.Provider>
   );
 };
 

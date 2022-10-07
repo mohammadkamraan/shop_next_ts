@@ -28,8 +28,6 @@ const Navbar = () => {
 
   const [sidebarMenuItems, setSidebarMenuItems] = useState<ReadonlyArray<items>>([]);
 
-  console.log(sidebarMenuItems);
-
   const toggleThemeMode = () => {
     setTheme(theme === "light" ? "dark" : "light");
   };

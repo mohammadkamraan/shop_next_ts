@@ -1,6 +1,19 @@
-import React, { useEffect, useState } from "react";
-export const CarouselItem = (prop: any) => {
-  return <div className='inline-flex h-[90%] md:h-full w-full'>{prop.children}</div>;
+import React, { FC, useEffect, useState } from "react";
+
+interface CarouselItemProps {
+  items?: number;
+  children: any;
+}
+
+export const CarouselItem: FC<CarouselItemProps> = ({ items, children }) => {
+  const standardWidth = () => {
+    if (!items || items === 1) return "w-full";
+    else if (items === 2) return "w-1/2";
+    else if (items === 4) return "w-1/4";
+    else if (items === 5) return "w-1/5";
+  };
+
+  return <div className={`inline-flex h-[90%] md:h-full md:${standardWidth()} w-full`}>{children}</div>;
 };
 
 const Carousel = (props: any) => {
@@ -18,11 +31,14 @@ const Carousel = (props: any) => {
   };
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      if (!stopCarousel) {
-        updateSliede(currentSlide + 1);
-      }
-    }, 5000);
+    let interval: any;
+    if (props.hasFlow) {
+      interval = setInterval(() => {
+        if (!stopCarousel) {
+          updateSliede(currentSlide + 1);
+        }
+      }, 5000);
+    }
     return () => {
       if (interval) {
         clearInterval(interval);
@@ -32,7 +48,7 @@ const Carousel = (props: any) => {
 
   return (
     <div
-      className='w-11/12 h-[30vh] md:h-[70vh] overflow-hidden relative'
+      className='w-full h-full overflow-hidden relative'
       onMouseEnter={() => setStopCarousel(true)}
       onMouseLeave={() => setStopCarousel(false)}
     >
@@ -74,21 +90,23 @@ const Carousel = (props: any) => {
           </svg>
         </div>
       </div>
-      <ul className='inline-flex items-center justify-center z-[1] absolute bottom-0 w-full h-6'>
-        {React.Children.map(props.children, (child: any, index: number) => {
-          return (
-            <li
-              key={index}
-              className='inline-flex items-center justify-center border border-slate-800 w-1 h-1 md:w-3 md:h-3 rounded-full mx-6 cursor-pointer overflow-hidden'
-            >
-              <button
-                onClick={() => setCurrentSlide(index)}
-                className={`${index === currentSlide && "bg-slate-800"} w-full h-full rounded-full`}
-              />
-            </li>
-          );
-        })}
-      </ul>
+      {props.withDots && (
+        <ul className='inline-flex items-center justify-center z-[1] absolute bottom-0 w-full h-6'>
+          {React.Children.map(props.children, (child: any, index: number) => {
+            return (
+              <li
+                key={index}
+                className='inline-flex items-center justify-center border border-slate-800 w-1 h-1 md:w-3 md:h-3 rounded-full mx-6 cursor-pointer overflow-hidden'
+              >
+                <button
+                  onClick={() => setCurrentSlide(index)}
+                  className={`${index === currentSlide && "bg-slate-800"} w-full h-full rounded-full`}
+                />
+              </li>
+            );
+          })}
+        </ul>
+      )}
       <div
         className={`whitespace-nowrap w-full h-full transition-all duration-500`}
         style={{ transform: `translateX(-${currentSlide * 100}%)` }}
