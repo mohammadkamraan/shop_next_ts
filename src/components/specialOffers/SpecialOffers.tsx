@@ -11,7 +11,7 @@ const SpecialOffers: FC = () => {
           See All
         </button>
       </div>
-      <div className='md:ml-0 w-4/6 md:w-5/6 h-full flex justify-center'>
+      <div className='w-4/6 md:w-5/6 h-full pl-12 py-4'>
         <ProductsSection />
       </div>
     </div>

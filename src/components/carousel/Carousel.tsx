@@ -8,12 +8,12 @@ interface CarouselItemProps {
 export const CarouselItem: FC<CarouselItemProps> = ({ items, children }) => {
   const standardWidth = () => {
     if (!items || items === 1) return "w-full";
-    else if (items === 2) return "w-1/2";
-    else if (items === 4) return "w-1/4";
-    else if (items === 5) return "w-1/5";
+    else if (items === 2) return "md:w-1/2 w-full";
+    else if (items === 4) return "md:w-1/4 w-full";
+    else if (items === 5) return "md:w-1/5 w-full";
   };
 
-  return <div className={`inline-flex h-[90%] md:h-full md:${standardWidth()} w-full`}>{children}</div>;
+  return <div className={`inline-flex h-[90%] md:h-full ${standardWidth()}`}>{children}</div>;
 };
 
 const Carousel = (props: any) => {
