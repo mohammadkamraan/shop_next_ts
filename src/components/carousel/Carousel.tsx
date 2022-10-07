@@ -21,13 +21,17 @@ const Carousel = (props: any) => {
 
   const [stopCarousel, setStopCarousel] = useState<boolean>(false);
 
-  const updateSliede = (newSlideIndex: number) => {
-    if (newSlideIndex < 0) {
-      newSlideIndex = React.Children.count(props.children) - 1;
-    } else if (newSlideIndex >= React.Children.count(props.children)) {
-      newSlideIndex = 0;
+  const updateSliede = (newSlideIndex: number, items: number) => {
+    if (newSlideIndex + 1 === items) {
+      setCurrentSlide(0);
+    } else {
+      if (newSlideIndex < 0) {
+        newSlideIndex = React.Children.count(props.children) - 1;
+      } else if (newSlideIndex >= React.Children.count(props.children)) {
+        newSlideIndex = 0;
+      }
+      setCurrentSlide(newSlideIndex);
     }
-    setCurrentSlide(newSlideIndex);
   };
 
   useEffect(() => {
@@ -35,7 +39,7 @@ const Carousel = (props: any) => {
     if (props.hasFlow) {
       interval = setInterval(() => {
         if (!stopCarousel) {
-          updateSliede(currentSlide + 1);
+          updateSliede(currentSlide + 1, props.items);
         }
       }, 5000);
     }
@@ -54,7 +58,7 @@ const Carousel = (props: any) => {
     >
       <div
         onClick={() => {
-          updateSliede(currentSlide - 1);
+          updateSliede(currentSlide - 1, props.items);
         }}
         className='absolute left-0 z-[1] w-12 md:w-24 h-full bg-stone-50 dark:bg-stone-600 dark:bg-opacity-0 bg-opacity-0 flex justify-center items-center cursor-pointer transition-all duration-500  hover:bg-opacity-10 dark:hover:bg-opacity-10'
       >
@@ -74,7 +78,7 @@ const Carousel = (props: any) => {
       <div
         className='absolute right-0 z-[1] w-12 md:w-24 h-full bg-stone-50 dark:bg-stone-600 dark:bg-opacity-0 bg-opacity-0 flex justify-center items-center cursor-pointer transition-all duration-500  hover:bg-opacity-10 dark:hover:bg-opacity-10'
         onClick={() => {
-          updateSliede(currentSlide + 1);
+          updateSliede(currentSlide + 1, props.items);
         }}
       >
         <div className='bg-white dark:bg-slate-900 dark:bg-opacity-75 bg-opacity-75 shadow-2xl rounded-full w-6 md:w-9 h-6 md:h-9 inline-flex items-center justify-center text-slate-700 dark:text-slate-300'>
