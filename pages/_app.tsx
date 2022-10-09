@@ -9,6 +9,10 @@ import Navbar from "../src/components/Navbar";
 
 import { ThemeProvider } from "next-themes";
 
+// react-slick css files
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
 function MyApp({ Component, pageProps }: AppProps) {
   const { pathname } = useRouter();
 
@@ -25,7 +29,5 @@ function MyApp({ Component, pageProps }: AppProps) {
     </Provider>
   );
 }
-
-export const getServerSideProps = () => {};
 
 export default MyApp;
