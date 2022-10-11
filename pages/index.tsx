@@ -12,6 +12,7 @@ import { homePage } from "../src/data/slidersData/slidersData";
 import Slider from "react-slick";
 
 import { dataFetcher } from "../src/util/dataFetcher";
+import CategoryOfGoods from "../src/components/categoryOfGoods/CategoryOfGoods";
 
 const Home: NextPage<any> = ({ specialOfferProducts }) => {
   return (
@@ -63,6 +64,7 @@ const Home: NextPage<any> = ({ specialOfferProducts }) => {
       </Slider>
       <Possibilities />
       <SpecialOffers />
+      <CategoryOfGoods />
       <br />
       <br />
       <br />
