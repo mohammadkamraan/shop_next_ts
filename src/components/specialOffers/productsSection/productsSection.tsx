@@ -13,7 +13,11 @@ const ProductsSection: FC = () => {
   return (
     <Slider {...specialProducts}>
       {contextData?.allProducts?.slice(0, 10)?.map((product: { [key: string]: any }) => (
-        <div className='relative h-72 rounded-md bg-sky-200 my-auto overflow-hidden' style={{ width: 200 }}>
+        <div
+          key={product.id}
+          className='relative h-72 rounded-md bg-sky-200 my-auto overflow-hidden'
+          style={{ width: 200 }}
+        >
           <div className='h-48 w-full text-center p-2'>
             <img className='h-full w-full bg-none bg-sky-200 block' src={product.image} alt={product.title} />
           </div>
