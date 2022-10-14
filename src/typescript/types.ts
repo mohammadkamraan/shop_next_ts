@@ -6,6 +6,12 @@ export type tailwindGridRows =
   | "row-span-4"
   | "row-span-5"
   | "row-span-6"
+  | "row-span-7"
+  | "row-span-8"
+  | "row-span-9"
+  | "row-span-10"
+  | "row-span-11"
+  | "row-span-12"
   | "row-span-full";
 
 export type tailwindGridCols =
@@ -22,3 +28,5 @@ export type tailwindGridCols =
   | "col-span-10"
   | "col-span-11"
   | "col-span-12";
+
+export type tailwindBreakPoints = "sm" | "md" | "lg" | "xl" | "2xl";

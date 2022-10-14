@@ -1,15 +1,16 @@
+import Image from "next/image";
+import Link from "next/link";
 import { FC } from "react";
 
 // typescript interfaces and (or) types
 import { ICategoryOfGood } from "../../../typescript/INterfaces";
+import type { tailwindBreakPoints } from "../../../typescript/types";
 
 import { firstLetterCapitalizer } from "../../../util/firstLetterCapitalizer";
 
 interface IComponentProps {
   item: any | ICategoryOfGood;
 }
-
-type tailwindBreakPoints = "sm" | "md" | "lg" | "xl" | "2xl";
 
 const tailwindBreakPointsArray: tailwindBreakPoints[] = ["sm", "md", "lg", "xl", "2xl"];
 
@@ -35,11 +36,30 @@ const CategoryOfGoodsItem: FC<IComponentProps> = ({ item }) => {
 
   return (
     <div
-      className={`${responsiveGridForAllBreakePointsAndDiractions()} ${item.backgroundColor} ${item.flexDiracion} ${
-        item.gridCoulsClassName
-      } ${item.gridRowsClassName}`}
+      className={`flex  ${item.flexDiracion} ${
+        item.flexDiracion === "flex-col" ? "justify-center" : "justify-evenly"
+      } shadow-lg shadow-slate-400 rounded-md justify-evenly px-5 items-center ${item.backgroundColor} ${
+        item.flexDiracion
+      } ${item.gridCoulsClassName} ${item.gridRowsClassName} ${responsiveGridForAllBreakePointsAndDiractions()}`}
     >
-      <h6>{item.cardHeader}</h6>
+      <div className={item.imageOrder === 1 ? "order-2" : ""}>
+        <h6 className='text-slate-800 text-3xl'>{item.cardHeader}</h6>
+        <p className='text-slate-700'>{item.paragraph}</p>
+        <Link href={item.productsLink}>
+          <a className='bg-rose-700 px-4 py-2 rounded-md text-white inline-block transition-all duration-300 hover:scale-90 mt-2'>
+            see all products
+          </a>
+        </Link>
+      </div>
+      <div className={item.imageOrder === 1 ? "order-1" : ""}>
+        <Image
+          className='transition-all duration-300 hover:scale-90'
+          width={item.image.imageWidth}
+          height={item.image.imageHeight}
+          src={item.image.imageAddress}
+          alt={item.cardHeader}
+        />
+      </div>
     </div>
   );
 };

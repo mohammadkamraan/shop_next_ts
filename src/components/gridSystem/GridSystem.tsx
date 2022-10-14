@@ -3,9 +3,6 @@ import { FC } from "react";
 // components
 import ListCreator from "../listCreator/ListCreator";
 
-// typescript types
-import { IGridSystemItem } from "../../typescript/INterfaces";
-
 interface IComponentProps {
   itemComponent: any;
   items: any[];
@@ -28,7 +25,7 @@ const GridSystem: FC<IComponentProps> = ({ items, gap = 4, needRows = false, ite
   };
 
   return (
-    <div className={`grid grid-cols-12 ${gridWithRows(needRows)} ${gridClassName(gap)} w-full h-full bg-rose-600`}>
+    <div className={`grid grid-cols-12 ${gridWithRows(needRows)} ${gridClassName(gap)} w-full h-full`}>
       <ListCreator itemComponent={itemComponent} itemPropsName='item' items={items} />
     </div>
   );

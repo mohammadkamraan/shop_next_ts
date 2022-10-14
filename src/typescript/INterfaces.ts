@@ -16,11 +16,17 @@ export interface IGridSystemItem {
   gridCoulsClassNameIn2xlMode?: tailwindGridCols;
 }
 
+interface ICategoryOfGoodImage {
+  imageAddress: any;
+  imageWidth: number;
+  imageHeight: number;
+}
+
 export interface ICategoryOfGood extends IGridSystemItem {
   cardHeader: string;
   paragraph: string;
   productsLink: string;
-  image: any;
+  image: ICategoryOfGoodImage;
   imageOrder: 1 | 2;
   flexDiracion: "flex-row" | "flex-col";
   backgroundColor: string;
