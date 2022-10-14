@@ -8,7 +8,9 @@ const CategoryOfGoods: FC = () => {
   return (
     <div className='w-full h-4/6 font-patrick'>
       <p className='text-slate-800 text-lg text-center'>Category of Goods</p>
-      <GridSystem itemComponent={CategoryOfGoodsItem} items={categoryOfGoodsData} needRows={true} gap={4} />
+      <div className='h-[30vh]'>
+        <GridSystem itemComponent={CategoryOfGoodsItem} items={categoryOfGoodsData} needRows={true} gap={4} />
+      </div>
     </div>
   );
 };

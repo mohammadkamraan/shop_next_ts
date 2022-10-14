@@ -28,7 +28,7 @@ const GridSystem: FC<IComponentProps> = ({ items, gap = 4, needRows = false, ite
   };
 
   return (
-    <div className={`grid grid-cols-12 ${gridWithRows(needRows)} ${gridClassName(gap)}`}>
+    <div className={`grid grid-cols-12 ${gridWithRows(needRows)} ${gridClassName(gap)} w-full h-full bg-rose-600`}>
       <ListCreator itemComponent={itemComponent} itemPropsName='item' items={items} />
     </div>
   );

@@ -1,24 +1,20 @@
 import { FC } from "react";
 
 // typescript interfaces and (or) types
-import { IGridSystemItem } from "../../../typescript/INterfaces";
+import { ICategoryOfGood } from "../../../typescript/INterfaces";
 
 import { firstLetterCapitalizer } from "../../../util/firstLetterCapitalizer";
 
 interface IComponentProps {
-  item: any | IGridSystemItem;
+  item: any | ICategoryOfGood;
 }
 
 type tailwindBreakPoints = "sm" | "md" | "lg" | "xl" | "2xl";
 
 const tailwindBreakPointsArray: tailwindBreakPoints[] = ["sm", "md", "lg", "xl", "2xl"];
 
-let forLoopIndex: number = 0;
-
-let tailwindBreakPoint: tailwindBreakPoints;
-
 type ResponsiveGrid = (breakPoint: tailwindBreakPoints, diraction: "rows" | "couls") => string;
-type SpecificProperty = (breakPoint: tailwindBreakPoints, diraction: "rows" | "couls") => keyof IGridSystemItem | any;
+type SpecificProperty = (breakPoint: tailwindBreakPoints, diraction: "rows" | "couls") => keyof ICategoryOfGood | any;
 
 const CategoryOfGoodsItem: FC<IComponentProps> = ({ item }) => {
   const specificProperty: SpecificProperty = (breakPoint, diraction) => {
@@ -32,26 +28,19 @@ const CategoryOfGoodsItem: FC<IComponentProps> = ({ item }) => {
   };
 
   const responsiveGridForAllBreakePointsAndDiractions = () => {
-    // for (forLoopIndex; forLoopIndex < tailwindBreakPointsArray.length; forLoopIndex++) {
-    //   if (forLoopIndex < tailwindBreakPointsArray.length) {
-    //     continue;
-    //   }
-    //   return (
-    //     responsiveGrid(tailwindBreakPointsArray[forLoopIndex], "couls") +
-    //     responsiveGrid(tailwindBreakPointsArray[forLoopIndex], "rows")
-    //   );
-    // }
+    return `${tailwindBreakPointsArray.map((tailwindBreakPoint: tailwindBreakPoints) => {
+      return responsiveGrid(tailwindBreakPoint, "couls") + responsiveGrid(tailwindBreakPoint, "rows");
+    })}`;
   };
 
   return (
     <div
-      className={`${tailwindBreakPointsArray.forEach(breakPoint => {
-        return `${responsiveGrid(tailwindBreakPointsArray[forLoopIndex], "couls")}${responsiveGrid(
-          tailwindBreakPoint,
-          "rows"
-        )}`;
-      })}`}
-    ></div>
+      className={`${responsiveGridForAllBreakePointsAndDiractions()} ${item.backgroundColor} ${item.flexDiracion} ${
+        item.gridCoulsClassName
+      } ${item.gridRowsClassName}`}
+    >
+      <h6>{item.cardHeader}</h6>
+    </div>
   );
 };
 

@@ -22,6 +22,6 @@ export interface ICategoryOfGood extends IGridSystemItem {
   productsLink: string;
   image: any;
   imageOrder: 1 | 2;
-  flexDiracion: "row" | "column";
+  flexDiracion: "flex-row" | "flex-col";
   backgroundColor: string;
 }
