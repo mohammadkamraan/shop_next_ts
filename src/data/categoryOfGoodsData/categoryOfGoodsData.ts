@@ -1,4 +1,4 @@
-import { ICategoryOfGood } from "../../typescript/INterfaces";
+import { ICategoryOfGood, ICategoryOfGoodInSmallMode } from "../../typescript/INterfaces";
 
 import beautyCategoryImage from "../../../public/images/categoryImages/beauty-category.webp";
 import digitalCategoryImage from "../../../public/images/categoryImages/digital-category.webp";
@@ -7,6 +7,14 @@ import houseCategoryImage from "../../../public/images/categoryImages/house-cate
 import sportCatergoryImage from "../../../public/images/categoryImages/sport-category.webp";
 import stationeryCategoryImage from "../../../public/images/categoryImages/stationery-category.webp";
 import toyCategoryImage from "../../../public/images/categoryImages/toy-category.webp";
+
+import beautyCategoryIcon from "../../../public/images/category-icon/beauty-category.webp";
+import digitalCategoryIcon from "../../../public/images/category-icon/digital-category.webp";
+import fashionCategoryIcon from "../../../public/images/category-icon/fashion-category.webp";
+import houseCategoryIcon from "../../../public/images/category-icon/house-category.webp";
+import sportCatergoryIcon from "../../../public/images/category-icon/sport-category.webp";
+import stationeryCategoryIcon from "../../../public/images/category-icon/stationery-category.webp";
+import toyCategoryIcon from "../../../public/images/category-icon/toy-category.webp";
 
 export const categoryOfGoodsData: ICategoryOfGood[] = [
   {
@@ -114,4 +122,14 @@ export const categoryOfGoodsData: ICategoryOfGood[] = [
     imageOrder: 2,
     productsLink: "/",
   },
+];
+
+export const categoryOfGoodsDataInSmallMode: ICategoryOfGoodInSmallMode[] = [
+  { categoryLink: "/", categoryName: "Fashin and Clothes", svg: digitalCategoryIcon },
+  { categoryLink: "/", categoryName: "Cosmetic Products", svg: fashionCategoryIcon },
+  { categoryLink: "/", categoryName: "Sport and Trip", svg: beautyCategoryIcon },
+  { categoryLink: "/", categoryName: "Furniture and kitchen", svg: sportCatergoryIcon },
+  { categoryLink: "/", categoryName: "Toys and Baby", svg: houseCategoryIcon },
+  { categoryLink: "/", categoryName: "Digital Products", svg: toyCategoryIcon },
+  { categoryLink: "/", categoryName: "Books, Stationery and Art", svg: stationeryCategoryIcon },
 ];

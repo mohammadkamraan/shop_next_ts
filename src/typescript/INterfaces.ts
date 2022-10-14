@@ -31,3 +31,9 @@ export interface ICategoryOfGood extends IGridSystemItem {
   flexDiracion: "flex-row" | "flex-col";
   backgroundColor: string;
 }
+
+export interface ICategoryOfGoodInSmallMode {
+  svg: any;
+  categoryLink: string;
+  categoryName: string;
+}

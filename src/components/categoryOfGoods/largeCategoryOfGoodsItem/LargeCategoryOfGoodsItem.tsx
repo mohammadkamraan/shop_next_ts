@@ -17,7 +17,7 @@ const tailwindBreakPointsArray: tailwindBreakPoints[] = ["sm", "md", "lg", "xl",
 type ResponsiveGrid = (breakPoint: tailwindBreakPoints, diraction: "rows" | "couls") => string;
 type SpecificProperty = (breakPoint: tailwindBreakPoints, diraction: "rows" | "couls") => keyof ICategoryOfGood | any;
 
-const CategoryOfGoodsItem: FC<IComponentProps> = ({ item }) => {
+const LargeCategoryOfGoodsItem: FC<IComponentProps> = ({ item }) => {
   const specificProperty: SpecificProperty = (breakPoint, diraction) => {
     return `grid${firstLetterCapitalizer(diraction)}ClassNameIn${firstLetterCapitalizer(breakPoint)}Mode`;
   };
@@ -38,9 +38,9 @@ const CategoryOfGoodsItem: FC<IComponentProps> = ({ item }) => {
     <div
       className={`flex  ${item.flexDiracion} ${
         item.flexDiracion === "flex-col" ? "justify-center" : "justify-evenly"
-      } shadow-lg shadow-slate-400 rounded-md justify-evenly px-5 items-center ${item.backgroundColor} ${
-        item.flexDiracion
-      } ${item.gridCoulsClassName} ${item.gridRowsClassName} ${responsiveGridForAllBreakePointsAndDiractions()}`}
+      } shadow-lg shadow-slate-400 rounded-md justify-evenly px-5 items-center ${item.backgroundColor}  ${
+        item.gridCoulsClassName
+      } ${item.gridRowsClassName} ${responsiveGridForAllBreakePointsAndDiractions()}`}
     >
       <div className={item.imageOrder === 1 ? "order-2" : ""}>
         <h6 className='text-slate-800 text-3xl'>{item.cardHeader}</h6>
@@ -64,4 +64,4 @@ const CategoryOfGoodsItem: FC<IComponentProps> = ({ item }) => {
   );
 };
 
-export default CategoryOfGoodsItem;
+export default LargeCategoryOfGoodsItem;
