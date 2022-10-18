@@ -36,11 +36,9 @@ const LargeCategoryOfGoodsItem: FC<IComponentProps> = ({ item }) => {
 
   return (
     <div
-      className={`flex  ${item.flexDiracion} ${
+      className={`${item.backgroundColor} ${item.gridCoulsClassName} ${item.gridRowsClassName} ${item.flexDiracion} ${
         item.flexDiracion === "flex-col" ? "justify-center" : "justify-evenly"
-      } shadow-lg shadow-slate-400 rounded-md justify-evenly px-5 items-center ${item.backgroundColor}  ${
-        item.gridCoulsClassName
-      } ${item.gridRowsClassName} ${responsiveGridForAllBreakePointsAndDiractions()}`}
+      } ${responsiveGridForAllBreakePointsAndDiractions()} flex shadow-lg shadow-slate-400 rounded-md px-5 items-center`}
     >
       <div className={item.imageOrder === 1 ? "order-2" : ""}>
         <h6 className='text-slate-800 text-3xl'>{item.cardHeader}</h6>
