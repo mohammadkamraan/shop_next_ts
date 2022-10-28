@@ -1,13 +1,13 @@
 import Link from "next/link";
 import { useReducer, useState } from "react";
-import Backdrop from "./backdrop/Backdrop";
-import Sidebar from "./sidebar/Sidebar";
-import SidebarMenu from "./sidebar/sidebarMenu/SidebarMenu";
+import Backdrop from "../backdrop/Backdrop";
+import Sidebar from "../sidebar/Sidebar";
+import SidebarMenu from "../sidebar/sidebarMenu/SidebarMenu";
 
-import { items } from "../data/sidebarData/Sidebar";
+import { items } from "../../data/sidebarData/Sidebar";
 
 import { useTheme } from "next-themes";
-import ProductMenu from "./producMenu/ProductMenu";
+import ProductMenu from "../producMenu/ProductMenu";
 
 const Navbar = () => {
   const { theme, setTheme } = useTheme();

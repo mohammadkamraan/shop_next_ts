@@ -21,12 +21,6 @@ const Home: NextPage<any> = ({ specialOfferProducts }) => {
       <Possibilities />
       <SpecialOffers />
       <CategoryOfGoods />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
     </AllProductsContext.Provider>
   );
 };

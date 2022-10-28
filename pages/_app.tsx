@@ -5,7 +5,7 @@ import { Provider } from "react-redux";
 import { useRouter } from "next/router";
 
 import store from "../redux/store";
-import Navbar from "../src/components/Navbar";
+import Navbar from "../src/components/./navbar/Navbar";
 
 import { ThemeProvider } from "next-themes";
 
