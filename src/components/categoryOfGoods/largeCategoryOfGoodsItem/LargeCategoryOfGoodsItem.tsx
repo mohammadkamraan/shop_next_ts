@@ -36,13 +36,15 @@ const LargeCategoryOfGoodsItem: FC<IComponentProps> = ({ item }) => {
 
   return (
     <div
-      className={`${item.backgroundColor} ${item.gridCoulsClassName} ${item.gridRowsClassName} ${item.flexDiracion} ${
+      className={`${item.backgroundColor} ${item.darkModeBackground} ${item.gridCoulsClassName} ${
+        item.gridRowsClassName
+      } ${item.flexDiracion} ${
         item.flexDiracion === "flex-col" ? "justify-center" : "justify-evenly"
-      } ${responsiveGridForAllBreakePointsAndDiractions()} flex shadow-lg shadow-slate-400 rounded-md px-5 items-center`}
+      } ${responsiveGridForAllBreakePointsAndDiractions()} flex shadow-lg shadow-slate-400 dark:shadow-none rounded-md px-5 items-center `}
     >
       <div className={item.imageOrder === 1 ? "order-2" : ""}>
-        <h6 className='text-slate-800 text-3xl'>{item.cardHeader}</h6>
-        <p className='text-slate-700'>{item.paragraph}</p>
+        <h6 className='text-slate-800 dark:text-slate-300 text-3xl'>{item.cardHeader}</h6>
+        <p className='text-slate-700 dark:text-slate-200'>{item.paragraph}</p>
         <Link href={item.productsLink}>
           <a className='bg-rose-700 px-4 py-2 rounded-md text-white inline-block transition-all duration-300 hover:scale-90 mt-2'>
             see all products

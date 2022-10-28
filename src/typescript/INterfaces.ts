@@ -30,6 +30,7 @@ export interface ICategoryOfGood extends IGridSystemItem {
   imageOrder: 1 | 2;
   flexDiracion: "flex-row" | "flex-col";
   backgroundColor: string;
+  darkModeBackground: string;
 }
 
 export interface ICategoryOfGoodInSmallMode {
