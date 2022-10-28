@@ -22,3 +22,8 @@
     src: url("/fonts/Vazir.woff2");
   }
 }
+
+/* to items in sepecialproducts get margin from each other */
+.slick-has-margin .slick-slide > div {
+  margin: 0 0.5rem;
+}

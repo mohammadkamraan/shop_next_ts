@@ -134,8 +134,8 @@ const categoryOfGoodsData: ICategoryOfGood[] = [
 const CategoryOfGoods: FC = () => {
   return (
     <div className='w-full h-4/6 font-patrick'>
-      <p className='text-slate-800 text-4xl text-center mt-5 dark:text-slate-300'>Category of Goods</p>
-      <div className='h-[75vh] px-16 py-8 hidden xl:block'>
+      <p className='text-slate-800 text-4xl text-center my-5 dark:text-slate-300'>Category of Goods</p>
+      <div className='h-[75vh] px-16 py-2 hidden xl:block'>
         <GridSystem items={categoryOfGoodsData} itemComponent={LargeCategoryOfGoodItem} needRows={true} gap={4} />
       </div>
       <div className='flex flex-wrap justify-around items-center xl:hidden pt-6'>

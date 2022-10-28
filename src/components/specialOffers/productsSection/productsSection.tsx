@@ -2,8 +2,6 @@ import { FC, useContext } from "react";
 import Slider from "react-slick";
 
 import AllProductsContext from "../../../context/AllProductsContext";
-import Carousel, { CarouselItem } from "../../carousel/Carousel";
-import ListCreator from "../../listCreator/ListCreator";
 
 // import slider setting
 import { specialProducts } from "../../../data/slidersData/slidersData";
@@ -11,12 +9,11 @@ import { specialProducts } from "../../../data/slidersData/slidersData";
 const ProductsSection: FC = () => {
   const contextData = useContext(AllProductsContext);
   return (
-    <Slider {...specialProducts}>
+    <Slider {...specialProducts} className='slick-has-margin'>
       {contextData?.allProducts?.slice(0, 10)?.map((product: { [key: string]: any }) => (
         <div
           key={product.id}
-          className='relative h-72 rounded-md bg-sky-200 dark:bg-slate-700 dark:bg-opacity-80 my-auto overflow-hidden'
-          style={{ width: 200 }}
+          className='relative h-[19rem] w-20 rounded-md bg-sky-200 dark:bg-slate-700 dark:bg-opacity-80 my-auto overflow-hidden'
         >
           <div className='h-48 w-full text-center p-2'>
             <img className='h-full w-full bg-none bg-sky-200 block' src={product.image} alt={product.title} />
