@@ -9,6 +9,7 @@ interface componentProps {
 const Backdrop = ({ show, setClose, setCloseMenu }: componentProps) => {
   return (
     <div
+      role='backdrop'
       onClick={() => {
         setClose(false);
         setCloseMenu(false);

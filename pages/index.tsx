@@ -8,9 +8,9 @@ import { dataFetcher } from "../src/util/dataFetcher";
 import CategoryOfGoods from "../src/components/categoryOfGoods/CategoryOfGoods";
 import CategoriesSlider from "../src/components/categoriesSlider/CategoriesSlider";
 
-const Home: NextPage<any> = ({ specialOfferProducts }) => {
+const Home: NextPage<any> = ({ products }) => {
   return (
-    <AllProductsContext.Provider value={{ allProducts: specialOfferProducts }}>
+    <AllProductsContext.Provider value={{ allProducts: products }}>
       <Head>
         <meta name='description' content='Nextjs online shop github project' />
         <meta name='keywords' content='HTML,Tailwincss,Javascript,Reactjs,Nextjs,Redux,Redux-toolkit' />
@@ -29,7 +29,7 @@ export const getStaticProps = async () => {
   const data = await dataFetcher("products");
   return {
     props: {
-      specialOfferProducts: data,
+      products: data,
     },
   };
 };

@@ -15,7 +15,7 @@ interface componentProps {
 
 const ProductMenu = ({ show, showMenu, setProductItem, productItems }: componentProps) => {
   return (
-    <div
+    <section
       onMouseLeave={() => showMenu(false)}
       className={`bg-white dark:bg-slate-900 rounded-t-sm rounded-b-xl w-[97vw] h-[30rem] absolute top-full hidden transition-all duration-500  ${
         show ? "opacity-100 visible" : "opacity-0 invisible"
@@ -53,7 +53,7 @@ const ProductMenu = ({ show, showMenu, setProductItem, productItems }: component
           </p>
         )}
       </div>
-    </div>
+    </section>
   );
 };
 

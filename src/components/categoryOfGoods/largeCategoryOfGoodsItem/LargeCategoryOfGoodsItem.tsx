@@ -35,7 +35,7 @@ const LargeCategoryOfGoodsItem: FC<IComponentProps> = ({ item }) => {
   };
 
   return (
-    <div
+    <article
       className={`${item.backgroundColor} ${item.darkModeBackground} ${item.gridCoulsClassName} ${
         item.gridRowsClassName
       } ${item.flexDiracion} ${
@@ -43,7 +43,9 @@ const LargeCategoryOfGoodsItem: FC<IComponentProps> = ({ item }) => {
       } ${responsiveGridForAllBreakePointsAndDiractions()} flex shadow-lg shadow-slate-400 dark:shadow-none rounded-md px-5 items-center `}
     >
       <div className={item.imageOrder === 1 ? "order-2" : ""}>
-        <h6 className='text-slate-800 dark:text-slate-300 text-3xl'>{item.cardHeader}</h6>
+        <header>
+          <h6 className='text-slate-800 dark:text-slate-300 text-3xl'>{item.cardHeader}</h6>
+        </header>
         <p className='text-slate-700 dark:text-slate-200'>{item.paragraph}</p>
         <Link href={item.productsLink}>
           <a className='bg-rose-700 px-4 py-2 rounded-md text-white inline-block transition-all duration-300 hover:scale-90 mt-2'>
@@ -51,7 +53,7 @@ const LargeCategoryOfGoodsItem: FC<IComponentProps> = ({ item }) => {
           </a>
         </Link>
       </div>
-      <div className={item.imageOrder === 1 ? "order-1" : ""}>
+      <figure className={item.imageOrder === 1 ? "order-1" : ""}>
         <Image
           className='transition-all duration-300 hover:scale-90'
           width={item.image.imageWidth}
@@ -59,8 +61,8 @@ const LargeCategoryOfGoodsItem: FC<IComponentProps> = ({ item }) => {
           src={item.image.imageAddress}
           alt={item.cardHeader}
         />
-      </div>
-    </div>
+      </figure>
+    </article>
   );
 };
 

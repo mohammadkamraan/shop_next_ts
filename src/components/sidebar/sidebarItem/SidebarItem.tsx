@@ -9,7 +9,8 @@ interface componentProps {
 
 const SidebarItem = ({ sidebarItem, toggleMenu, setMenuItems }: componentProps) => {
   return (
-    <div
+    <li
+      role='sidebar-item'
       onClick={() => {
         if (sidebarItem.productsInCategory) {
           toggleMenu(true);
@@ -20,10 +21,10 @@ const SidebarItem = ({ sidebarItem, toggleMenu, setMenuItems }: componentProps) 
         sidebarItem?.exists ? "text-slate-700 dark:text-slate-300 " : "text-slate-500 dark:text-slate-500"
       }`}
     >
-      <div className='inline-flex grow items-center'>
+      <figure className='inline-flex grow items-center'>
         {sidebarItem.svg}
-        <p className='ml-5'>{sidebarItem.categoryName}</p>
-      </div>
+        <figcaption className='ml-5'>{sidebarItem.categoryName}</figcaption>
+      </figure>
       {sidebarItem.exists && (
         <div>
           <svg
@@ -38,7 +39,7 @@ const SidebarItem = ({ sidebarItem, toggleMenu, setMenuItems }: componentProps) 
           </svg>
         </div>
       )}
-    </div>
+    </li>
   );
 };
 

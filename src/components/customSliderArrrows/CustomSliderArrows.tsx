@@ -7,6 +7,7 @@ interface Arrows {
 
 export const NextArrow: FC<Arrows> = ({ onClick, style }) => (
   <div
+    role='next-arrow'
     onClick={onClick}
     className='absolute right-0 top-0 z-[1] w-12 md:w-24 h-full bg-stone-50 dark:bg-stone-600 dark:bg-opacity-0 bg-opacity-0 flex justify-center items-center cursor-pointer transition-all duration-500  hover:bg-opacity-10 dark:hover:bg-opacity-10'
   >
@@ -27,6 +28,7 @@ export const NextArrow: FC<Arrows> = ({ onClick, style }) => (
 
 export const BackArrow: FC<Arrows> = ({ onClick }) => (
   <div
+    role='back-arrow'
     onClick={onClick}
     className='absolute left-0 top-0 z-[1] w-12 md:w-24 h-full  bg-stone-50 dark:bg-stone-600 dark:bg-opacity-0 bg-opacity-0 flex justify-center items-center cursor-pointer transition-all duration-500  hover:bg-opacity-10 dark:hover:bg-opacity-10'
   >

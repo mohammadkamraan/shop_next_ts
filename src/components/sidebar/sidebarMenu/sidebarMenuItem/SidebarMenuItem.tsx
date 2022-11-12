@@ -14,7 +14,7 @@ const SidebarMenuItem = ({ menuItem }: componentProps) => {
   const [detail, setDetail] = useState<boolean>(false);
 
   return (
-    <div onClick={() => setDetail(!detail)} className='flex flex-col pt-5 px-6'>
+    <li onClick={() => setDetail(!detail)} className='flex flex-col pt-5 px-6'>
       <button className='inline-flex items-center font-bold text-xl justify-between'>
         <p>{menuItem.itemName}</p>
         <svg
@@ -37,7 +37,7 @@ const SidebarMenuItem = ({ menuItem }: componentProps) => {
           <ListCreator itemPropsName='product' items={menuItem.products} itemComponent={Product} />
         </div>
       </div>
-    </div>
+    </li>
   );
 };
 

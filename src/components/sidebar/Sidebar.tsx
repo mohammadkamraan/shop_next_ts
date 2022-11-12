@@ -13,13 +13,15 @@ interface componentProps {
 
 const Sidebar = ({ show, setClose, toggleMenu, setMenuItems }: componentProps) => {
   return (
-    <div
+    <aside
       className={`fixed top-0 h-screen w-5/6 bg-neutral-50 dark:bg-slate-900 z-[2] md:hidden transition-all duration-500 ${
         !show && "-translate-x-full"
       } flex flex-col`}
     >
       <div className='w-full h-16 inline-flex items-center justify-between py-6 px-4 border-b border-neutral-300'>
-        <p className='font-caveat font-black text-4xl text-rose-500'>M shop</p>
+        <header>
+          <h6 className='font-caveat font-black text-4xl text-rose-500'>M shop</h6>
+        </header>
         <button
           className='text-stone-700 dark:text-slate-300'
           onClick={() => {
@@ -75,7 +77,7 @@ const Sidebar = ({ show, setClose, toggleMenu, setMenuItems }: componentProps) =
         </Link>
       </div>
       <hr className='w-[87%] mx-auto bg-neutral-300' />
-      <div className='flex flex-col mt-8 w-full px-5'>
+      <section className='flex flex-col mt-8 w-full px-5'>
         <h3 className='text-2xl font-bold text-slate-700 dark:text-slate-300'>Category of Goods</h3>
         <ul className='flex flex-col'>
           <ListCreator
@@ -85,8 +87,8 @@ const Sidebar = ({ show, setClose, toggleMenu, setMenuItems }: componentProps) =
             extraProps={{ toggleMenu, setMenuItems }}
           />
         </ul>
-      </div>
-    </div>
+      </section>
+    </aside>
   );
 };
 

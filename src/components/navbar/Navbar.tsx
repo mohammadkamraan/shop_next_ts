@@ -33,7 +33,7 @@ const Navbar = () => {
   };
 
   return (
-    <header
+    <nav
       className='flex flex-col w-full font-patrick bg-gray-100 sticky z-10 top-0 border-b 
      dark:bg-slate-900'
     >
@@ -317,7 +317,7 @@ const Navbar = () => {
         productItems={sidebarMenuItems}
       />
       <Backdrop show={showSidebar} setClose={setShowSidebar} setCloseMenu={setShowSidebarMenu} />
-    </header>
+    </nav>
   );
 };
 

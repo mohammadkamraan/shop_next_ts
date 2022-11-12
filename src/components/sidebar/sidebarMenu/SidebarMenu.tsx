@@ -14,24 +14,26 @@ interface componentProps {
 
 const SidebarMenu = ({ show, setClose, menuItems }: componentProps) => {
   return (
-    <div
+    <aside
       className={`fixed top-0 h-screen w-5/6 bg-neutral-50 dark:bg-slate-900 z-[2] md:hidden transition-all duration-500 flex flex-col text-slate-700 dark:text-slate-300 ${
         show ? "" : "-translate-x-full"
       }`}
     >
-      <button onClick={() => setClose(false)} className='inline-flex items-center text-2xl py-4 px-6 font-bold'>
-        <svg
-          xmlns='http://www.w3.org/2000/svg'
-          fill='none'
-          viewBox='0 0 24 24'
-          strokeWidth={2}
-          stroke='currentColor'
-          className='w-6 h-6'
-        >
-          <path strokeLinecap='round' strokeLinejoin='round' d='M6.75 15.75L3 12m0 0l3.75-3.75M3 12h18' />
-        </svg>
-        <p className='ml-2'>Main menu</p>
-      </button>
+      <header>
+        <button onClick={() => setClose(false)} className='inline-flex items-center text-2xl py-4 px-6 font-bold'>
+          <svg
+            xmlns='http://www.w3.org/2000/svg'
+            fill='none'
+            viewBox='0 0 24 24'
+            strokeWidth={2}
+            stroke='currentColor'
+            className='w-6 h-6'
+          >
+            <path strokeLinecap='round' strokeLinejoin='round' d='M6.75 15.75L3 12m0 0l3.75-3.75M3 12h18' />
+          </svg>
+          <h6 className='ml-2'>Main menu</h6>
+        </button>
+      </header>
       <hr className='bg-neutral-600' />
       <Link href='/'>
         <a className='pt-5 px-6 inline-flex items-center justify-between font-bold text-xl'>
@@ -49,8 +51,10 @@ const SidebarMenu = ({ show, setClose, menuItems }: componentProps) => {
         </a>
       </Link>
       <hr className='mt-5 bg-neutral-600' />
-      <ListCreator itemPropsName='menuItem' items={menuItems} itemComponent={SidebarMenuItem} />
-    </div>
+      <ul>
+        <ListCreator itemPropsName='menuItem' items={menuItems} itemComponent={SidebarMenuItem} />
+      </ul>
+    </aside>
   );
 };
 
