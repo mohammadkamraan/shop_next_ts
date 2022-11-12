@@ -123,7 +123,7 @@ const Navbar = () => {
           </div>
         </div>
         <div className='inline md:hidden'>
-          <p className='font-caveat font-black text-4xl text-rose-500 px-4'>M shop</p>
+          <h1 className='font-caveat font-black text-4xl text-rose-500 px-4'>M shop</h1>
         </div>
         <button onClick={toggleThemeMode} className='mr-4 hidden md:inline'>
           <svg
@@ -227,7 +227,7 @@ const Navbar = () => {
         </div>
       </div>
       <div className='flex items-center md:order-1 w-full mt-3'>
-        <p className='font-caveat font-black text-4xl text-rose-500 px-4 hidden md:inline'>M shop</p>
+        <h1 className='font-caveat font-black text-4xl text-rose-500 px-4 hidden md:inline'>M shop</h1>
         <div className='flex-grow'>
           <div className='md:w-3/5 w-full h-12 bg-gray-200 dark:bg-slate-800 rounded-md ml-6 md:ml-4 flex items-center'>
             <svg
