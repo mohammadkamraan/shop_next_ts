@@ -7,6 +7,7 @@ import AllProductsContext from "../src/context/AllProductsContext";
 import { dataFetcher } from "../src/util/dataFetcher";
 import CategoryOfGoods from "../src/components/categoryOfGoods/CategoryOfGoods";
 import CategoriesSlider from "../src/components/categoriesSlider/CategoriesSlider";
+import NewestGoods from "../src/components/newestGoods/NewestGoods";
 
 const Home: NextPage<any> = ({ products }) => {
   return (
@@ -21,6 +22,7 @@ const Home: NextPage<any> = ({ products }) => {
       <Possibilities />
       <SpecialOffers />
       <CategoryOfGoods />
+      <NewestGoods />
     </AllProductsContext.Provider>
   );
 };

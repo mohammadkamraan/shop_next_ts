@@ -6,7 +6,7 @@ import ListCreator from "../listCreator/ListCreator";
 interface IComponentProps {
   itemComponent: any;
   items: any[];
-  gap: number;
+  gap: string;
   needRows: boolean;
 }
 
@@ -14,18 +14,14 @@ type GridWithRows = (hasRows: boolean) => "" | "grid-rows-6";
 
 type GapClassName = (gap: number) => string;
 
-const GridSystem: FC<IComponentProps> = ({ items, gap = 4, needRows = false, itemComponent }) => {
+const GridSystem: FC<IComponentProps> = ({ items, gap = "gap-4", needRows = false, itemComponent }) => {
   const gridWithRows: GridWithRows = hasRows => {
     if (hasRows) return "grid-rows-6";
     else return "";
   };
 
-  const gridClassName: GapClassName = gap => {
-    return `gap-${gap}`;
-  };
-
   return (
-    <div className={`grid grid-cols-12 ${gridWithRows(needRows)} ${gridClassName(gap)} w-full h-full`}>
+    <div className={`grid grid-cols-12 ${gridWithRows(needRows)} ${gap} w-full h-full`}>
       <ListCreator itemComponent={itemComponent} itemPropsName='item' items={items} />
     </div>
   );

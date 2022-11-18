@@ -26,7 +26,7 @@ const ProductsSection: FC = () => {
             </header>
             <p className='text-lg text-red-700 dark:text-pink-300 line-through ml-5'>$ {product.price}</p>
             <p className='text-2xl text-slate-800 dark:text-slate-200 font-bold ml-5'>
-              $ {(product.price - (product.price / 100) * 20).toFixed(2)}{" "}
+              ${(product.price - (product.price / 100) * 20).toFixed(2)}
               <span className='text-sm text-teal-600'>(-20%)</span>
             </p>
           </div>
