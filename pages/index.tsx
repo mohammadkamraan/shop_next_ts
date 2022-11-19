@@ -31,7 +31,7 @@ const Home: NextPage<any> = ({ products, newestGoodsData }) => {
 
 export const getStaticProps = async () => {
   const data = await dataFetcher("products");
-  const newestGoodsData = newestGoods(data);
+  const newestGoodsData = newestGoods(data.slice(10, 20));
   return {
     props: {
       products: data,
