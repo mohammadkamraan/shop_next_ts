@@ -41,8 +41,6 @@ const StarsRating: FC<StarsRatingComponentProps> = ({ stars }) => {
     setState(preveState => preveState + 1);
   };
 
-  console.log(starsArray);
-
   useEffect(() => {
     starsArrayHandler();
   }, []);

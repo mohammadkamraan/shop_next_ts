@@ -9,7 +9,9 @@ import CategoryOfGoods from "../src/components/categoryOfGoods/CategoryOfGoods";
 import CategoriesSlider from "../src/components/categoriesSlider/CategoriesSlider";
 import NewestGoods from "../src/components/newestGoods/NewestGoods";
 
-const Home: NextPage<any> = ({ products }) => {
+import { newestGoods } from "../src/util/newestGoods";
+
+const Home: NextPage<any> = ({ products, newestGoodsData }) => {
   return (
     <AllProductsContext.Provider value={{ allProducts: products }}>
       <Head>
@@ -22,16 +24,18 @@ const Home: NextPage<any> = ({ products }) => {
       <Possibilities />
       <SpecialOffers />
       <CategoryOfGoods />
-      <NewestGoods />
+      <NewestGoods goods={newestGoodsData} />
     </AllProductsContext.Provider>
   );
 };
 
 export const getStaticProps = async () => {
   const data = await dataFetcher("products");
+  const newestGoodsData = newestGoods(data);
   return {
     props: {
       products: data,
+      newestGoodsData,
     },
   };
 };

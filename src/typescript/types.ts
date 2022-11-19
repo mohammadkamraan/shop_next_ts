@@ -30,3 +30,5 @@ export type tailwindGridCols =
   | "col-span-12";
 
 export type tailwindBreakPoints = "sm" | "md" | "lg" | "xl" | "2xl";
+
+export type NoParamReturnNumber = () => number;
