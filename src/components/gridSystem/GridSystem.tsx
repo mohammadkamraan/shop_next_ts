@@ -5,7 +5,7 @@ import ListCreator from "../listCreator/ListCreator";
 
 interface IComponentProps {
   itemComponent: any;
-  items: any[];
+  items: ReadonlyArray<any>;
   gap: string;
   needRows: boolean;
 }
@@ -19,6 +19,8 @@ const GridSystem: FC<IComponentProps> = ({ items, gap = "gap-4", needRows = fals
     if (hasRows) return "grid-rows-6";
     else return "";
   };
+
+  console.log(items);
 
   return (
     <div className={`grid grid-cols-12 ${gridWithRows(needRows)} ${gap} w-full h-full`}>

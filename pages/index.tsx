@@ -10,6 +10,9 @@ import CategoriesSlider from "../src/components/categoriesSlider/CategoriesSlide
 import NewestGoods from "../src/components/newestGoods/NewestGoods";
 
 import { newestGoods } from "../src/util/newestGoods";
+import SpecialSale from "../src/components/specialSale/SpecialSale";
+
+import { specialSales } from "../src/data/specialSalesData/specialSalesData";
 
 const Home: NextPage<any> = ({ products, newestGoodsData }) => {
   return (
@@ -25,6 +28,7 @@ const Home: NextPage<any> = ({ products, newestGoodsData }) => {
       <SpecialOffers />
       <CategoryOfGoods />
       <NewestGoods goods={newestGoodsData} />
+      <SpecialSale Sales={specialSales} />
     </AllProductsContext.Provider>
   );
 };
