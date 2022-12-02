@@ -9,11 +9,13 @@ export const specialSales: SpecialSales = [
       "Larissa beautiful sofa with its private design can give a unique beauty to your reception decoration.",
     id: 0,
     title: "Larissa Furniture",
+    days: 6,
   },
   {
     backGroudnImage: 'bg-[url("../public/images/home2.webp")]',
     description: "Romano sofa has an impressive beauty and can multiply the charm of your home decoration.",
-    id: 0,
+    id: 1,
     title: "Romano furniture",
+    days: 8,
   },
 ];

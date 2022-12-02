@@ -7,7 +7,6 @@ const initialState: any = {
 };
 
 export const fetchUsers: any = createAsyncThunk("somethin", async (URL: string) => {
-  console.log(URL);
   let data = await fetch(URL);
   data = await data.json();
   return data;

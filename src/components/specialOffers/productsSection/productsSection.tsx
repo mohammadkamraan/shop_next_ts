@@ -8,6 +8,7 @@ import { specialProducts } from "../../../data/slidersData/slidersData";
 
 const ProductsSection: FC = () => {
   const contextData = useContext(AllProductsContext);
+
   return (
     <Slider {...specialProducts} className='slick-has-margin'>
       {contextData?.allProducts?.slice(0, 10)?.map((product: { [key: string]: any }) => (

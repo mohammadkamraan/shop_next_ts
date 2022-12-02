@@ -1,7 +1,9 @@
-import { FC } from "react";
+import { FC, useContext } from "react";
 
 // components
 import ListCreator from "../listCreator/ListCreator";
+
+import AllproductsContext from "../../context/AllProductsContext";
 
 interface IComponentProps {
   itemComponent: any;
@@ -19,8 +21,6 @@ const GridSystem: FC<IComponentProps> = ({ items, gap = "gap-4", needRows = fals
     if (hasRows) return "grid-rows-6";
     else return "";
   };
-
-  console.log(items);
 
   return (
     <div className={`grid grid-cols-12 ${gridWithRows(needRows)} ${gap} w-full h-full`}>
