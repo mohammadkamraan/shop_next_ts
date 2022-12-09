@@ -14,17 +14,17 @@ interface GlassTimeComponentProps extends GlassTimeDownComponentProps {
 const GlassTime: FC<GlassTimeComponentProps> = ({ days, hours, minutes, secounds }) => {
   return (
     <div className='flex justify-around'>
-      <span className='backdrop-filter block backdrop-blur-[12px] shadow-lg rounded-md w-20 h-16 bg-white dark:bg-slate-900 dark:bg-opacity-30 bg-opacity-40 text-slate-800 dark:text-slate-300'>
-        <p className='w-8 mx-auto text-center text-xl'>{days} : days</p>
+      <span className='backdrop-filter block backdrop-blur-[12px] shadow-lg rounded-md w-12 md:w-20 h-10 md:h-16 bg-white dark:bg-slate-900 dark:bg-opacity-30 bg-opacity-40 text-slate-800 dark:text-slate-300'>
+        <p className='w-8 mx-auto text-center text-sm md:text-xl'>{days} days</p>
       </span>
-      <span className='backdrop-filter block backdrop-blur-[12px] shadow-lg rounded-md w-20 h-16 bg-white dark:bg-slate-900 dark:bg-opacity-30 bg-opacity-40 text-slate-800 dark:text-slate-300'>
-        <p className='w-8 mx-auto text-center text-xl'>{hours} : hours</p>
+      <span className='backdrop-filter block backdrop-blur-[12px] shadow-lg rounded-md w-12 md:w-20 h-10 md:h-16 bg-white dark:bg-slate-900 dark:bg-opacity-30 bg-opacity-40 text-slate-800 dark:text-slate-300'>
+        <p className='w-8 mx-auto text-center text-sm md:text-xl'>{hours} hours</p>
       </span>
-      <span className='backdrop-filter block backdrop-blur-[12px] shadow-lg rounded-md w-20 h-16 bg-white dark:bg-slate-900 dark:bg-opacity-30 bg-opacity-40 text-slate-800 dark:text-slate-300'>
-        <p className='w-8 mx-auto text-center text-xl'>{minutes} : minutes </p>
+      <span className='backdrop-filter block backdrop-blur-[12px] shadow-lg rounded-md w-12 md:w-20 h-10 md:h-16 bg-white dark:bg-slate-900 dark:bg-opacity-30 bg-opacity-40 text-slate-800 dark:text-slate-300'>
+        <p className='w-8 mx-auto text-center text-sm md:text-xl'>{minutes} minutes </p>
       </span>
-      <span className='backdrop-filter block backdrop-blur-[12px] shadow-lg rounded-md w-20 h-16 bg-white dark:bg-slate-900 dark:bg-opacity-30 bg-opacity-40 text-slate-800 dark:text-slate-300'>
-        <p className='w-8 mx-auto text-center text-xl'>{secounds} : secounds</p>
+      <span className='backdrop-filter block backdrop-blur-[12px] shadow-lg rounded-md w-12 md:w-20 h-10 md:h-16 bg-white dark:bg-slate-900 dark:bg-opacity-30 bg-opacity-40 text-slate-800 dark:text-slate-300'>
+        <p className='w-8 mx-auto text-center text-sm md:text-xl'>{secounds} secounds</p>
       </span>
     </div>
   );
