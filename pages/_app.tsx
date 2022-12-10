@@ -12,6 +12,7 @@ import { ThemeProvider } from "next-themes";
 // react-slick css files
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import Footer from "../src/components/footer/Footer";
 
 function MyApp({ Component, pageProps }: AppProps) {
   const { pathname } = useRouter();
@@ -24,6 +25,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <div className='bg-gray-100 dark:bg-slate-900'>
           {!withoutNavbarPathes.includes(pathname) && <Navbar />}
           <Component {...pageProps} />
+          {!withoutNavbarPathes.includes(pathname) && <Footer />}
         </div>
       </ThemeProvider>
     </Provider>
