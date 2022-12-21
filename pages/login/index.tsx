@@ -63,7 +63,7 @@ const Login: NextPage = () => {
         <div className='my-5'>
           <Link href='/login'>
             <a className='text-slate-700 dark:text-slate-400 text-lg'>
-              Don't You Have An Account? <span className='text-sky-400'>Sign Up</span>
+              Do not You Have An Account? <span className='text-sky-400'>Sign Up</span>
             </a>
           </Link>
         </div>
