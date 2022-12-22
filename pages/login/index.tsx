@@ -1,7 +1,9 @@
 import { NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
-import { ChangeEvent } from "react";
+import { ChangeEvent, useRef, useState } from "react";
+
+import { isValidEmail } from "../../src/util/validators";
 
 const inputWrapperStyle = "flex flex-col relative mt-5";
 
@@ -13,13 +15,29 @@ const inputLabelStyle =
 const labelsSpan = "text-red-500 pb-2 mr-2";
 
 const Login: NextPage = () => {
+  const [email, setEmail] = useState<string>("");
+  const [invalidEmailMessage, setInvalidEmailMessage] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [isPasswordEmpty, setIsPasswordEmpty] = useState<boolean>(false);
+
   const formChangeHandler = (event: ChangeEvent<HTMLFormElement>) => {
-    console.log("changing");
+    const { name, value } = event.target;
+    if (name === "passwordInput") {
+      setPassword(value);
+      setIsPasswordEmpty(false);
+    } else {
+      setEmail(value);
+      setInvalidEmailMessage(isValidEmail(value).invalidMessage);
+    }
   };
 
   const formSubmitHandler = (event: ChangeEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log("submits");
+    if (!invalidEmailMessage && email && password) console.log("submits");
+    else {
+      setInvalidEmailMessage(isValidEmail(email).invalidMessage);
+      setIsPasswordEmpty(true);
+    }
   };
 
   return (
@@ -43,18 +61,28 @@ const Login: NextPage = () => {
         </header>
         <form onChange={formChangeHandler} onSubmit={formSubmitHandler}>
           <div className={inputWrapperStyle}>
-            <label className={inputLabelStyle}>
+            <label className={inputLabelStyle + `${invalidEmailMessage ? " text-red-500 dark:text-red-500" : ""}`}>
               <span className={labelsSpan}>*</span>
               Email
             </label>
-            <input placeholder='Please Enter Your Email' className={inputStyle} />
+            <input
+              name='emailInput'
+              placeholder='Please Enter Your Email'
+              className={inputStyle + `${invalidEmailMessage ? " border-red-500" : ""}`}
+              type='email'
+            />
           </div>
           <div className={inputWrapperStyle}>
-            <label className={inputLabelStyle}>
+            <label className={inputLabelStyle + `${isPasswordEmpty ? " text-red-500 dark:text-red-500" : ""}`}>
               <span className={labelsSpan}>*</span>
               Password
             </label>
-            <input placeholder='Please Enter Your Password' className={inputStyle} />
+            <input
+              name='passwordInput'
+              placeholder='Please Enter Your Password'
+              className={inputStyle + `${isPasswordEmpty ? " border-red-500" : ""}`}
+              type='password'
+            />
           </div>
           <button type='submit' className='w-full bg-rose-700 mt-5 py-4 rounded-md text-white text-2xl'>
             Login

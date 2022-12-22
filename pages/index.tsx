@@ -4,7 +4,7 @@ import Possibilities from "../src/components/possibilities/Possibilities";
 import SpecialOffers from "../src/components/specialOffers/SpecialOffers";
 import AllProductsContext from "../src/context/AllProductsContext";
 
-import { dataFetcher } from "../src/util/dataFetcher";
+import { dataFetcher, requestHandler } from "../src/util/requestHandlers";
 import CategoryOfGoods from "../src/components/categoryOfGoods/CategoryOfGoods";
 import CategoriesSlider from "../src/components/categoriesSlider/CategoriesSlider";
 import NewestGoods from "../src/components/newestGoods/NewestGoods";
