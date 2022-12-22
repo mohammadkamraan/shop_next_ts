@@ -1,9 +1,12 @@
 import { NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
-import { ChangeEvent, useRef, useState } from "react";
+import { ChangeEvent, Dispatch, SetStateAction, useState } from "react";
 
 import { isValidEmail } from "../../src/util/validators";
+
+import { useSend } from "../../src/hooks/useSend";
+import DotsLoading from "../../src/components/dotsLoading/DotsLoading";
 
 const inputWrapperStyle = "flex flex-col relative mt-5";
 
@@ -14,31 +17,41 @@ const inputLabelStyle =
 
 const labelsSpan = "text-red-500 pb-2 mr-2";
 
+interface StatesSetter {
+  usernameInput: Dispatch<SetStateAction<string>>;
+  passwordInput: Dispatch<SetStateAction<string>>;
+}
+
 const Login: NextPage = () => {
-  const [email, setEmail] = useState<string>("");
-  const [invalidEmailMessage, setInvalidEmailMessage] = useState<string>("");
+  const [loading, data, errorData, sender] = useSend();
+
+  const [username, setUsername] = useState<string>("");
+  const [isUsernameEmpty, setIsUsernameEmpty] = useState<boolean>(false);
   const [password, setPassword] = useState<string>("");
   const [isPasswordEmpty, setIsPasswordEmpty] = useState<boolean>(false);
 
+  const stateSetters: StatesSetter = {
+    usernameInput: setUsername,
+    passwordInput: setPassword,
+  };
+
   const formChangeHandler = (event: ChangeEvent<HTMLFormElement>) => {
     const { name, value } = event.target;
-    if (name === "passwordInput") {
-      setPassword(value);
-      setIsPasswordEmpty(false);
-    } else {
-      setEmail(value);
-      setInvalidEmailMessage(isValidEmail(value).invalidMessage);
-    }
+    stateSetters[name as keyof StatesSetter](value);
+    setIsPasswordEmpty(false);
+    setIsUsernameEmpty(false);
   };
 
   const formSubmitHandler = (event: ChangeEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (!invalidEmailMessage && email && password) console.log("submits");
+    if (username && password) sender({ body: { password, username }, endPoint: "auth/login", method: "POST" });
     else {
-      setInvalidEmailMessage(isValidEmail(email).invalidMessage);
       setIsPasswordEmpty(true);
+      setIsUsernameEmpty(true);
     }
   };
+
+  console.log(data, errorData);
 
   return (
     <article className='max-h-screen h-screen flex items-center justify-center font-patrick'>
@@ -61,15 +74,15 @@ const Login: NextPage = () => {
         </header>
         <form onChange={formChangeHandler} onSubmit={formSubmitHandler}>
           <div className={inputWrapperStyle}>
-            <label className={inputLabelStyle + `${invalidEmailMessage ? " text-red-500 dark:text-red-500" : ""}`}>
+            <label className={inputLabelStyle + `${isUsernameEmpty ? " text-red-500 dark:text-red-500" : ""}`}>
               <span className={labelsSpan}>*</span>
-              Email
+              Username
             </label>
             <input
-              name='emailInput'
-              placeholder='Please Enter Your Email'
-              className={inputStyle + `${invalidEmailMessage ? " border-red-500" : ""}`}
-              type='email'
+              name='usernameInput'
+              placeholder='Please Enter Your Username'
+              className={inputStyle + `${isUsernameEmpty ? " border-red-500" : ""}`}
+              type='text'
             />
           </div>
           <div className={inputWrapperStyle}>
@@ -84,8 +97,12 @@ const Login: NextPage = () => {
               type='password'
             />
           </div>
-          <button type='submit' className='w-full bg-rose-700 mt-5 py-4 rounded-md text-white text-2xl'>
-            Login
+          <button
+            type='submit'
+            className='w-full bg-rose-700 mt-5 py-4 rounded-md text-white text-2xl'
+            disabled={loading}
+          >
+            {loading ? <DotsLoading color='white' size='small' /> : "Login"}
           </button>
         </form>
         <div className='my-5'>
