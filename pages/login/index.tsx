@@ -3,8 +3,6 @@ import Head from "next/head";
 import Link from "next/link";
 import { ChangeEvent, Dispatch, SetStateAction, useState } from "react";
 
-import { isValidEmail } from "../../src/util/validators";
-
 import { useSend } from "../../src/hooks/useSend";
 import DotsLoading from "../../src/components/dotsLoading/DotsLoading";
 
@@ -51,8 +49,6 @@ const Login: NextPage = () => {
     }
   };
 
-  console.log(data, errorData);
-
   return (
     <article className='max-h-screen h-screen flex items-center justify-center font-patrick'>
       <Head>
@@ -68,10 +64,17 @@ const Login: NextPage = () => {
           </h1>
           <h2 className='text-lg text-slate-800 dark:text-slate-400 pt-2'>Hi!</h2>
           <p className='bg-neutral-100 dark:bg-slate-900 py-1 px-2 text-[1rem] text-stone-500 dark:text-stone-300 my-1'>
-            Besides registering, you can also test the template with test account information(email: test@info.com -
-            Password: 123456)
+            Besides registering, you can also test the template with test account information(username: donero -
+            Password: ewedon)
           </p>
         </header>
+        {errorData && (
+          <p className='text-red-600 text-center border border-red-600 rounded-md my-2 py-2 text-lg font-bold'>
+            {errorData.statusText
+              ? errorData.statusText + "  please try again later"
+              : "Some thing went wrong please try again later"}
+          </p>
+        )}
         <form onChange={formChangeHandler} onSubmit={formSubmitHandler}>
           <div className={inputWrapperStyle}>
             <label className={inputLabelStyle + `${isUsernameEmpty ? " text-red-500 dark:text-red-500" : ""}`}>
