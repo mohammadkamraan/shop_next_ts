@@ -1,7 +1,7 @@
 import { NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
-import { ChangeEvent, Dispatch, SetStateAction, useState } from "react";
+import { ChangeEvent, Dispatch, SetStateAction, useEffect, useState } from "react";
 
 import { useSend } from "../../src/hooks/useSend";
 import DotsLoading from "../../src/components/dotsLoading/DotsLoading";
@@ -48,6 +48,10 @@ const Login: NextPage = () => {
       setIsUsernameEmpty(true);
     }
   };
+
+  useEffect(() => {
+    console.log(data?.token);
+  }, [data?.token]);
 
   return (
     <article className='max-h-screen h-screen flex items-center justify-center font-patrick'>
