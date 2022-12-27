@@ -5,6 +5,7 @@ import { ChangeEvent, Dispatch, SetStateAction, useEffect, useState } from "reac
 
 import { useSend } from "../../src/hooks/useSend";
 import DotsLoading from "../../src/components/dotsLoading/DotsLoading";
+import RequiredInput from "../../src/components/UI/requiredInpu/RequiredInput";
 
 const inputWrapperStyle = "flex flex-col relative mt-5";
 
@@ -80,30 +81,22 @@ const Login: NextPage = () => {
           </p>
         )}
         <form onChange={formChangeHandler} onSubmit={formSubmitHandler}>
-          <div className={inputWrapperStyle}>
-            <label className={inputLabelStyle + `${isUsernameEmpty ? " text-red-500 dark:text-red-500" : ""}`}>
-              <span className={labelsSpan}>*</span>
-              Username
-            </label>
-            <input
-              name='usernameInput'
-              placeholder='Please Enter Your Username'
-              className={inputStyle + `${isUsernameEmpty ? " border-red-500" : ""}`}
-              type='text'
-            />
-          </div>
-          <div className={inputWrapperStyle}>
-            <label className={inputLabelStyle + `${isPasswordEmpty ? " text-red-500 dark:text-red-500" : ""}`}>
-              <span className={labelsSpan}>*</span>
-              Password
-            </label>
-            <input
-              name='passwordInput'
-              placeholder='Please Enter Your Password'
-              className={inputStyle + `${isPasswordEmpty ? " border-red-500" : ""}`}
-              type='password'
-            />
-          </div>
+          {/* userName input */}
+          <RequiredInput
+            label='UserName'
+            inputName='usernameInput'
+            inputPlaceHolder='Please Enter Your Username'
+            isInvalide={isUsernameEmpty}
+            inputType='text'
+          />
+          {/* password input */}
+          <RequiredInput
+            label='Password'
+            inputName='passwordInput'
+            inputPlaceHolder='Please Enter Your Password'
+            isInvalide={isPasswordEmpty}
+            inputType='password'
+          />
           <button
             type='submit'
             className='w-full bg-rose-700 mt-5 py-4 rounded-md text-white text-2xl'
