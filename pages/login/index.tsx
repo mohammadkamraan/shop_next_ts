@@ -6,6 +6,7 @@ import { ChangeEvent, Dispatch, SetStateAction, useEffect, useState } from "reac
 import { useSend } from "../../src/hooks/useSend";
 import DotsLoading from "../../src/components/dotsLoading/DotsLoading";
 import RequiredInput from "../../src/components/UI/requiredInpu/RequiredInput";
+import ErrorParagraph from "../../src/components/UI/errorParagraph/ErrorParagraph";
 
 const inputWrapperStyle = "flex flex-col relative mt-5";
 
@@ -74,11 +75,13 @@ const Login: NextPage = () => {
           </p>
         </header>
         {errorData && (
-          <p className='text-red-600 text-center border border-red-600 rounded-md my-2 py-2 text-lg font-bold'>
-            {errorData.statusText
-              ? errorData.statusText + "  please try again later"
-              : "Some thing went wrong please try again later"}
-          </p>
+          <ErrorParagraph
+            errorText={
+              errorData.statusText
+                ? errorData.statusText + "  please try again later"
+                : "Some thing went wrong please try again later"
+            }
+          />
         )}
         <form onChange={formChangeHandler} onSubmit={formSubmitHandler}>
           {/* userName input */}
