@@ -3,19 +3,11 @@ import Head from "next/head";
 import Link from "next/link";
 import { ChangeEvent, Dispatch, SetStateAction, useEffect, useState } from "react";
 
-import { useSend } from "../../src/hooks/useSend";
+import { useLogin } from "../../src/hooks/useLogin";
 import DotsLoading from "../../src/components/dotsLoading/DotsLoading";
 import RequiredInput from "../../src/components/UI/requiredInpu/RequiredInput";
 import ErrorParagraph from "../../src/components/UI/errorParagraph/ErrorParagraph";
-
-const inputWrapperStyle = "flex flex-col relative mt-5";
-
-const inputStyle = "py-5 px-4 bg-transparent outline-none rounded-md border border-slate-200 shadow-md";
-
-const inputLabelStyle =
-  "absolute -top-3 left-3 bg-neutral-50 dark:bg-slate-800 text-lg text-slate-800 dark:text-slate-300 z-2";
-
-const labelsSpan = "text-red-500 pb-2 mr-2";
+import { useSend } from "../../src/hooks/useSend";
 
 interface StatesSetter {
   usernameInput: Dispatch<SetStateAction<string>>;
@@ -23,7 +15,10 @@ interface StatesSetter {
 }
 
 const Login: NextPage = () => {
-  const [loading, data, errorData, sender] = useSend();
+  const [loading, errorMessage, login] = useLogin();
+
+  const [l, d, e, s] = useSend();
+  console.log(d, e);
 
   const [username, setUsername] = useState<string>("");
   const [isUsernameEmpty, setIsUsernameEmpty] = useState<boolean>(false);
@@ -42,18 +37,18 @@ const Login: NextPage = () => {
     setIsUsernameEmpty(false);
   };
 
-  const formSubmitHandler = (event: ChangeEvent<HTMLFormElement>) => {
+  const formSubmitHandler = async (event: ChangeEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (username && password) sender({ body: { password, username }, endPoint: "auth/login", method: "POST" });
-    else {
+    if (username && password) {
+      login({ password, username, endPoint: "auth/login" });
+      s({ body: { password, username }, endPoint: "auth/login", method: "POST" });
+    } else {
       setIsPasswordEmpty(true);
       setIsUsernameEmpty(true);
     }
   };
 
-  useEffect(() => {
-    console.log(data?.token);
-  }, [data?.token]);
+  console.log(loading, errorMessage);
 
   return (
     <article className='max-h-screen h-screen flex items-center justify-center font-patrick'>
@@ -74,15 +69,7 @@ const Login: NextPage = () => {
             Password: ewedon)
           </p>
         </header>
-        {errorData && (
-          <ErrorParagraph
-            errorText={
-              errorData.statusText
-                ? errorData.statusText + "  please try again later"
-                : "Some thing went wrong please try again later"
-            }
-          />
-        )}
+        {errorMessage && <ErrorParagraph errorText={errorMessage + " plase try again later"} />}
         <form onChange={formChangeHandler} onSubmit={formSubmitHandler}>
           {/* userName input */}
           <RequiredInput

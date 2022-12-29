@@ -1,7 +1,5 @@
 import "../styles/globals.css";
 import type { AppProps } from "next/app";
-import { Provider } from "react-redux";
-
 import { useRouter } from "next/router";
 
 import store from "../redux/store";
@@ -20,15 +18,13 @@ function MyApp({ Component, pageProps }: AppProps) {
   const withoutNavbarPathes: string[] = ["/login", "/singup"];
 
   return (
-    <Provider store={store}>
-      <ThemeProvider attribute='class'>
-        <div className='bg-gray-100 dark:bg-slate-900'>
-          {!withoutNavbarPathes.includes(pathname) && <Navbar />}
-          <Component {...pageProps} />
-          {!withoutNavbarPathes.includes(pathname) && <Footer />}
-        </div>
-      </ThemeProvider>
-    </Provider>
+    <ThemeProvider attribute='class'>
+      <div className='bg-gray-100 dark:bg-slate-900'>
+        {!withoutNavbarPathes.includes(pathname) && <Navbar />}
+        <Component {...pageProps} />
+        {!withoutNavbarPathes.includes(pathname) && <Footer />}
+      </div>
+    </ThemeProvider>
   );
 }
 
