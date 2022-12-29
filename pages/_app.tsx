@@ -2,10 +2,11 @@ import "../styles/globals.css";
 import type { AppProps } from "next/app";
 import { useRouter } from "next/router";
 
-import store from "../redux/store";
 import Navbar from "../src/components/./navbar/Navbar";
 
 import { ThemeProvider } from "next-themes";
+
+import { SessionProvider } from "next-auth/react";
 
 // react-slick css files
 import "slick-carousel/slick/slick.css";
@@ -19,11 +20,13 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   return (
     <ThemeProvider attribute='class'>
-      <div className='bg-gray-100 dark:bg-slate-900'>
-        {!withoutNavbarPathes.includes(pathname) && <Navbar />}
-        <Component {...pageProps} />
-        {!withoutNavbarPathes.includes(pathname) && <Footer />}
-      </div>
+      <SessionProvider session={pageProps.pageProps}>
+        <div className='bg-gray-100 dark:bg-slate-900'>
+          {!withoutNavbarPathes.includes(pathname) && <Navbar />}
+          <Component {...pageProps} />
+          {!withoutNavbarPathes.includes(pathname) && <Footer />}
+        </div>
+      </SessionProvider>
     </ThemeProvider>
   );
 }

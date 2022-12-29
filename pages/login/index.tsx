@@ -8,6 +8,10 @@ import DotsLoading from "../../src/components/dotsLoading/DotsLoading";
 import RequiredInput from "../../src/components/UI/requiredInpu/RequiredInput";
 import ErrorParagraph from "../../src/components/UI/errorParagraph/ErrorParagraph";
 import { useSend } from "../../src/hooks/useSend";
+import { useSession } from "next-auth/react";
+
+import { getSession } from "next-auth/react";
+import { useRouter } from "next/router";
 
 interface StatesSetter {
   usernameInput: Dispatch<SetStateAction<string>>;
@@ -17,13 +21,14 @@ interface StatesSetter {
 const Login: NextPage = () => {
   const [loading, errorMessage, login] = useLogin();
 
-  const [l, d, e, s] = useSend();
-  console.log(d, e);
+  const { data }: any = useSession();
 
   const [username, setUsername] = useState<string>("");
   const [isUsernameEmpty, setIsUsernameEmpty] = useState<boolean>(false);
   const [password, setPassword] = useState<string>("");
   const [isPasswordEmpty, setIsPasswordEmpty] = useState<boolean>(false);
+
+  const router = useRouter();
 
   const stateSetters: StatesSetter = {
     usernameInput: setUsername,
@@ -41,14 +46,20 @@ const Login: NextPage = () => {
     event.preventDefault();
     if (username && password) {
       login({ password, username, endPoint: "auth/login" });
-      s({ body: { password, username }, endPoint: "auth/login", method: "POST" });
+      // s({ body: { password, username }, endPoint: "auth/login", method: "POST" });
     } else {
       setIsPasswordEmpty(true);
       setIsUsernameEmpty(true);
     }
   };
 
-  console.log(loading, errorMessage);
+  useEffect(() => {
+    if (data?.user!.isLoggedIn) {
+      console.log(data.user.isLoggedIn);
+      console.log("happening");
+      router.push("/");
+    }
+  }, [data]);
 
   return (
     <article className='max-h-screen h-screen flex items-center justify-center font-patrick'>
