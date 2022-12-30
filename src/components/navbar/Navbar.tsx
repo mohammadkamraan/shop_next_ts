@@ -10,6 +10,8 @@ import { useTheme } from "next-themes";
 import ProductMenu from "../producMenu/ProductMenu";
 import { useSession } from "next-auth/react";
 
+import { signOut } from "next-auth/react";
+
 const Navbar = () => {
   const { theme, setTheme } = useTheme();
 
@@ -34,6 +36,8 @@ const Navbar = () => {
   const toggleThemeMode = () => {
     setTheme(theme === "light" ? "dark" : "light");
   };
+
+  const logoutHandler = () => signOut();
 
   return (
     <nav
@@ -251,24 +255,25 @@ const Navbar = () => {
         </div>
         {status === "authenticated" ? (
           <button
+            onClick={logoutHandler}
             className='w-32 md:w-auto h-9  border border-stone-200 rounded-md md:flex items-center text-slate-600 shadow-sm transition-all duration-300
           hover:bg-red-700 hover:text-stone-200 dark:text-slate-300 hidden'
           >
-            logout
             <svg
               xmlns='http://www.w3.org/2000/svg'
-              className='h-6 w-6 ml-2'
               fill='none'
               viewBox='0 0 24 24'
+              strokeWidth={1.5}
               stroke='currentColor'
-              strokeWidth={2}
+              className='w-6 h-6'
             >
               <path
                 strokeLinecap='round'
                 strokeLinejoin='round'
-                d='M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1'
+                d='M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9'
               />
             </svg>
+            logout
           </button>
         ) : (
           <Link href='/login'>
@@ -295,23 +300,21 @@ const Navbar = () => {
           </Link>
         )}
         {status === "authenticated" ? (
-          <button className='inline md:hidden ml-12 text-slate-800 dark:text-slate-300'>
-            <a className='inline md:hidden ml-12 text-slate-800 dark:text-slate-300'>
-              <svg
-                xmlns='http://www.w3.org/2000/svg'
-                className='h-7 w-7'
-                fill='none'
-                viewBox='0 0 24 24'
-                stroke='currentColor'
-                strokeWidth={2}
-              >
-                <path
-                  strokeLinecap='round'
-                  strokeLinejoin='round'
-                  d='M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1'
-                />
-              </svg>
-            </a>
+          <button onClick={logoutHandler} className='inline md:hidden ml-12'>
+            <svg
+              xmlns='http://www.w3.org/2000/svg'
+              fill='none'
+              viewBox='0 0 24 24'
+              strokeWidth={2}
+              stroke='currentColor'
+              className='w-6 h-6 text-red-500'
+            >
+              <path
+                strokeLinecap='round'
+                strokeLinejoin='round'
+                d='M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9'
+              />
+            </svg>
           </button>
         ) : (
           <Link href='/login'>

@@ -3,8 +3,6 @@ import { FC, useContext } from "react";
 // components
 import ListCreator from "../listCreator/ListCreator";
 
-import AllproductsContext from "../../context/AllProductsContext";
-
 interface IComponentProps {
   itemComponent: any;
   items: ReadonlyArray<any>;
