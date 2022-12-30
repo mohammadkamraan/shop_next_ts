@@ -12,6 +12,7 @@ import { useSession } from "next-auth/react";
 
 import { getSession } from "next-auth/react";
 import { useRouter } from "next/router";
+import Note from "../../src/components/UI/Note/Note";
 
 interface StatesSetter {
   usernameInput: Dispatch<SetStateAction<string>>;
@@ -73,10 +74,10 @@ const Login: NextPage = () => {
             <b>login</b>
           </h1>
           <h2 className='text-lg text-slate-800 dark:text-slate-400 pt-2'>Hi!</h2>
-          <p className='bg-neutral-100 dark:bg-slate-900 py-1 px-2 text-[1rem] text-stone-500 dark:text-stone-300 my-1'>
+          <Note>
             Besides registering, you can also test the template with test account information(username: donero -
             Password: ewedon)
-          </p>
+          </Note>
         </header>
         {errorMessage && <ErrorParagraph errorText={errorMessage + " plase try again later"} />}
         <form onChange={formChangeHandler} onSubmit={formSubmitHandler}>
@@ -105,7 +106,7 @@ const Login: NextPage = () => {
           </button>
         </form>
         <div className='my-5'>
-          <Link href='/login'>
+          <Link href='/singup'>
             <a className='text-slate-700 dark:text-slate-400 text-lg'>
               Do not You Have An Account? <span className='text-sky-400'>Sign Up</span>
             </a>
