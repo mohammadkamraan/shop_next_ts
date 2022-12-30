@@ -8,9 +8,12 @@ import { items } from "../../data/sidebarData/Sidebar";
 
 import { useTheme } from "next-themes";
 import ProductMenu from "../producMenu/ProductMenu";
+import { useSession } from "next-auth/react";
 
 const Navbar = () => {
   const { theme, setTheme } = useTheme();
+
+  const { status } = useSession();
 
   const [languageSelect, setLanguageSelect] = useReducer(state => {
     return !state;
@@ -246,11 +249,12 @@ const Navbar = () => {
             />
           </div>
         </div>
-        <Link href='/login'>
-          <a
+        {status === "authenticated" ? (
+          <button
             className='w-32 md:w-auto h-9  border border-stone-200 rounded-md md:flex items-center text-slate-600 shadow-sm transition-all duration-300
-                hover:bg-slate-800 hover:text-stone-200 dark:text-slate-300 hidden'
+          hover:bg-red-700 hover:text-stone-200 dark:text-slate-300 hidden'
           >
+            logout
             <svg
               xmlns='http://www.w3.org/2000/svg'
               className='h-6 w-6 ml-2'
@@ -265,27 +269,70 @@ const Navbar = () => {
                 d='M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1'
               />
             </svg>
-            <p className='ml-2 hidden md:inline px-2'>login | singup</p>
-          </a>
-        </Link>
-        <Link href='/login'>
-          <a className='inline md:hidden ml-12 text-slate-800 dark:text-slate-300'>
-            <svg
-              xmlns='http://www.w3.org/2000/svg'
-              className='h-7 w-7'
-              fill='none'
-              viewBox='0 0 24 24'
-              stroke='currentColor'
-              strokeWidth={2}
+          </button>
+        ) : (
+          <Link href='/login'>
+            <a
+              className='w-32 md:w-auto h-9  border border-stone-200 rounded-md md:flex items-center text-slate-600 shadow-sm transition-all duration-300
+              hover:bg-slate-800 hover:text-stone-200 dark:text-slate-300 hidden'
             >
-              <path
-                strokeLinecap='round'
-                strokeLinejoin='round'
-                d='M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1'
-              />
-            </svg>
-          </a>
-        </Link>
+              <svg
+                xmlns='http://www.w3.org/2000/svg'
+                className='h-6 w-6 ml-2'
+                fill='none'
+                viewBox='0 0 24 24'
+                stroke='currentColor'
+                strokeWidth={2}
+              >
+                <path
+                  strokeLinecap='round'
+                  strokeLinejoin='round'
+                  d='M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1'
+                />
+              </svg>
+              <p className='ml-2 hidden md:inline px-2'>login | singup</p>
+            </a>
+          </Link>
+        )}
+        {status === "authenticated" ? (
+          <button className='inline md:hidden ml-12 text-slate-800 dark:text-slate-300'>
+            <a className='inline md:hidden ml-12 text-slate-800 dark:text-slate-300'>
+              <svg
+                xmlns='http://www.w3.org/2000/svg'
+                className='h-7 w-7'
+                fill='none'
+                viewBox='0 0 24 24'
+                stroke='currentColor'
+                strokeWidth={2}
+              >
+                <path
+                  strokeLinecap='round'
+                  strokeLinejoin='round'
+                  d='M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1'
+                />
+              </svg>
+            </a>
+          </button>
+        ) : (
+          <Link href='/login'>
+            <a className='inline md:hidden ml-12 text-slate-800 dark:text-slate-300'>
+              <svg
+                xmlns='http://www.w3.org/2000/svg'
+                className='h-7 w-7'
+                fill='none'
+                viewBox='0 0 24 24'
+                stroke='currentColor'
+                strokeWidth={2}
+              >
+                <path
+                  strokeLinecap='round'
+                  strokeLinejoin='round'
+                  d='M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1'
+                />
+              </svg>
+            </a>
+          </Link>
+        )}
         <div className='w-0.5 h-7 bg-neutral-300 rounded-lg ml-3 hidden md:inline' />
         <span className='relative mr-5 ml-5'>
           <svg

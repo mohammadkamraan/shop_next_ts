@@ -55,9 +55,7 @@ const Login: NextPage = () => {
 
   useEffect(() => {
     if (data?.user!.isLoggedIn) {
-      console.log(data.user.isLoggedIn);
-      console.log("happening");
-      router.push("/");
+      router.replace("/");
     }
   }, [data]);
 
