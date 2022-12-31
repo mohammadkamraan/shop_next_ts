@@ -1,20 +1,16 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
-import { ChangeEvent, Dispatch, SetStateAction, SyntheticEvent, useState } from "react";
+import { ChangeEvent, Dispatch, SetStateAction, SyntheticEvent, useEffect, useState } from "react";
 import DotsLoading from "../../src/components/dotsLoading/DotsLoading";
 import ErrorParagraph from "../../src/components/UI/errorParagraph/ErrorParagraph";
 import Note from "../../src/components/UI/Note/Note";
 import RequiredInput from "../../src/components/UI/requiredInpu/RequiredInput";
 import { useSend } from "../../src/hooks/useSend";
 
-import {
-  isValidEmail,
-  phoneValidator,
-  passwordsChecker,
-  arePasswordsEqual,
-  validatorsType,
-} from "../../src/util/validators";
+import { useRouter } from "next/router";
+
+import { isValidEmail, phoneValidator, arePasswordsEqual, validatorsType } from "../../src/util/validators";
 
 interface Validators {
   emailInput: validatorsType;
@@ -49,6 +45,8 @@ const validators: Validators = {
 
 const Singup: NextPage = () => {
   const [loading, data, error, sender] = useSend();
+
+  const router = useRouter();
 
   const [email, setEmail] = useState<string>("");
 
@@ -110,6 +108,8 @@ const Singup: NextPage = () => {
       if (!input.value.trim().length) {
         input.invalidSetter(true);
         hasEmptyInput = true;
+      } else {
+        input.invalidSetter(false);
       }
     }
     if (!arePasswordsEqual(password, checkPassword)) {
@@ -137,16 +137,16 @@ const Singup: NextPage = () => {
         },
         phone: phoneNumber,
       };
-      // if we dont have any empty inputs and passwords are equal so valid all the inputs
-      for (input of inputs) {
-        input.invalidSetter(false);
-      }
       setPasswordsNotEqual(false);
       sender({ body: singupData, method: "POST", endPoint: "users" });
     }
   };
 
-  console.log(loading, data, error);
+  useEffect(() => {
+    if (data?.id) {
+      router.replace("/login");
+    }
+  }, [data]);
 
   return (
     <article className='max-h-screen h-screen flex items-center justify-center font-patrick'>
@@ -168,6 +168,7 @@ const Singup: NextPage = () => {
           </Note>
         </header>
         {passwordsNotEqual && <ErrorParagraph>Your Passwords are not equal</ErrorParagraph>}
+        {error && <ErrorParagraph>{error.message + " Please try again later"}</ErrorParagraph>}
         <form onChange={cahngeHandler} onSubmit={submitHandler}>
           {/* userName input */}
           <RequiredInput
