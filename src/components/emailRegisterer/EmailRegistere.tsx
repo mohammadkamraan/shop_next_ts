@@ -12,7 +12,7 @@ const EmailRegisterer: FC = () => {
     <form className='flex items-center w-full rounded-md overflow-hidden h-12 font-patrick' onSubmit={sumbitHandler}>
       <input
         ref={InputRefrence}
-        className='h-full w-full placeholder:pl-5 pl-5 text-slate-700'
+        className='h-full w-full placeholder:pl-5 pl-5 text-slate-700 dark:text-slate-300'
         placeholder='please enter your email'
         type='email'
       />

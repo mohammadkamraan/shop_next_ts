@@ -23,6 +23,8 @@ const PopularBrands: FC<PopularBrandsProps> = ({ brands }) => {
     autoplaySpeed: 5000,
     cssEase: "linear",
     swipeToSlide: false,
+    nextArrow: <></>,
+    prevArrow: <></>,
     responsive: [
       {
         breakpoint: 1024,
