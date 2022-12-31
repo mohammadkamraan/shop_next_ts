@@ -11,6 +11,7 @@ import { useSend } from "../../src/hooks/useSend";
 import { useRouter } from "next/router";
 
 import { isValidEmail, phoneValidator, arePasswordsEqual, validatorsType } from "../../src/util/validators";
+import { useSession } from "next-auth/react";
 
 interface Validators {
   emailInput: validatorsType;
@@ -47,6 +48,8 @@ const Singup: NextPage = () => {
   const [loading, data, error, sender] = useSend();
 
   const router = useRouter();
+
+  const { status } = useSession();
 
   const [email, setEmail] = useState<string>("");
 
@@ -143,10 +146,12 @@ const Singup: NextPage = () => {
   };
 
   useEffect(() => {
+    // singup was seccussfull so redirects to the login page
     if (data?.id) {
       router.replace("/login");
     }
-  }, [data]);
+    if (status === "authenticated") router.replace("/");
+  }, [data, status]);
 
   return (
     <article className='max-h-screen h-screen flex items-center justify-center font-patrick'>
