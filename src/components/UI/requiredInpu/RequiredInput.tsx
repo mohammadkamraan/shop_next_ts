@@ -2,6 +2,7 @@ import { FC } from "react";
 
 interface RequiredInputProps {
   label: string;
+  value: string;
   isInvalide: boolean;
   inputType: "email" | "password" | "text" | "tel" | "url";
   inputName: string;

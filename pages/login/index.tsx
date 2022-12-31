@@ -7,10 +7,8 @@ import { useLogin } from "../../src/hooks/useLogin";
 import DotsLoading from "../../src/components/dotsLoading/DotsLoading";
 import RequiredInput from "../../src/components/UI/requiredInpu/RequiredInput";
 import ErrorParagraph from "../../src/components/UI/errorParagraph/ErrorParagraph";
-import { useSend } from "../../src/hooks/useSend";
 import { useSession } from "next-auth/react";
 
-import { getSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import Note from "../../src/components/UI/Note/Note";
 
@@ -55,7 +53,7 @@ const Login: NextPage = () => {
   };
 
   useEffect(() => {
-    if (data?.user!.isLoggedIn) {
+    if (data) {
       router.replace("/");
     }
   }, [data]);
@@ -79,10 +77,11 @@ const Login: NextPage = () => {
             Password: ewedon)
           </Note>
         </header>
-        {errorMessage && <ErrorParagraph errorText={errorMessage + " plase try again later"} />}
+        {errorMessage && <ErrorParagraph>{errorMessage + " plase try again later"}</ErrorParagraph>}
         <form onChange={formChangeHandler} onSubmit={formSubmitHandler}>
           {/* userName input */}
           <RequiredInput
+            value={username}
             label='UserName'
             inputName='usernameInput'
             inputPlaceHolder='Please Enter Your Username'
@@ -91,6 +90,7 @@ const Login: NextPage = () => {
           />
           {/* password input */}
           <RequiredInput
+            value={password}
             label='Password'
             inputName='passwordInput'
             inputPlaceHolder='Please Enter Your Password'
