@@ -73,6 +73,8 @@ const Singup: NextPage = () => {
 
   const [passwordsNotEqual, setPasswordsNotEqual] = useState<boolean>(false);
 
+  const [state, setState] = useState(0);
+
   const stateSetters: SetStates = {
     emailInput: setEmail,
     username: setUsername,
@@ -103,6 +105,7 @@ const Singup: NextPage = () => {
   };
 
   const submitHandler = (event: SyntheticEvent) => {
+    console.log("is it working?");
     event.preventDefault();
     let input: Input;
     let hasEmptyInput = false;

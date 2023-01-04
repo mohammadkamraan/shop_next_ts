@@ -1,7 +1,7 @@
-import { FC } from "react";
+import { FC, PropsWithChildren, ReactNode } from "react";
 
 interface ErrorParagraphProps {
-  children: string;
+  children: ReactNode;
 }
 
 const ErrorParagraph: FC<ErrorParagraphProps> = ({ children }) => {
