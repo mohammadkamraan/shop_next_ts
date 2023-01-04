@@ -9,7 +9,6 @@ import { largCategoryOfGoodsData } from "../../data/categoryOfGoodsData/largCate
 import ListCreator from "../listCreator/ListCreator";
 
 const CategoryOfGoods: FC = () => {
-  console.log("change");
   return (
     <section className='w-full h-4/6 font-patrick'>
       <header>
