@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { useReducer, useState, memo } from "react";
+import { useReducer, useState, memo, useCallback } from "react";
 import Backdrop from "../backdrop/Backdrop";
 import Sidebar from "../sidebar/Sidebar";
 import SidebarMenu from "../sidebar/sidebarMenu/SidebarMenu";
@@ -37,7 +37,7 @@ const Navbar = () => {
     setTheme(theme === "light" ? "dark" : "light");
   };
 
-  const logoutHandler = () => signOut();
+  const logoutHandler = useCallback(() => signOut(), []);
 
   return (
     <nav

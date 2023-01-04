@@ -15,8 +15,13 @@ import SpecialSale from "../src/components/specialSale/SpecialSale";
 import { specialSales } from "../src/data/specialSalesData/specialSalesData";
 import { popularBrands } from "../src/data/popularBrandsData/popularBrandsData";
 import PopularBrands from "../src/components/popularBrands/PopularBrands";
+import { useState } from "react";
 
 const Home: NextPage<any> = ({ products, newestGoodsData }) => {
+  const [index, setIndex] = useState(0);
+  const clickHandler = () => {
+    setIndex(preveIndex => preveIndex + 1);
+  };
   return (
     <AllProductsContext.Provider value={{ allProducts: products }}>
       <Head>
@@ -25,6 +30,7 @@ const Home: NextPage<any> = ({ products, newestGoodsData }) => {
         <meta name='author' content='Mohammad mahdi Kamran' />
         <title>M Shop</title>
       </Head>
+      <button onClick={clickHandler}>Click</button>
       <CategoriesSlider />
       <Possibilities />
       <SpecialOffers />

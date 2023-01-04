@@ -1,4 +1,4 @@
-import { FC, useContext } from "react";
+import { FC, useContext, memo } from "react";
 import Slider from "react-slick";
 
 import AllProductsContext from "../../../context/AllProductsContext";
@@ -37,4 +37,4 @@ const ProductsSection: FC = () => {
   );
 };
 
-export default ProductsSection;
+export default memo(ProductsSection);

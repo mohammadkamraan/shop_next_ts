@@ -1,4 +1,4 @@
-import { ChangeEvent, FC, FormEvent, useRef, useState } from "react";
+import { ChangeEvent, FC, useRef, memo } from "react";
 
 const EmailRegisterer: FC = () => {
   const InputRefrence = useRef<HTMLInputElement>(null);
@@ -21,4 +21,4 @@ const EmailRegisterer: FC = () => {
   );
 };
 
-export default EmailRegisterer;
+export default memo(EmailRegisterer);

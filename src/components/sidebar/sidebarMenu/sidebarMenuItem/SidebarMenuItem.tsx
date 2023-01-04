@@ -1,4 +1,4 @@
-import { useReducer, useState } from "react";
+import { useState } from "react";
 import { items } from "../../../../data/sidebarData/Sidebar";
 import ListCreator from "../../../listCreator/ListCreator";
 import Product from "./product/Product";

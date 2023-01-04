@@ -1,3 +1,5 @@
+import { memo } from "react";
+
 interface componentProps {
   items: any;
   itemPropsName: string;
@@ -15,4 +17,4 @@ const ListCreator = ({ items, itemPropsName, itemComponent: ItemComponent, extra
   );
 };
 
-export default ListCreator;
+export default memo(ListCreator);

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, memo } from "react";
 import { sidebarItemsData, items } from "../../data/sidebarData/Sidebar";
 import ListCreator from "../listCreator/ListCreator";
 import SidebarItem from "./sidebarItem/SidebarItem";
@@ -92,4 +92,4 @@ const Sidebar = ({ show, setClose, toggleMenu, setMenuItems }: componentProps) =
   );
 };
 
-export default Sidebar;
+export default memo(Sidebar);

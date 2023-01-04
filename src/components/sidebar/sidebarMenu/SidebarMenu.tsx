@@ -2,7 +2,6 @@ import Link from "next/link";
 import { Dispatch, SetStateAction } from "react";
 import { items } from "../../../data/sidebarData/Sidebar";
 import ListCreator from "../../listCreator/ListCreator";
-import SidebarItem from "../sidebarItem/SidebarItem";
 import SidebarMenuItem from "./sidebarMenuItem/SidebarMenuItem";
 
 interface componentProps {

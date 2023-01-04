@@ -8,7 +8,7 @@ interface PopularBrandProps {
 }
 
 const PopularBrand: FC<PopularBrandProps> = ({ brand }) => {
-  const { id, imageSrc, name } = brand;
+  const { imageSrc, name } = brand;
 
   return <Image className='shadow-md' src={imageSrc} alt={name} />;
 };

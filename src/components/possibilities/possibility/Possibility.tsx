@@ -1,4 +1,5 @@
 import Image from "next/image";
+
 import { possibilityItem } from "../Possibilities";
 
 interface componentProps {

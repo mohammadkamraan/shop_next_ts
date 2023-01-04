@@ -1,13 +1,13 @@
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, FC } from "react";
 import { sidebarItems, items } from "../../../data/sidebarData/Sidebar";
 
-interface componentProps {
+interface ComponentProps {
   sidebarItem: sidebarItems;
   toggleMenu: Dispatch<SetStateAction<boolean>>;
   setMenuItems: Dispatch<SetStateAction<ReadonlyArray<items>>>;
 }
 
-const SidebarItem = ({ sidebarItem, toggleMenu, setMenuItems }: componentProps) => {
+const SidebarItem: FC<ComponentProps> = ({ sidebarItem, toggleMenu, setMenuItems }) => {
   return (
     <li
       role='sidebar-item'

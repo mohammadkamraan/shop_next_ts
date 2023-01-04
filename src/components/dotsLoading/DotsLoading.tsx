@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, memo } from "react";
 
 interface DotsLoadingProps {
   color: "white" | "rose" | "dark" | "orange" | "pink" | "purple" | "indigo";
@@ -32,4 +32,4 @@ const DotsLoading: FC<DotsLoadingProps> = ({ color, size }) => {
   );
 };
 
-export default DotsLoading;
+export default memo(DotsLoading);
