@@ -1,6 +1,5 @@
-import { FC } from "react";
+import { FC, memo } from "react";
 import Slider from "react-slick";
-import ListCreator from "../listCreator/ListCreator";
 import PopularBrand from "./popularBrand/PopularBrand";
 
 export interface Brand {
@@ -66,4 +65,4 @@ const PopularBrands: FC<PopularBrandsProps> = ({ brands }) => {
   );
 };
 
-export default PopularBrands;
+export default memo(PopularBrands);

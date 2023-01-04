@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { FC } from "react";
+import { FC, memo } from "react";
 import Slider from "react-slick";
 import { homePage } from "../../data/slidersData/slidersData";
 
@@ -59,4 +59,4 @@ const CategoriesSlider: FC = () => {
   );
 };
 
-export default CategoriesSlider;
+export default memo(CategoriesSlider);

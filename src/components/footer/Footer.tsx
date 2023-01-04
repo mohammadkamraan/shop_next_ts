@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, memo } from "react";
 import ListCreator from "../listCreator/ListCreator";
 
 import { footerGuid } from "../../data/footerData/footerData";
@@ -51,4 +51,4 @@ const Footer: FC = () => {
   );
 };
 
-export default Footer;
+export default memo(Footer);

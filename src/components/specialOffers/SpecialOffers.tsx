@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, memo } from "react";
 import ProductsSection from "./productsSection/productsSection";
 
 const SpecialOffers: FC = () => {
@@ -20,4 +20,4 @@ const SpecialOffers: FC = () => {
   );
 };
 
-export default SpecialOffers;
+export default memo(SpecialOffers);

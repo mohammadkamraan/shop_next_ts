@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, memo } from "react";
 import ListCreator from "../listCreator/ListCreator";
 import GridSystem from "../UI/gridSystem/GridSystem";
 import SpecialSaleCard from "./SpecialSaleCard/SpecialSaleCard";
@@ -22,4 +22,4 @@ const SpecialSale: FC<SpecialSaleComponentProps> = ({ sales }) => {
   );
 };
 
-export default SpecialSale;
+export default memo(SpecialSale);

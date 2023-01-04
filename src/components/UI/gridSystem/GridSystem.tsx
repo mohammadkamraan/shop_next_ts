@@ -1,4 +1,4 @@
-import { FC, ReactNode } from "react";
+import { FC, ReactNode, memo } from "react";
 
 interface IComponentProps {
   gap: string;
@@ -17,4 +17,4 @@ const GridSystem: FC<IComponentProps> = ({ gap = "gap-4", needRows = false, chil
   return <div className={`grid grid-cols-12 ${gridWithRows(needRows)} ${gap} w-full h-full`}>{children}</div>;
 };
 
-export default GridSystem;
+export default memo(GridSystem);

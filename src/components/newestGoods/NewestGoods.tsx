@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { FC } from "react";
+import { FC, memo } from "react";
 import ListCreator from "../listCreator/ListCreator";
 import GridSystem from "../UI/gridSystem/GridSystem";
 import NewGoodCard, { NewGoodCardData } from "./newGoodCard/NewGoodCard";
@@ -26,4 +26,4 @@ const NewestGoods: FC<NewestGoodsComponentProps> = ({ goods }) => {
   );
 };
 
-export default NewestGoods;
+export default memo(NewestGoods);

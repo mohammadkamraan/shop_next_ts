@@ -1,12 +1,12 @@
-import { FC } from "react";
+import { FC, memo } from "react";
 
 interface RequiredInputProps {
   label: string;
-  value: string;
   isInvalide: boolean;
   inputType: "email" | "password" | "text" | "tel" | "url";
   inputName: string;
   inputPlaceHolder: string;
+  value?: string;
   inputOnChange?: any;
 }
 
@@ -18,6 +18,7 @@ const RequiredInput: FC<RequiredInputProps> = ({
   label,
   inputOnChange,
 }) => {
+  console.log("cahnges :(");
   return (
     <div className='flex flex-col relative mt-5'>
       <label
@@ -41,4 +42,4 @@ const RequiredInput: FC<RequiredInputProps> = ({
   );
 };
 
-export default RequiredInput;
+export default memo(RequiredInput);

@@ -1,3 +1,5 @@
+import { memo } from "react";
+
 import ListCreator from "../listCreator/ListCreator";
 import Possibility from "./possibility/Possibility";
 
@@ -22,4 +24,4 @@ const Possibilities = () => {
   );
 };
 
-export default Possibilities;
+export default memo(Possibilities);

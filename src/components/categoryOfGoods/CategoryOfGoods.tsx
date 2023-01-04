@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, memo } from "react";
 import GridSystem from "../UI/gridSystem/GridSystem";
 import LargeCategoryOfGoodItem from "./largeCategoryOfGoodsItem/LargeCategoryOfGoodsItem";
 
@@ -30,4 +30,4 @@ const CategoryOfGoods: FC = () => {
   );
 };
 
-export default CategoryOfGoods;
+export default memo(CategoryOfGoods);
