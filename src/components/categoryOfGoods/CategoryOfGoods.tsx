@@ -1,5 +1,5 @@
-import { FC, useEffect } from "react";
-import GridSystem from "../gridSystem/GridSystem";
+import { FC } from "react";
+import GridSystem from "../UI/gridSystem/GridSystem";
 import LargeCategoryOfGoodItem from "./largeCategoryOfGoodsItem/LargeCategoryOfGoodsItem";
 
 import SmallCategoryOfGoodItem from "./smallCategoryOfGoodItem/SmallCategoryOfGoodItem";
@@ -15,12 +15,9 @@ const CategoryOfGoods: FC = () => {
         <h6 className='text-slate-800 text-4xl text-center my-5 dark:text-slate-300'>Category of Goods</h6>
       </header>
       <div className='h-[75vh] px-16 py-2 hidden xl:block'>
-        <GridSystem
-          items={largCategoryOfGoodsData}
-          itemComponent={LargeCategoryOfGoodItem}
-          needRows={true}
-          gap='gap-4'
-        />
+        <GridSystem needRows={true} gap='gap-4'>
+          <ListCreator itemComponent={LargeCategoryOfGoodItem} items={largCategoryOfGoodsData} itemPropsName='item' />
+        </GridSystem>
       </div>
       <div className='flex flex-wrap justify-around items-center xl:hidden pt-6'>
         <ListCreator

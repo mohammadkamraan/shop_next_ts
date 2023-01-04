@@ -105,7 +105,6 @@ const Singup: NextPage = () => {
   };
 
   const submitHandler = (event: SyntheticEvent) => {
-    console.log("is it working?");
     event.preventDefault();
     let input: Input;
     let hasEmptyInput = false;
@@ -176,7 +175,7 @@ const Singup: NextPage = () => {
           </Note>
         </header>
         {passwordsNotEqual && <ErrorParagraph>Your Passwords are not equal</ErrorParagraph>}
-        {error && <ErrorParagraph>{error.message + " Please try again later"}</ErrorParagraph>}
+        {error && <ErrorParagraph>{error.message} Please try again later</ErrorParagraph>}
         <form onChange={cahngeHandler} onSubmit={submitHandler}>
           {/* userName input */}
           <RequiredInput

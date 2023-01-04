@@ -77,7 +77,7 @@ const Login: NextPage = () => {
             Password: ewedon)
           </Note>
         </header>
-        {errorMessage && <ErrorParagraph>{errorMessage + " plase try again later"}</ErrorParagraph>}
+        {errorMessage && <ErrorParagraph>{errorMessage} plase try again later</ErrorParagraph>}
         <form onChange={formChangeHandler} onSubmit={formSubmitHandler}>
           {/* userName input */}
           <RequiredInput

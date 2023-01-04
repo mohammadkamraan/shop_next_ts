@@ -30,7 +30,7 @@ const Home: NextPage<any> = ({ products, newestGoodsData }) => {
       <SpecialOffers />
       <CategoryOfGoods />
       <NewestGoods goods={newestGoodsData} />
-      <SpecialSale Sales={specialSales} />
+      <SpecialSale sales={specialSales} />
       <PopularBrands brands={popularBrands} />
     </AllProductsContext.Provider>
   );
