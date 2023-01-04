@@ -36,7 +36,15 @@ const Home: NextPage<any> = ({ products, newestGoodsData }) => {
 };
 
 export const getStaticProps = async () => {
-  const data = await dataFetcher("products");
+  const [data, error] = await dataFetcher("products");
+  if (error) {
+    return {
+      redirect: {
+        destination: "/500",
+        permanent: false,
+      },
+    };
+  }
   const newestGoodsData = newestGoods(data.slice(8, 20));
   return {
     props: {

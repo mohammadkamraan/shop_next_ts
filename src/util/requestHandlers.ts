@@ -11,8 +11,16 @@ type FetcherHandler = (endPoint: string) => any;
 type Request = (options: sendOptions) => any;
 
 export const dataFetcher: FetcherHandler = async endPoint => {
-  const { data } = await axiosRequest.get(endPoint);
-  return data;
+  let response;
+  let ErrorData;
+  try {
+    const { data } = await axiosRequest.get(endPoint);
+    response = data;
+  } catch (error) {
+    ErrorData = error;
+    response = null;
+  }
+  return [response, ErrorData];
 };
 
 export const requestHandler: Request = async options => {

@@ -30,4 +30,4 @@ const CategoryOfGoods: FC = () => {
   );
 };
 
-export default CategoryOfGoods;
+export default memo(CategoryOfGoods);
