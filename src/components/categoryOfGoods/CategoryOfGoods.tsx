@@ -4,11 +4,16 @@ import LargeCategoryOfGoodItem from "./largeCategoryOfGoodsItem/LargeCategoryOfG
 
 import SmallCategoryOfGoodItem from "./smallCategoryOfGoodItem/SmallCategoryOfGoodItem";
 
-import { categoryOfGoodsDataInSmallMode } from "../../data/categoryOfGoodsData/categoryOfGoodsData";
-import { largCategoryOfGoodsData } from "../../data/categoryOfGoodsData/largCategoryOfGoodData";
 import ListCreator from "../listCreator/ListCreator";
 
-const CategoryOfGoods: FC = () => {
+import { ICategoryOfGoodInSmallMode, ICategoryOfGood } from "../../typescript/INterfaces";
+
+interface CategoryOfGoodsProps {
+  categoriesInLargeMode: ICategoryOfGood[];
+  categoriesInSmallMode: ICategoryOfGoodInSmallMode[];
+}
+
+const CategoryOfGoods: FC<CategoryOfGoodsProps> = ({ categoriesInLargeMode, categoriesInSmallMode }) => {
   return (
     <section className='w-full h-4/6 font-patrick'>
       <header>
@@ -16,15 +21,11 @@ const CategoryOfGoods: FC = () => {
       </header>
       <div className='h-[75vh] px-16 py-2 hidden xl:block'>
         <GridSystem needRows={true} gap='gap-4'>
-          <ListCreator itemComponent={LargeCategoryOfGoodItem} items={largCategoryOfGoodsData} itemPropsName='item' />
+          <ListCreator itemComponent={LargeCategoryOfGoodItem} items={categoriesInLargeMode} itemPropsName='item' />
         </GridSystem>
       </div>
       <div className='flex flex-wrap justify-around items-center xl:hidden pt-6'>
-        <ListCreator
-          itemComponent={SmallCategoryOfGoodItem}
-          itemPropsName='category'
-          items={categoryOfGoodsDataInSmallMode}
-        />
+        <ListCreator itemComponent={SmallCategoryOfGoodItem} itemPropsName='category' items={categoriesInSmallMode} />
       </div>
     </section>
   );

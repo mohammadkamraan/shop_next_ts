@@ -15,6 +15,11 @@ import SpecialSale from "../src/components/specialSale/SpecialSale";
 import { specialSales } from "../src/data/specialSalesData/specialSalesData";
 import { popularBrands } from "../src/data/popularBrandsData/popularBrandsData";
 import PopularBrands from "../src/components/popularBrands/PopularBrands";
+
+import { largCategoryOfGoodsData } from "../src/data/categoryOfGoodsData/largCategoryOfGoodData";
+import { categoryOfGoodsDataInSmallMode } from "../src/data/categoryOfGoodsData/categoryOfGoodsData";
+import { possibilities } from "../src/data/possibilitiesData/possibilitiesData";
+
 const Home: NextPage<any> = ({ products, newestGoodsData }) => {
   return (
     <AllProductsContext.Provider value={{ allProducts: products }}>
@@ -25,9 +30,12 @@ const Home: NextPage<any> = ({ products, newestGoodsData }) => {
         <title>M Shop</title>
       </Head>
       <CategoriesSlider />
-      <Possibilities />
+      <Possibilities possibilities={possibilities} />
       <SpecialOffers />
-      <CategoryOfGoods />
+      <CategoryOfGoods
+        categoriesInLargeMode={largCategoryOfGoodsData}
+        categoriesInSmallMode={categoryOfGoodsDataInSmallMode}
+      />
       <NewestGoods goods={newestGoodsData} />
       <SpecialSale sales={specialSales} />
       <PopularBrands brands={popularBrands} />

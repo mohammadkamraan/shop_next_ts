@@ -16,6 +16,7 @@ export const dataFetcher: FetcherHandler = async endPoint => {
   try {
     const { data } = await axiosRequest.get(endPoint);
     response = data;
+    ErrorData = null;
   } catch (error) {
     ErrorData = error;
     response = null;
