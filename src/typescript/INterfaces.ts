@@ -1,5 +1,11 @@
 // typescript type
-import type { tailwindGridRows, tailwindGridCols } from "./types";
+import type {
+  tailwindGridRows,
+  tailwindGridCols,
+  ClientSideCategorie,
+} from "./types";
+
+import type { Categories } from "../../pages/products/[category]/[productId]/index";
 
 export interface IGridSystemItem {
   gridRowsClassName: tailwindGridRows;
@@ -37,4 +43,14 @@ export interface ICategoryOfGoodInSmallMode {
   svg: any;
   categoryLink: string;
   categoryName: string;
+}
+
+// the backend side categories type
+
+export interface ProductsCategories {
+  [key: string]: Categories;
+}
+
+export interface ClientProductsCategories {
+  [key: string]: ClientSideCategorie;
 }

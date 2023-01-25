@@ -7,6 +7,8 @@ import AllProductsContext from "../../../context/AllProductsContext";
 // import slider setting
 import { specialProducts } from "../../../data/slidersData/slidersData";
 
+import { categories } from "../../../data/categoryOfGoodsData/categoryOfGoodsData";
+
 const ProductsSection: FC = () => {
   const contextData = useContext(AllProductsContext);
 
@@ -15,11 +17,11 @@ const ProductsSection: FC = () => {
       {contextData?.allProducts
         ?.slice(0, 10)
         ?.map((product: { [key: string]: any }) => (
-          <Link href={`${product.category}/${product.id}`}>
-            <article
-              key={product.id}
-              className="relative h-[19rem] w-full rounded-md bg-sky-200 dark:bg-slate-700 dark:bg-opacity-80 my-auto overflow-hidden cursor-pointer"
-            >
+          <Link
+            href={`products/${categories[product.category]}/${product.id}`}
+            key={product.id}
+          >
+            <article className="relative h-[19rem] w-full rounded-md bg-sky-200 dark:bg-slate-700 dark:bg-opacity-80 my-auto overflow-hidden cursor-pointer">
               <figure className="h-48 w-full text-center p-2">
                 <img
                   className="h-full w-full bg-none bg-sky-200 block"

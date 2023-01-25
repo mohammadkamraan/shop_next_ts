@@ -32,3 +32,9 @@ export type tailwindGridCols =
 export type tailwindBreakPoints = "sm" | "md" | "lg" | "xl" | "2xl";
 
 export type NoParamReturnNumber = () => number;
+
+export type ClientSideCategorie =
+  | "menCloth"
+  | "womenCloth"
+  | "jewelery"
+  | "electronics";
