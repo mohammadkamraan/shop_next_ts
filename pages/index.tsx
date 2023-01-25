@@ -24,9 +24,12 @@ const Home: NextPage<any> = ({ products, newestGoodsData }) => {
   return (
     <AllProductsContext.Provider value={{ allProducts: products }}>
       <Head>
-        <meta name='description' content='Nextjs online shop github project' />
-        <meta name='keywords' content='HTML,Tailwincss,Javascript,Reactjs,Nextjs,Redux,Redux-toolkit' />
-        <meta name='author' content='Mohammad mahdi Kamran' />
+        <meta name="description" content="Nextjs online shop github project" />
+        <meta
+          name="keywords"
+          content="HTML,Tailwincss,Javascript,Reactjs,Nextjs,Redux,Redux-toolkit"
+        />
+        <meta name="author" content="Mohammad mahdi Kamran" />
         <title>M Shop</title>
       </Head>
       <CategoriesSlider />
