@@ -5,6 +5,7 @@ import { dataFetcher } from "../../../../src/util/requestHandlers";
 import { categories } from "../../../../src/data/categoryOfGoodsData/categoryOfGoodsData";
 
 import { ClientSideCategorie } from "../../../../src/typescript/types";
+import UserLocation from "../../../../src/components/userLocation/UserLocation";
 
 export type Categories =
   | "electronics"
@@ -22,7 +23,6 @@ interface Pathes {
 }
 
 const Product: NextPage<any> = ({ product }) => {
-  console.log(product);
   return (
     <>
       <Head>
@@ -37,6 +37,7 @@ const Product: NextPage<any> = ({ product }) => {
         <meta name="author" content="Mohammad mahdi Kamran" />
         <title>M Shop Product | {product.title}</title>
       </Head>
+      <UserLocation lastParam={product.title} />
     </>
   );
 };
@@ -47,7 +48,7 @@ export const getStaticPaths = async () => {
   const [data] = await dataFetcher("products");
   // makes an array of objects that every object has
   // params key and the value of the params key is an object with productId and category keys
-  const pathes: Pathes = data.map((product: any) => {
+  const pathes: Pathes = data?.map((product: any) => {
     return {
       params: {
         productId: product.id.toString(),
