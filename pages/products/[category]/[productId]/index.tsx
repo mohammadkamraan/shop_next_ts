@@ -9,6 +9,7 @@ import UserLocation from "../../../../src/components/userLocation/UserLocation";
 import ProductDetail from "../../../../src/components/productDetail/ProductDetail";
 
 import { Product } from "../../../../src/typescript/INterfaces";
+import { discountPercentHandler } from "../../../../src/util/discountHandler";
 export type Categories =
   | "electronics"
   | "jewelery"
@@ -85,7 +86,11 @@ export const getStaticProps = async (context: any) => {
   }
   return {
     props: {
-      product: { ...data, image: [data.image] },
+      product: {
+        ...data,
+        image: [data.image],
+        discountPercent: discountPercentHandler(),
+      },
     },
   };
 };

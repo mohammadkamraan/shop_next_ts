@@ -68,4 +68,5 @@ export interface Product {
   price: number;
   rating: ProductRating;
   title: string;
+  discountPercent?: number;
 }

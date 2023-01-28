@@ -25,7 +25,7 @@ const ProductImage: FC<ProductImageProps> = ({
       src={image}
       className={`${
         size === "large"
-          ? " w-52 h-72"
+          ? " w-52 h-90"
           : `w-16 h-16 rounded-md cursor-pointer mt-8 ${
               index === selectedImageIndex ? " shadow-lg shadow-slate-800" : ""
             }`
