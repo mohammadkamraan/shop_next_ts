@@ -7,11 +7,20 @@ interface componentProps {
   extraProps?: any;
 }
 
-const ListCreator = ({ items, itemPropsName, itemComponent: ItemComponent, extraProps }: componentProps) => {
+const ListCreator = ({
+  items,
+  itemPropsName,
+  itemComponent: ItemComponent,
+  extraProps,
+}: componentProps) => {
   return (
     <>
       {items.map((item: any, index: number) => (
-        <ItemComponent {...extraProps} key={index} {...{ [itemPropsName]: item }} />
+        <ItemComponent
+          {...extraProps}
+          key={index}
+          {...{ [itemPropsName]: item, index }}
+        />
       ))}
     </>
   );

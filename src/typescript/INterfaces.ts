@@ -54,3 +54,18 @@ export interface ProductsCategories {
 export interface ClientProductsCategories {
   [key: string]: ClientSideCategorie;
 }
+
+interface ProductRating {
+  rate: number;
+  count: number;
+}
+
+export interface Product {
+  category: string;
+  description: string;
+  id: number;
+  image: string | string[];
+  price: number;
+  rating: ProductRating;
+  title: string;
+}

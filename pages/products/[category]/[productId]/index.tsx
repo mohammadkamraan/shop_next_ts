@@ -6,7 +6,9 @@ import { categories } from "../../../../src/data/categoryOfGoodsData/categoryOfG
 
 import { ClientSideCategorie } from "../../../../src/typescript/types";
 import UserLocation from "../../../../src/components/userLocation/UserLocation";
+import ProductDetail from "../../../../src/components/productDetail/ProductDetail";
 
+import { Product } from "../../../../src/typescript/INterfaces";
 export type Categories =
   | "electronics"
   | "jewelery"
@@ -22,22 +24,28 @@ interface Pathes {
   params: ReadonlyArray<Params>;
 }
 
-const Product: NextPage<any> = ({ product }) => {
+export interface ProductProps {
+  product: Product;
+}
+
+const Product: NextPage<ProductProps> = ({ product }) => {
+  console.log(product);
   return (
     <>
       <Head>
         <meta
-          name="description"
+          name='description'
           content={`${product.title} | ${product.description} | price : $${product.price} the rate ${product.rating.rate} / 5 from ${product.rating.count} rates`}
         />
         <meta
-          name="keywords"
+          name='keywords'
           content={`M shop Product, ${product.category} , ${product.title} , buy ${product.title} , Buy ${product.title} , best ${product.title} , new ${product.title}, ${product.title} ${product.price}, get ${product.title} , Get ${product.title}`}
         />
-        <meta name="author" content="Mohammad mahdi Kamran" />
+        <meta name='author' content='Mohammad mahdi Kamran' />
         <title>M Shop Product | {product.title}</title>
       </Head>
       <UserLocation lastParam={product.title} />
+      <ProductDetail product={product} />
     </>
   );
 };
@@ -77,7 +85,7 @@ export const getStaticProps = async (context: any) => {
   }
   return {
     props: {
-      product: data,
+      product: { ...data, image: [data.image] },
     },
   };
 };
