@@ -26,7 +26,9 @@ export default NextAuth({
           };
           return user;
         } catch (error) {
-          const errorMessage = error.response?.statusText ? error.response.statusText : "something went wrong";
+          const errorMessage = error.response?.statusText
+            ? error.response.statusText
+            : "something went wrong";
           throw new Error(errorMessage);
         }
       },
@@ -35,7 +37,6 @@ export default NextAuth({
   callbacks: {
     async signIn({ user }) {
       if (user) return true;
-
       return false;
     },
     async session({ session }) {

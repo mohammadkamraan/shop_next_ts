@@ -1,4 +1,4 @@
-import { FC, useEffect, useLayoutEffect, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import ListCreator from "../listCreator/ListCreator";
 
 interface StarsRatingComponentProps {
@@ -30,7 +30,6 @@ const StarRate: FC<StarRateComponentProps> = ({ fill }) => {
 
 const StarsRating: FC<StarsRatingComponentProps> = ({ stars }) => {
   const [starsArray, setStarsArray] = useState<boolean[]>([]);
-  const [, setState] = useState<number>(0);
 
   const starsArrayHandler = () => {
     const starsArr = starsArray;
@@ -42,13 +41,14 @@ const StarsRating: FC<StarsRatingComponentProps> = ({ stars }) => {
         starsArr.push(false);
       }
     }
-    setStarsArray(starsArr);
-    setState(preveState => preveState + 1);
+    setStarsArray([...starsArr]);
   };
 
   useEffect(() => {
     starsArrayHandler();
+    console.log("test");
   }, []);
+
   return (
     <div role='rating' className='flex'>
       <ListCreator

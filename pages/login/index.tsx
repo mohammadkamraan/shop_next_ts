@@ -1,7 +1,13 @@
 import { NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
-import { ChangeEvent, Dispatch, SetStateAction, useEffect, useMemo, useState } from "react";
+import {
+  ChangeEvent,
+  Dispatch,
+  SetStateAction,
+  useEffect,
+  useState,
+} from "react";
 
 import { useLogin } from "../../src/hooks/useLogin";
 import DotsLoading from "../../src/components/dotsLoading/DotsLoading";
@@ -61,8 +67,14 @@ const Login: NextPage = () => {
   return (
     <article className='max-h-screen h-screen flex items-center justify-center font-patrick'>
       <Head>
-        <meta name='description' content='M Shop login page. Users can login to the website in this page.' />
-        <meta name='keywords' content='M shop login page,Login,login,singup,Singup' />
+        <meta
+          name='description'
+          content='M Shop login page. Users can login to the website in this page.'
+        />
+        <meta
+          name='keywords'
+          content='M shop login page,Login,login,singup,Singup'
+        />
         <meta name='author' content='Mohammad mahdi Kamran' />
         <title>M Shop / Login</title>
       </Head>
@@ -71,13 +83,17 @@ const Login: NextPage = () => {
           <h1 className='text-slate-700 dark:text-slate-300 text-3xl'>
             <b>login</b>
           </h1>
-          <h2 className='text-lg text-slate-800 dark:text-slate-400 pt-2'>Hi!</h2>
+          <h2 className='text-lg text-slate-800 dark:text-slate-400 pt-2'>
+            Hi!
+          </h2>
           <Note>
-            Besides registering, you can also test the template with test account information(username: donero -
-            Password: ewedon)
+            Besides registering, you can also test the template with test
+            account information(username: donero - Password: ewedon)
           </Note>
         </header>
-        {errorMessage && <ErrorParagraph>{errorMessage} plase try again later</ErrorParagraph>}
+        {errorMessage && (
+          <ErrorParagraph>{errorMessage} plase try again later</ErrorParagraph>
+        )}
         <form onChange={formChangeHandler} onSubmit={formSubmitHandler}>
           {/* userName input */}
           <RequiredInput
@@ -108,7 +124,8 @@ const Login: NextPage = () => {
         <div className='my-5'>
           <Link href='/singup'>
             <a className='text-slate-700 dark:text-slate-400 text-lg'>
-              Do not You Have An Account? <span className='text-sky-400'>Sign Up</span>
+              Do not You Have An Account?{" "}
+              <span className='text-sky-400'>Sign Up</span>
             </a>
           </Link>
         </div>

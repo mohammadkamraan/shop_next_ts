@@ -14,7 +14,7 @@ const ProductData: FC<ProductDataProps> = ({ productData }) => {
         {productData.title}
       </h1>
       <hr className='w-90%  h-2 mt-3' />
-      {/* <StarsRating stars={+productData.rating.rate.toFixed(0)} /> */}
+      <StarsRating stars={+productData.rating.rate.toFixed(0)} />
       <p className='text-2xl'>Product Details</p>
     </section>
   );
