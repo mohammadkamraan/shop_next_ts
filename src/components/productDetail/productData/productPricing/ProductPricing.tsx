@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { ChangeEvent, FC, useState } from "react";
 
 interface ProductPricingProps {
   price: number;
@@ -6,10 +6,13 @@ interface ProductPricingProps {
 }
 
 const ProductPricing: FC<ProductPricingProps> = ({ price, discount }) => {
-  const [productCount, setProductCount] = useState(1);
+  const [productCount, setProductCount] = useState<number>(1);
+
+  const changeHandler = (event: ChangeEvent<HTMLInputElement>) =>
+    setProductCount(+event.target.value);
 
   return (
-    <div className='shadow-md shadow-slate-300 w-4/6 h-72 ml-5'>
+    <div className='shadow-lg shadow-slate-300 w-4/6 h-72 ml-5'>
       <h4 className='mt-6 ml-6 text-xl'>Product Pricing</h4>
       <p className='mt-2 ml-6 line-through text-rose-800'>${price}</p>
       <p className='text-4xl text-slate-800 dark:text-slate-200 font-bold ml-5'>
@@ -17,7 +20,11 @@ const ProductPricing: FC<ProductPricingProps> = ({ price, discount }) => {
         <span className='text-sm text-teal-600'>(-{discount})%</span>
       </p>
       <div className='flex items-center justify-evenly mt-8 mb-5'>
-        <button>
+        <button
+          onClick={() => {
+            setProductCount(preveCount => preveCount + 1);
+          }}
+        >
           <svg
             xmlns='http://www.w3.org/2000/svg'
             fill='none'
@@ -34,12 +41,18 @@ const ProductPricing: FC<ProductPricingProps> = ({ price, discount }) => {
           </svg>
         </button>
         <input
+          onChange={changeHandler}
           className='w-16 h-10 text-center'
           type='number'
           min={1}
           value={productCount}
         />
-        <button>
+        <button
+          onClick={() => {
+            if (productCount !== 1)
+              setProductCount(preveCount => preveCount - 1);
+          }}
+        >
           <svg
             xmlns='http://www.w3.org/2000/svg'
             fill='none'

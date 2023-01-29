@@ -30,7 +30,6 @@ export interface ProductProps {
 }
 
 const Product: NextPage<ProductProps> = ({ product }) => {
-  console.log(product);
   return (
     <>
       <Head>
