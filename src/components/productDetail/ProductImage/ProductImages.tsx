@@ -25,7 +25,7 @@ const ProductImage: FC<ProductImageProps> = ({
       src={image}
       className={`${
         size === "large"
-          ? " w-52 h-90"
+          ? " w-full h-96"
           : `w-16 h-16 rounded-md cursor-pointer mt-8 ${
               index === selectedImageIndex ? " shadow-lg shadow-slate-800" : ""
             }`
@@ -43,7 +43,7 @@ const ProductImages: FC<ProductImagseProps> = ({ images }) => {
   }, []);
 
   return (
-    <div className='relative ml-36'>
+    <div className='relative w-6/12 ml-10'>
       {/* like and share icons */}
       <div className='flex flex-col text-slate-800 dark:text-slate-100 absolute left-20 md:-left-20'>
         {/* heart svg */}

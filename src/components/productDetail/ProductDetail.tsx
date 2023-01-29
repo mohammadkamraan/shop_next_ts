@@ -5,10 +5,13 @@ import { ProductProps } from "../../../pages/products/[category]/[productId]/ind
 import ProductData from "./productData/ProductData";
 const ProductDetail: FC<ProductProps> = ({ product }) => {
   return (
-    <article role='product-detail' className='flex flex-col md:flex-row'>
+    <section
+      role='product-detail'
+      className='flex flex-col md:flex-row md:justify-evenly md:items-start md:pr-16 md:pl-28 mt-8'
+    >
       <ProductImages images={product.image as string[]} />
       <ProductData productData={product} />
-    </article>
+    </section>
   );
 };
 
