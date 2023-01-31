@@ -14,9 +14,9 @@ import Possibilities from "../../../../src/components/possibilities/Possibilitie
 import { possibilities } from "../../../../src/data/possibilitiesData/possibilitiesData";
 import { newestGoods } from "../../../../src/util/newestGoods";
 
-import { NewGoodCardData } from "../../../../src/components/newestGoods/newGoodCard/NewGoodCard";
-
 import { ProductDetailProps } from "../../../../src/components/productDetail/ProductDetail";
+import MayInterested from "../../../../src/components/MayInterested/MayInterested";
+import { Product } from "../../../../src/typescript/INterfaces";
 
 export type Categories =
   | "electronics"
@@ -34,7 +34,7 @@ interface Pathes {
 }
 
 interface ProductProps extends ProductDetailProps {
-  interestedInData: ReadonlyArray<NewGoodCardData>;
+  interestedInData: Product[];
 }
 
 const ProductPage: NextPage<ProductProps> = ({ product, interestedInData }) => {
@@ -59,6 +59,7 @@ const ProductPage: NextPage<ProductProps> = ({ product, interestedInData }) => {
       <div className='border border-slate-300 mx-16'>
         <Possibilities possibilities={possibilities} />
       </div>
+      <MayInterested products={interestedInData} />
     </>
   );
 };

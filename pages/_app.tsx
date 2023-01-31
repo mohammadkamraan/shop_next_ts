@@ -21,9 +21,9 @@ function MyApp({ Component, pageProps }: AppProps) {
   const withoutNavbarPathes: string[] = ["/login", "/singup"];
 
   return (
-    <ThemeProvider attribute="class">
+    <ThemeProvider attribute='class'>
       <SessionProvider session={pageProps.pageProps}>
-        <div className="bg-gray-100 dark:bg-slate-900">
+        <div className='bg-gray-100 dark:bg-slate-900'>
           {!withoutNavbarPathes.includes(pathname) && <Navbar />}
           <NextNProgress />
           <Component {...pageProps} />

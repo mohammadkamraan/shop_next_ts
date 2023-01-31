@@ -42,7 +42,7 @@ const Home: NextPage<HomeProps> = ({ products, newestGoodsData }) => {
       </Head>
       <CategoriesSlider />
       <Possibilities possibilities={possibilities} />
-      <SpecialOffers />
+      <SpecialOffers products={products} />
       <CategoryOfGoods
         categoriesInLargeMode={largCategoryOfGoodsData}
         categoriesInSmallMode={categoryOfGoodsDataInSmallMode}

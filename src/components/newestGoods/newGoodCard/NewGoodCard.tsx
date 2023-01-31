@@ -4,20 +4,11 @@ import { FC } from "react";
 
 // images
 import dicountIcon from "../../../../public/images/discount-icon/discount-icon.webp";
+import { Product } from "../../../typescript/INterfaces";
 import StarsRating from "../../starsRating/StarsRating";
 
-export interface NewGoodCardData {
-  id: number;
-  imageSrc: string;
-  description: string;
-  price: number;
-  discountPercent: number;
-  stars: number;
-  title: string;
-}
-
 interface NewGoodCardDataComponentProps {
-  item: NewGoodCardData;
+  item: Product;
 }
 
 const NewGoodCard: FC<NewGoodCardDataComponentProps> = ({ item }) => {
@@ -31,7 +22,7 @@ const NewGoodCard: FC<NewGoodCardDataComponentProps> = ({ item }) => {
           <figure className='w-2/5 sm:h-40 h-full sm:w-full'>
             <img
               className='sm:px-8 py-2 w-full h-full pl-2 sm:py-4 transition-all duration-300 hover:scale-105'
-              src={item.imageSrc}
+              src={item.image as string}
               alt={item.title}
             />
           </figure>
@@ -42,7 +33,7 @@ const NewGoodCard: FC<NewGoodCardDataComponentProps> = ({ item }) => {
           )}
           <div className='w-3/5 sm:w-full my-auto'>
             <div className='flex justify-center py-3'>
-              <StarsRating stars={item.stars} />
+              <StarsRating stars={item.rating.rate} />
             </div>
             <div className='flex flex-col justify-between sm:h-44'>
               <div className='text-center sm:px-2 px-8'>
@@ -51,10 +42,16 @@ const NewGoodCard: FC<NewGoodCardDataComponentProps> = ({ item }) => {
               <div className='pl-4'>
                 {item.discountPercent !== 0 ? (
                   <>
-                    <p className='text-rose-600 dark:text-rose-400 font-thin line-through sm:text-lg'>${item.price}</p>
+                    <p className='text-rose-600 dark:text-rose-400 font-thin line-through sm:text-lg'>
+                      ${item.price}
+                    </p>
                     <div className='flex'>
                       <p className='text-slate-700 dark:text-neutral-300 font-black text-lg sm:text-2xl'>
-                        ${(item.price - (item.price / 100) * item.discountPercent).toFixed(2)}
+                        $
+                        {(
+                          item.price -
+                          (item.price / 100) * (item.discountPercent as number)
+                        ).toFixed(2)}
                       </p>
                       <span className='pl-1 pt-3 font-thin text-green-800 dark:text-teal-600'>
                         (-%{item.discountPercent})
@@ -62,7 +59,9 @@ const NewGoodCard: FC<NewGoodCardDataComponentProps> = ({ item }) => {
                     </div>
                   </>
                 ) : (
-                  <p className='text-slate-700 dark:text-neutral-300 font-black text-2xl'>${item.price}</p>
+                  <p className='text-slate-700 dark:text-neutral-300 font-black text-2xl'>
+                    ${item.price}
+                  </p>
                 )}
               </div>
             </div>

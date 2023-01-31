@@ -1,23 +1,14 @@
-import { NewGoodCardData } from "../components/newestGoods/newGoodCard/NewGoodCard";
 import { discountPercentHandler } from "./discountHandler";
-import { starsAmountHandler } from "./starsHandler";
 import { Product } from "../../src/typescript/INterfaces";
 
-type NewestGoods = (data: Product[]) => NewGoodCardData[];
+type NewestGoods = (data: Product[]) => Product[];
 
 export const newestGoods: NewestGoods = data => {
-  const newestGoods: NewGoodCardData[] = [];
+  const newestGoods: Product[] = [];
   let product: any;
   for (product of data) {
-    newestGoods.push({
-      discountPercent: discountPercentHandler(),
-      description: product.description,
-      id: product.id,
-      imageSrc: product.image,
-      price: product.price,
-      stars: starsAmountHandler(),
-      title: product.title,
-    });
+    newestGoods.push({ ...product, discountPercent: discountPercentHandler() });
   }
+  console.log(newestGoods);
   return newestGoods;
 };

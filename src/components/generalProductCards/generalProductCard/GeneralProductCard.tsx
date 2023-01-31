@@ -1,13 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import { FC } from "react";
+import { FC, memo } from "react";
 
-import { Product } from "../../typescript/INterfaces";
+import { Product } from "../../../typescript/INterfaces";
 
-import { categories } from "../../data/categoryOfGoodsData/categoryOfGoodsData";
+import { categories } from "../../../data/categoryOfGoodsData/categoryOfGoodsData";
 
-import dicountIcon from "../../../public/images/discount-icon/discount-icon.webp";
+import dicountIcon from "../../../../public/images/discount-icon/discount-icon.webp";
 
 interface GeneralProductCardProps {
   product: Product;
@@ -53,8 +53,16 @@ const GeneralProductCard: FC<GeneralProductCardProps> = ({ product, type }) => {
             $ {product.price}
           </p>
           <p className='text-2xl text-slate-800 dark:text-slate-200 font-bold ml-5'>
-            ${(product.price - (product.price / 100) * 20).toFixed(2)}
-            <span className='text-sm text-teal-600'>(-20%)</span>
+            $
+            {(
+              product.price -
+              (product.price / 100) * (product.discountPercent as number)
+            ).toFixed(2)}
+            {product.discountPercent && (
+              <span className='text-sm text-teal-600'>
+                ({product.discountPercent}%)
+              </span>
+            )}
           </p>
         </div>
       </article>
@@ -62,4 +70,4 @@ const GeneralProductCard: FC<GeneralProductCardProps> = ({ product, type }) => {
   );
 };
 
-export default GeneralProductCard;
+export default memo(GeneralProductCard);
