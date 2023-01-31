@@ -16,7 +16,7 @@ const ProductsSection: FC = () => {
   return (
     <Slider {...specialProducts} className='slick-has-margin'>
       {contextData?.allProducts?.slice(0, 10)?.map((product: Product) => (
-        <GeneralProductCard product={product} />
+        <GeneralProductCard type='special sale' product={product} />
       ))}
     </Slider>
   );
