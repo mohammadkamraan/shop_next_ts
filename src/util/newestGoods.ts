@@ -1,8 +1,9 @@
 import { NewGoodCardData } from "../components/newestGoods/newGoodCard/NewGoodCard";
 import { discountPercentHandler } from "./discountHandler";
 import { starsAmountHandler } from "./starsHandler";
+import { Product } from "../../src/typescript/INterfaces";
 
-type NewestGoods = (data: any) => NewGoodCardData[];
+type NewestGoods = (data: Product[]) => NewGoodCardData[];
 
 export const newestGoods: NewestGoods = data => {
   const newestGoods: NewGoodCardData[] = [];

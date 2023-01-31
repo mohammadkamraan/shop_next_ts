@@ -20,16 +20,24 @@ import { largCategoryOfGoodsData } from "../src/data/categoryOfGoodsData/largCat
 import { categoryOfGoodsDataInSmallMode } from "../src/data/categoryOfGoodsData/categoryOfGoodsData";
 import { possibilities } from "../src/data/possibilitiesData/possibilitiesData";
 
-const Home: NextPage<any> = ({ products, newestGoodsData }) => {
+import { Product } from "../src/typescript/INterfaces";
+import { NewGoodCardData } from "../src/components/newestGoods/newGoodCard/NewGoodCard";
+
+interface HomeProps {
+  products: Product[];
+  newestGoodsData: NewGoodCardData[];
+}
+
+const Home: NextPage<HomeProps> = ({ products, newestGoodsData }) => {
   return (
     <AllProductsContext.Provider value={{ allProducts: products }}>
       <Head>
-        <meta name="description" content="Nextjs online shop github project" />
+        <meta name='description' content='Nextjs online shop github project' />
         <meta
-          name="keywords"
-          content="HTML,Tailwincss,Javascript,Reactjs,Nextjs,Redux,Redux-toolkit"
+          name='keywords'
+          content='HTML,Tailwincss,Javascript,Reactjs,Nextjs,Redux,Redux-toolkit'
         />
-        <meta name="author" content="Mohammad mahdi Kamran" />
+        <meta name='author' content='Mohammad mahdi Kamran' />
         <title>M Shop</title>
       </Head>
       <CategoriesSlider />

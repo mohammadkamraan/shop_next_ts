@@ -8,8 +8,16 @@ import { ClientSideCategorie } from "../../../../src/typescript/types";
 import UserLocation from "../../../../src/components/userLocation/UserLocation";
 import ProductDetail from "../../../../src/components/productDetail/ProductDetail";
 
-import { Product } from "../../../../src/typescript/INterfaces";
 import { discountPercentHandler } from "../../../../src/util/discountHandler";
+
+import Possibilities from "../../../../src/components/possibilities/Possibilities";
+import { possibilities } from "../../../../src/data/possibilitiesData/possibilitiesData";
+import { newestGoods } from "../../../../src/util/newestGoods";
+
+import { NewGoodCardData } from "../../../../src/components/newestGoods/newGoodCard/NewGoodCard";
+
+import { ProductDetailProps } from "../../../../src/components/productDetail/ProductDetail";
+
 export type Categories =
   | "electronics"
   | "jewelery"
@@ -25,11 +33,13 @@ interface Pathes {
   params: ReadonlyArray<Params>;
 }
 
-export interface ProductProps {
-  product: Product;
+interface ProductProps extends ProductDetailProps {
+  interestedInData: ReadonlyArray<NewGoodCardData>;
 }
 
-const Product: NextPage<ProductProps> = ({ product }) => {
+const ProductPage: NextPage<ProductProps> = ({ product, interestedInData }) => {
+  console.log(interestedInData);
+
   return (
     <>
       <Head>
@@ -46,11 +56,14 @@ const Product: NextPage<ProductProps> = ({ product }) => {
       </Head>
       <UserLocation lastParam={product.title} />
       <ProductDetail product={product} />
+      <div className='border border-slate-300 mx-16'>
+        <Possibilities possibilities={possibilities} />
+      </div>
     </>
   );
 };
 
-export default Product;
+export default ProductPage;
 
 export const getStaticPaths = async () => {
   const [data] = await dataFetcher("products");
@@ -75,7 +88,11 @@ export const getStaticProps = async (context: any) => {
   const { productId } = context.params;
   const [data, error] = await dataFetcher(`products/${productId}`);
 
-  if (error) {
+  const [products, ProductError] = await dataFetcher("products");
+
+  const interestedInData = newestGoods(products.slice(8, 20));
+
+  if (error || ProductError) {
     return {
       redirect: {
         destination: "/500",
@@ -90,6 +107,7 @@ export const getStaticProps = async (context: any) => {
         image: [data.image],
         discountPercent: discountPercentHandler(),
       },
+      interestedInData,
     },
   };
 };

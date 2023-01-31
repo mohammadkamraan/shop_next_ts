@@ -46,7 +46,6 @@ const StarsRating: FC<StarsRatingComponentProps> = ({ stars }) => {
 
   useEffect(() => {
     starsArrayHandler();
-    console.log("test");
   }, []);
 
   return (

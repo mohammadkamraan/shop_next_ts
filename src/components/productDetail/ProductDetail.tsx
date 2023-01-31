@@ -1,9 +1,14 @@
 import { FC } from "react";
 import ProductImages from "./ProductImage/ProductImages";
 
-import { ProductProps } from "../../../pages/products/[category]/[productId]/index";
 import ProductData from "./productData/ProductData";
-const ProductDetail: FC<ProductProps> = ({ product }) => {
+import { Product } from "../../typescript/INterfaces";
+
+export interface ProductDetailProps {
+  product: Product;
+}
+
+const ProductDetail: FC<ProductDetailProps> = ({ product }) => {
   return (
     <section
       role='product-detail'
