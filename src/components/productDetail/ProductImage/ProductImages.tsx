@@ -21,17 +21,22 @@ const ProductImage: FC<ProductImageProps> = ({
   selectedImageIndex,
 }) => {
   return (
-    <img
-      src={image}
-      className={`${
-        size === "large"
-          ? "w-11/12 h-96"
-          : `w-16 h-16 rounded-md cursor-pointer mt-8 ${
-              index === selectedImageIndex ? " shadow-lg shadow-slate-800" : ""
-            }`
-      } mx-auto md:mx-0`}
-      onClick={choseImage ? () => choseImage(index) : () => {}}
-    />
+    <figure>
+      <img
+        alt={`the product number ${index} image`}
+        src={image}
+        className={`${
+          size === "large"
+            ? "w-11/12 h-96"
+            : `w-16 h-16 rounded-md cursor-pointer mt-8 ${
+                index === selectedImageIndex
+                  ? " shadow-lg shadow-slate-800"
+                  : ""
+              }`
+        } mx-auto md:mx-0`}
+        onClick={choseImage ? () => choseImage(index) : () => {}}
+      />
+    </figure>
   );
 };
 

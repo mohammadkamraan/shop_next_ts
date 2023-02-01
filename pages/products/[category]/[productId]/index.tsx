@@ -38,10 +38,8 @@ interface ProductProps extends ProductDetailProps {
 }
 
 const ProductPage: NextPage<ProductProps> = ({ product, interestedInData }) => {
-  console.log(interestedInData);
-
   return (
-    <>
+    <main>
       <Head>
         <meta
           name='description'
@@ -60,7 +58,7 @@ const ProductPage: NextPage<ProductProps> = ({ product, interestedInData }) => {
         <Possibilities possibilities={possibilities} />
       </div>
       <MayInterested products={interestedInData} />
-    </>
+    </main>
   );
 };
 

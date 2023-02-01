@@ -1,4 +1,4 @@
-import { ChangeEvent, FC, useState } from "react";
+import { ChangeEvent, FC, useState, memo } from "react";
 
 interface ProductPricingProps {
   price: number;
@@ -92,4 +92,4 @@ const ProductPricing: FC<ProductPricingProps> = ({ price, discount }) => {
   );
 };
 
-export default ProductPricing;
+export default memo(ProductPricing);

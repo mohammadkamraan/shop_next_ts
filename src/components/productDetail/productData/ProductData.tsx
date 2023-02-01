@@ -1,8 +1,8 @@
-import { FC } from "react";
+import { FC, memo } from "react";
 
 import { Product } from "../../../typescript/INterfaces";
 import StarsRating from "../../starsRating/StarsRating";
-import ProductPricing from "./productPricing/productPricing";
+import ProductPricing from "./productPricing/ProductPricing";
 
 interface ProductDataProps {
   productData: Product;
@@ -51,4 +51,4 @@ const ProductData: FC<ProductDataProps> = ({ productData }) => {
   );
 };
 
-export default ProductData;
+export default memo(ProductData);

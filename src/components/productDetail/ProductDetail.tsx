@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, memo } from "react";
 import ProductImages from "./ProductImage/ProductImages";
 
 import ProductData from "./productData/ProductData";
@@ -20,4 +20,4 @@ const ProductDetail: FC<ProductDetailProps> = ({ product }) => {
   );
 };
 
-export default ProductDetail;
+export default memo(ProductDetail);
