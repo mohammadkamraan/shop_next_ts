@@ -56,7 +56,7 @@ const ProductPage: NextPage<ProductProps> = ({ product, interestedInData }) => {
       </Head>
       <UserLocation lastParam={product.title} />
       <ProductDetail product={product} />
-      <div className='border border-slate-300 mx-16'>
+      <div className='border border-slate-300 mx-16 my-8'>
         <Possibilities possibilities={possibilities} />
       </div>
       <MayInterested products={interestedInData} />

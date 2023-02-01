@@ -8,7 +8,16 @@ interface MayInterestedProps {
 }
 
 const MayInterested: FC<MayInterestedProps> = ({ products }) => {
-  return <ScrollAbleCards products={products} type='interested' />;
+  return (
+    <>
+      <h4 className='ml-16 mb-5 font-black font-patrick text-2xl'>
+        You May Be Interested In
+      </h4>
+      <div className='px-20'>
+        <ScrollAbleCards products={products} type='interested' />
+      </div>
+    </>
+  );
 };
 
 export default memo(MayInterested);

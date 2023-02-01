@@ -23,11 +23,13 @@ const GeneralProductCard: FC<GeneralProductCardProps> = ({ product, type }) => {
       <article
         role='card'
         className={`relative h-[19rem] w-full rounded-md ${
-          type === "special sale" ? "bg-sky-200" : "bg-white shadow-sm"
+          type === "special sale"
+            ? "bg-sky-200"
+            : "bg-white shadow-md shadow-slate-400"
         } dark:bg-slate-700 dark:bg-opacity-80 my-auto overflow-hidden cursor-pointer`}
       >
-        {product.discountPercent !== 0 && type === "interested" && (
-          <figure className='w-5 sm:w-10 h-5 sm:h-10 absolute -top-3 -right-2'>
+        {product.discountPercent !== 0 && (
+          <figure className='w-5 sm:w-10 h-5 sm:h-10 absolute top-2 right-2 z-10'>
             <Image src={dicountIcon} alt='has-discount' />
           </figure>
         )}
@@ -35,7 +37,7 @@ const GeneralProductCard: FC<GeneralProductCardProps> = ({ product, type }) => {
           <img
             className={`h-full w-full bg-none bg-sky-200 block ${
               type === "interested" &&
-              "transition-all duration-300 hover:scale-125"
+              "transition-all duration-300 hover:scale-105"
             }`}
             src={product.image as string}
             alt={product.title}
@@ -45,25 +47,33 @@ const GeneralProductCard: FC<GeneralProductCardProps> = ({ product, type }) => {
           <header>
             <h6 className='text-center text-slate-800 dark:text-slate-300 text-lg'>
               {product.title.length > 25
-                ? `${product.title.slice(0, 25)} ...`
+                ? `${product.title.slice(0, 20)} ...`
                 : product.title}
             </h6>
           </header>
-          <p className='text-lg text-red-700 dark:text-pink-300 line-through ml-5'>
+          <p
+            className={`${
+              product.discountPercent
+                ? "text-red-700 dark:text-pink-300 line-through mt-2"
+                : "text-slate-800 text-2xl mt-5"
+            } ml-5`}
+          >
             $ {product.price}
           </p>
-          <p className='text-2xl text-slate-800 dark:text-slate-200 font-bold ml-5'>
-            $
-            {(
-              product.price -
-              (product.price / 100) * (product.discountPercent as number)
-            ).toFixed(2)}
-            {product.discountPercent && (
-              <span className='text-sm text-teal-600'>
-                ({product.discountPercent}%)
-              </span>
-            )}
-          </p>
+          {!!product.discountPercent && (
+            <p className='text-2xl text-slate-800 dark:text-slate-200 font-bold ml-5'>
+              $
+              {(
+                product.price -
+                (product.price / 100) * (product.discountPercent as number)
+              ).toFixed(2)}
+              {product.discountPercent && (
+                <span className='text-sm text-teal-600'>
+                  ({product.discountPercent}%)
+                </span>
+              )}
+            </p>
+          )}
         </div>
       </article>
     </Link>

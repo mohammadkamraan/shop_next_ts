@@ -21,11 +21,10 @@ import { categoryOfGoodsDataInSmallMode } from "../src/data/categoryOfGoodsData/
 import { possibilities } from "../src/data/possibilitiesData/possibilitiesData";
 
 import { Product } from "../src/typescript/INterfaces";
-import { NewGoodCardData } from "../src/components/newestGoods/newGoodCard/NewGoodCard";
 
 interface HomeProps {
   products: Product[];
-  newestGoodsData: NewGoodCardData[];
+  newestGoodsData: Product[];
 }
 
 const Home: NextPage<HomeProps> = ({ products, newestGoodsData }) => {
@@ -42,7 +41,7 @@ const Home: NextPage<HomeProps> = ({ products, newestGoodsData }) => {
       </Head>
       <CategoriesSlider />
       <Possibilities possibilities={possibilities} />
-      <SpecialOffers products={products} />
+      <SpecialOffers products={newestGoodsData} />
       <CategoryOfGoods
         categoriesInLargeMode={largCategoryOfGoodsData}
         categoriesInSmallMode={categoryOfGoodsDataInSmallMode}
