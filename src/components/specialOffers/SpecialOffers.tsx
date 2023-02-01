@@ -22,7 +22,7 @@ const SpecialOffers: FC<SpecialOffersProps> = ({ products }) => {
       </div>
       <div className='w-4/6 md:w-5/6 h-full py-2'>
         {/* <ProductsSection /> */}
-        <ScrollAbleCards products={products.slice(0, 10)} type='special sale' />
+        <ScrollAbleCards products={products.slice(0, 10)} type='specialSale' />
       </div>
     </section>
   );

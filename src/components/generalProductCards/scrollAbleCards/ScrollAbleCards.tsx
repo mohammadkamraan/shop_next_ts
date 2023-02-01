@@ -8,7 +8,7 @@ import { Product } from "../../../typescript/INterfaces";
 
 interface ScrollAbleCardsProps {
   products: Product[];
-  type: "special sale" | "interested";
+  type: "specialSale" | "interested";
 }
 
 const ScrollAbleCards: FC<ScrollAbleCardsProps> = ({ products, type }) => (

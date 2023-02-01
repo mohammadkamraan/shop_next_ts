@@ -11,24 +11,21 @@ import dicountIcon from "../../../../public/images/discount-icon/discount-icon.w
 
 interface GeneralProductCardProps {
   product: Product;
-  type: "special sale" | "interested";
+  type: "specialSale" | "interested";
 }
 
 const GeneralProductCard: FC<GeneralProductCardProps> = ({ product, type }) => {
   return (
-    <Link
-      href={`products/${categories[product.category]}/${product.id}`}
-      key={product.id}
-    >
+    <Link href={`/products/${categories[product.category]}/${product.id}`}>
       <article
         role='card'
         className={`relative h-[19rem] w-full rounded-md ${
-          type === "special sale"
+          type === "specialSale"
             ? "bg-sky-200"
             : "bg-white shadow-md shadow-slate-400"
         } dark:bg-slate-700 dark:bg-opacity-80 my-auto overflow-hidden cursor-pointer`}
       >
-        {product.discountPercent !== 0 && (
+        {!!product.discountPercent && (
           <figure className='w-5 sm:w-10 h-5 sm:h-10 absolute top-2 right-2 z-10'>
             <Image src={dicountIcon} alt='has-discount' />
           </figure>
@@ -65,13 +62,11 @@ const GeneralProductCard: FC<GeneralProductCardProps> = ({ product, type }) => {
               $
               {(
                 product.price -
-                (product.price / 100) * (product.discountPercent as number)
+                (product.price / 100) * product.discountPercent
               ).toFixed(2)}
-              {product.discountPercent && (
-                <span className='text-sm text-teal-600'>
-                  ({product.discountPercent}%)
-                </span>
-              )}
+              <span className='text-sm text-teal-600'>
+                ({product.discountPercent}%)
+              </span>
             </p>
           )}
         </div>
