@@ -15,7 +15,7 @@ const ProductPricing: FC<ProductPricingProps> = ({ price, discount }) => {
     <div className='shadow-lg w-4/6 h-72 ml-0 mb-4 md:mb-0 md:ml-5 dark border border-slate-200 mt-5 md:mt-0'>
       <h4 className='mt-6 ml-6 text-xl'>Product Pricing</h4>
       <p className='mt-2 ml-6 line-through text-rose-800'>${price}</p>
-      <p className='text-4xl text-slate-800 dark:text-slate-200 font-bold ml-5'>
+      <p className='text-4xl dark:text-slate-200 text-slate-800 font-bold ml-5'>
         ${(price - (price / 100) * discount).toFixed(2)}
         <span className='text-sm text-teal-600'>(-{discount})%</span>
       </p>

@@ -10,7 +10,7 @@ interface ProductDataProps {
 
 const ProductData: FC<ProductDataProps> = ({ productData }) => {
   return (
-    <article className='bg-white rounded-t-[80px] md:rounded-none overflow-hidden md:bg-transparent dark:bg-slate-700 w-full ml-0 md:ml-20 font-patrick text-lg'>
+    <article className='bg-white rounded-t-[80px] md:rounded-none overflow-hidden md:bg-transparent md:dark:bg-slate-700 w-full ml-0 md:ml-20 font-patrick text-lg'>
       <h1 className='text-slate-700 dark:text-slate-400 mx-9 md:mx-0 text-center md:text-left'>
         {productData.title}
       </h1>

@@ -54,7 +54,7 @@ const UserLocation: FC<UserLocationProps> = ({ lastParam }) => {
 
   return (
     <div
-      role='path'
+      role='app-path'
       className='p-6 md:pl-16 md:pr-0 font-patrick text-sm md:text-xl font-thin text-slate-500 dark:text-slate-300 w-40 sm:w-full overflow-x-scroll'
     >
       <h4 className='inline-flex'>

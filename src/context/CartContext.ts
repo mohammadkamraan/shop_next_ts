@@ -6,6 +6,6 @@ interface ReactContext {
   allProducts: Product[];
 }
 
-const AllProductsContext = createContext<ReactContext | null>(null);
+const CartProducts = createContext<ReactContext | null>(null);
 
-export default AllProductsContext;
+export default CartProducts;

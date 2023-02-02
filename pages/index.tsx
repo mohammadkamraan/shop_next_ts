@@ -2,7 +2,6 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import Possibilities from "../src/components/possibilities/Possibilities";
 import SpecialOffers from "../src/components/specialOffers/SpecialOffers";
-import AllProductsContext from "../src/context/AllProductsContext";
 
 import { dataFetcher } from "../src/util/requestHandlers";
 import CategoryOfGoods from "../src/components/categoryOfGoods/CategoryOfGoods";
@@ -29,7 +28,7 @@ interface HomeProps {
 
 const Home: NextPage<HomeProps> = ({ products, newestGoodsData }) => {
   return (
-    <AllProductsContext.Provider value={{ allProducts: products }}>
+    <>
       <Head>
         <meta name='description' content='Nextjs online shop github project' />
         <meta
@@ -49,7 +48,7 @@ const Home: NextPage<HomeProps> = ({ products, newestGoodsData }) => {
       <NewestGoods goods={newestGoodsData} />
       <SpecialSale sales={specialSales} />
       <PopularBrands brands={popularBrands} />
-    </AllProductsContext.Provider>
+    </>
   );
 };
 
