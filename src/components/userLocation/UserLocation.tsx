@@ -44,7 +44,6 @@ const UserLocation: FC<UserLocationProps> = ({ lastParam }) => {
       if (path === "MShop main page") {
         latestLink = "/";
       } else if (arrayOfParams.length === index + 1) {
-        console.log("condition");
         latestLink += `${lastParamLink}/`;
       } else {
         latestLink += `${path}/`;

@@ -2,10 +2,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { FC } from "react";
 
-// images
-import dicountIcon from "../../../../public/images/discount-icon/discount-icon.webp";
+import { categories } from "../../../data/categoryOfGoodsData/categoryOfGoodsData";
 import { Product } from "../../../typescript/INterfaces";
 import StarsRating from "../../starsRating/StarsRating";
+// images
+import dicountIcon from "../../../../public/images/discount-icon/discount-icon.webp";
 
 interface NewGoodCardDataComponentProps {
   item: Product;
@@ -17,7 +18,7 @@ const NewGoodCard: FC<NewGoodCardDataComponentProps> = ({ item }) => {
       role='card'
       className='col-span-12 sm:col-span-6 md:col-span-4 lg:col-span-3 xl:col-span-2 h-64 sm:h-96 rounded-xl shadow-xl bg-white dark:bg-slate-800 relative'
     >
-      <Link href={`/product/${item.id}`}>
+      <Link href={`/products/${categories[item.category]}/${item.id}`}>
         <a className='h-full w-full flex sm:block'>
           <figure className='w-2/5 sm:h-40 h-full sm:w-full'>
             <img

@@ -23,7 +23,7 @@ const GeneralProductCard: FC<GeneralProductCardProps> = ({ product, type }) => {
           type === "specialSale"
             ? "bg-sky-200"
             : "bg-white shadow-md shadow-slate-400"
-        } dark:bg-slate-700 dark:bg-opacity-80 my-auto overflow-hidden cursor-pointer`}
+        } dark:bg-slate-700 dark:bg-opacity-80 my-auto overflow-hidden cursor-pointer font-patrick`}
       >
         {!!product.discountPercent && (
           <figure className='w-5 sm:w-10 h-5 sm:h-10 absolute top-2 right-2 z-10'>
@@ -52,7 +52,7 @@ const GeneralProductCard: FC<GeneralProductCardProps> = ({ product, type }) => {
             className={`${
               product.discountPercent
                 ? "text-red-700 dark:text-pink-300 line-through mt-2"
-                : "text-slate-800 text-2xl mt-5"
+                : "text-slate-800 text-2xl mt-5 dark:text-slate-300"
             } ml-5`}
           >
             $ {product.price}
