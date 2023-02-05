@@ -1,4 +1,5 @@
-import { ChangeEvent, FC, useState, memo } from "react";
+import { ChangeEvent, FC, useState, memo, useContext } from "react";
+import { CartFunctionality } from "../../../../context/CartContext";
 
 interface ProductPricingProps {
   price: number;
@@ -7,6 +8,8 @@ interface ProductPricingProps {
 
 const ProductPricing: FC<ProductPricingProps> = ({ price, discount }) => {
   const [productCount, setProductCount] = useState<number>(1);
+
+  const { addToCart } = useContext(CartFunctionality);
 
   const changeHandler = (event: ChangeEvent<HTMLInputElement>) =>
     setProductCount(+event.target.value);
@@ -69,7 +72,10 @@ const ProductPricing: FC<ProductPricingProps> = ({ price, discount }) => {
           </svg>
         </button>
       </div>
-      <button className='mx-auto mt-2 w-44 block py-3 px-4 bg-rose-700 text-center rounded-lg text-white text-xl ring-1 ring-rose-700 transition-all duration-500 hover:scale-105'>
+      <button
+        onClick={() => addToCart(productCount)}
+        className='mx-auto mt-2 w-44 block py-3 px-4 bg-rose-700 text-center rounded-lg text-white text-xl ring-1 ring-rose-700 transition-all duration-500 hover:scale-105'
+      >
         <p className='inline-flex justify-center items-center'>
           <svg
             xmlns='http://www.w3.org/2000/svg'

@@ -8,6 +8,10 @@ import { ClientSideCategorie } from "../../../../src/typescript/types";
 import UserLocation from "../../../../src/components/userLocation/UserLocation";
 import ProductDetail from "../../../../src/components/productDetail/ProductDetail";
 
+import CartContext, {
+  CartFunctionality,
+} from "../../../../src/context/CartContext";
+
 import { discountPercentHandler } from "../../../../src/util/discountHandler";
 
 import Possibilities from "../../../../src/components/possibilities/Possibilities";
@@ -17,6 +21,7 @@ import { newestGoods } from "../../../../src/util/newestGoods";
 import { ProductDetailProps } from "../../../../src/components/productDetail/ProductDetail";
 import MayInterested from "../../../../src/components/MayInterested/MayInterested";
 import { Product } from "../../../../src/typescript/INterfaces";
+import { useContext } from "react";
 
 export type Categories =
   | "electronics"
@@ -37,28 +42,40 @@ interface ProductProps extends ProductDetailProps {
   interestedInData: Product[];
 }
 
+export type AddProductToCart = (count: number) => void;
+
 const ProductPage: NextPage<ProductProps> = ({ product, interestedInData }) => {
+  let cartItems = useContext(CartContext);
+  const addProductToCart: AddProductToCart = count => {
+    cartItems.push(...[{ ...product, count }]);
+    localStorage.setItem("cart", JSON.stringify(cartItems.cart));
+  };
+
+  console.log(cartItems);
+
   return (
-    <main>
-      <Head>
-        <meta
-          name='description'
-          content={`${product.title} | ${product.description} | price : $${product.price} the rate ${product.rating.rate} / 5 from ${product.rating.count} rates`}
-        />
-        <meta
-          name='keywords'
-          content={`M shop Product, ${product.category} , ${product.title} , buy ${product.title} , Buy ${product.title} , best ${product.title} , new ${product.title}, ${product.title} ${product.price}, get ${product.title} , Get ${product.title}`}
-        />
-        <meta name='author' content='Mohammad mahdi Kamran' />
-        <title>M Shop Product | {product.title}</title>
-      </Head>
-      <UserLocation lastParam={product.title} />
-      <ProductDetail product={product} />
-      <div className='border border-slate-300 mx-16 my-8'>
-        <Possibilities possibilities={possibilities} />
-      </div>
-      <MayInterested products={interestedInData} />
-    </main>
+    <CartFunctionality.Provider value={{ addToCart: addProductToCart }}>
+      <main>
+        <Head>
+          <meta
+            name='description'
+            content={`${product.title} | ${product.description} | price : $${product.price} the rate ${product.rating.rate} / 5 from ${product.rating.count} rates`}
+          />
+          <meta
+            name='keywords'
+            content={`M shop Product, ${product.category} , ${product.title} , buy ${product.title} , Buy ${product.title} , best ${product.title} , new ${product.title}, ${product.title} ${product.price}, get ${product.title} , Get ${product.title}`}
+          />
+          <meta name='author' content='Mohammad mahdi Kamran' />
+          <title>M Shop Product | {product.title}</title>
+        </Head>
+        <UserLocation lastParam={product.title} />
+        <ProductDetail product={product} />
+        <div className='border border-slate-300 mx-16 my-8'>
+          <Possibilities possibilities={possibilities} />
+        </div>
+        <MayInterested products={interestedInData} />
+      </main>
+    </CartFunctionality.Provider>
   );
 };
 

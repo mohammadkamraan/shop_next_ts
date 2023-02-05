@@ -22,11 +22,10 @@ import { possibilities } from "../src/data/possibilitiesData/possibilitiesData";
 import { Product } from "../src/typescript/INterfaces";
 
 interface HomeProps {
-  products: Product[];
   newestGoodsData: Product[];
 }
 
-const Home: NextPage<HomeProps> = ({ products, newestGoodsData }) => {
+const Home: NextPage<HomeProps> = ({ newestGoodsData }) => {
   return (
     <>
       <Head>
@@ -65,7 +64,6 @@ export const getStaticProps = async () => {
   const newestGoodsData = newestGoods(data.slice(8, 20));
   return {
     props: {
-      products: data,
       newestGoodsData,
     },
   };
