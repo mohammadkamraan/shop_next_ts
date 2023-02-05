@@ -1,16 +1,14 @@
 import { NextPage } from "next";
 import Head from "next/head";
 
+import { AddToCartFunctionality } from "../../../../src/context/AddToCartFunctionality";
+
 import { dataFetcher } from "../../../../src/util/requestHandlers";
 import { categories } from "../../../../src/data/categoryOfGoodsData/categoryOfGoodsData";
 
 import { ClientSideCategorie } from "../../../../src/typescript/types";
 import UserLocation from "../../../../src/components/userLocation/UserLocation";
 import ProductDetail from "../../../../src/components/productDetail/ProductDetail";
-
-import CartContext, {
-  CartFunctionality,
-} from "../../../../src/context/CartContext";
 
 import { discountPercentHandler } from "../../../../src/util/discountHandler";
 
@@ -21,7 +19,12 @@ import { newestGoods } from "../../../../src/util/newestGoods";
 import { ProductDetailProps } from "../../../../src/components/productDetail/ProductDetail";
 import MayInterested from "../../../../src/components/MayInterested/MayInterested";
 import { Product } from "../../../../src/typescript/INterfaces";
-import { useContext } from "react";
+
+import useCartStore from "../../../../src/hooks/useCartStore";
+import { useSession } from "next-auth/react";
+
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export type Categories =
   | "electronics"
@@ -45,37 +48,52 @@ interface ProductProps extends ProductDetailProps {
 export type AddProductToCart = (count: number) => void;
 
 const ProductPage: NextPage<ProductProps> = ({ product, interestedInData }) => {
-  let cartItems = useContext(CartContext);
+  const addItemsToCart = useCartStore((state: any) => state.addItemsToCart);
+  const cartItems = useCartStore((state: any) => state.cartItems);
+
+  const { status } = useSession();
+
   const addProductToCart: AddProductToCart = count => {
-    cartItems.push(...[{ ...product, count }]);
-    localStorage.setItem("cart", JSON.stringify(cartItems.cart));
+    if (status === "loading") {
+      toast.info("Your auth status is undifined");
+    } else if (status === "unauthenticated") {
+      toast.error("Please first login ", {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+    } else {
+      addItemsToCart({ ...product, count });
+      localStorage.setItem(
+        "cartItems",
+        JSON.stringify([...cartItems, { ...product, count }])
+      );
+      toast.success("Added to the cart");
+    }
   };
 
-  console.log(cartItems);
-
   return (
-    <CartFunctionality.Provider value={{ addToCart: addProductToCart }}>
-      <main>
-        <Head>
-          <meta
-            name='description'
-            content={`${product.title} | ${product.description} | price : $${product.price} the rate ${product.rating.rate} / 5 from ${product.rating.count} rates`}
-          />
-          <meta
-            name='keywords'
-            content={`M shop Product, ${product.category} , ${product.title} , buy ${product.title} , Buy ${product.title} , best ${product.title} , new ${product.title}, ${product.title} ${product.price}, get ${product.title} , Get ${product.title}`}
-          />
-          <meta name='author' content='Mohammad mahdi Kamran' />
-          <title>M Shop Product | {product.title}</title>
-        </Head>
-        <UserLocation lastParam={product.title} />
+    <main>
+      <ToastContainer />
+      <Head>
+        <meta
+          name='description'
+          content={`${product.title} | ${product.description} | price : $${product.price} the rate ${product.rating.rate} / 5 from ${product.rating.count} rates`}
+        />
+        <meta
+          name='keywords'
+          content={`M shop Product, ${product.category} , ${product.title} , buy ${product.title} , Buy ${product.title} , best ${product.title} , new ${product.title}, ${product.title} ${product.price}, get ${product.title} , Get ${product.title}`}
+        />
+        <meta name='author' content='Mohammad mahdi Kamran' />
+        <title>M Shop Product | {product.title}</title>
+      </Head>
+      <UserLocation lastParam={product.title} />
+      <AddToCartFunctionality.Provider value={addProductToCart}>
         <ProductDetail product={product} />
-        <div className='border border-slate-300 mx-16 my-8'>
-          <Possibilities possibilities={possibilities} />
-        </div>
-        <MayInterested products={interestedInData} />
-      </main>
-    </CartFunctionality.Provider>
+      </AddToCartFunctionality.Provider>
+      <div className='border border-slate-300 mx-16 my-8'>
+        <Possibilities possibilities={possibilities} />
+      </div>
+      <MayInterested products={interestedInData} />
+    </main>
   );
 };
 

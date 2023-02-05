@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { useReducer, useState, memo, useCallback, useContext } from "react";
+import { useReducer, useState, memo, useCallback, useEffect } from "react";
 import Backdrop from "../backdrop/Backdrop";
 import Sidebar from "../sidebar/Sidebar";
 import SidebarMenu from "../sidebar/sidebarMenu/SidebarMenu";
@@ -11,14 +11,15 @@ import ProductMenu from "../producMenu/ProductMenu";
 import { useSession } from "next-auth/react";
 
 import { signOut } from "next-auth/react";
-import CartContext from "../../context/CartContext";
+import useCartStore from "../../hooks/useCartStore";
 
 const Navbar = () => {
+  const cartItems = useCartStore((state: any) => state.cartItems);
+  const setCartItems = useCartStore((state: any) => state.setCartItems);
+
   const { theme, setTheme } = useTheme();
 
   const { status } = useSession();
-
-  const cartItems = useContext(CartContext);
 
   const [languageSelect, setLanguageSelect] = useReducer(state => {
     return !state;
@@ -43,6 +44,12 @@ const Navbar = () => {
   };
 
   const logoutHandler = useCallback(() => signOut(), []);
+
+  console.log(cartItems);
+
+  useEffect(() => {
+    setCartItems(JSON.parse(localStorage.getItem("cartItems") as string) || []);
+  }, []);
 
   return (
     <nav
