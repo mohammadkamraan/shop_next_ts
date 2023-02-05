@@ -70,3 +70,7 @@ export interface Product {
   title: string;
   discountPercent?: number;
 }
+
+export interface CartItem extends Product {
+  count: number;
+}

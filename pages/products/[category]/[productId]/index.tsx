@@ -49,7 +49,6 @@ export type AddProductToCart = (count: number) => void;
 
 const ProductPage: NextPage<ProductProps> = ({ product, interestedInData }) => {
   const addItemsToCart = useCartStore((state: any) => state.addItemsToCart);
-  const cartItems = useCartStore((state: any) => state.cartItems);
 
   const { status } = useSession();
 
@@ -62,10 +61,6 @@ const ProductPage: NextPage<ProductProps> = ({ product, interestedInData }) => {
       });
     } else {
       addItemsToCart({ ...product, count });
-      localStorage.setItem(
-        "cartItems",
-        JSON.stringify([...cartItems, { ...product, count }])
-      );
       toast.success("Added to the cart");
     }
   };

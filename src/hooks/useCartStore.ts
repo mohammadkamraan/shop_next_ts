@@ -1,10 +1,26 @@
 import { create } from "zustand";
 
-const useCartStore = create((set: any) => ({
+import { CartItem } from "../typescript/INterfaces";
+
+interface CartStore {
+  cartItems: CartItem[];
+  addItemsToCart: (item: CartItem) => void;
+  setCartItems: (items: CartItem[]) => void;
+}
+
+const useCartStore = create<CartStore>((set: any) => ({
   cartItems: [],
-  addItemsToCart: (item: any) =>
-    set((state: any) => ({ cartItems: [...state.cartItems, item] })),
-  setCartItems: (items: any) => set((state: any) => ({ cartItems: items })),
+  addItemsToCart: item =>
+    set((state: any) => {
+      const newCartItems = state.cartItems;
+      newCartItems.push(item);
+      localStorage.setItem("cartItems", JSON.stringify([...newCartItems]));
+      return { cartItems: [...newCartItems] };
+    }),
+  setCartItems: items =>
+    set(() => ({
+      cartItems: items,
+    })),
 }));
 
 export default useCartStore;
