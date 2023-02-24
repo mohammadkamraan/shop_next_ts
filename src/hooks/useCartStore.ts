@@ -1,4 +1,6 @@
-import { create } from "zustand";
+import { create, createStore } from "zustand";
+
+import { subscribeWithSelector } from "zustand/middleware";
 
 import { CartItem } from "../typescript/INterfaces";
 
