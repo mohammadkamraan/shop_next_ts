@@ -67,7 +67,6 @@ const ProductPage: NextPage<ProductProps> = ({ product, interestedInData }) => {
 
   return (
     <main>
-      <ToastContainer />
       <Head>
         <meta
           name='description'
@@ -80,6 +79,7 @@ const ProductPage: NextPage<ProductProps> = ({ product, interestedInData }) => {
         <meta name='author' content='Mohammad mahdi Kamran' />
         <title>M Shop Product | {product.title}</title>
       </Head>
+      <ToastContainer />
       <UserLocation lastParam={product.title} />
       <AddToCartFunctionality.Provider value={addProductToCart}>
         <ProductDetail product={product} />
