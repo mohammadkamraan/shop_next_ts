@@ -1,27 +1,40 @@
-import { create, createStore } from "zustand";
+import { create } from "zustand";
 
-import { subscribeWithSelector } from "zustand/middleware";
-
-import { CartItem } from "../typescript/INterfaces";
+import { CartObject, CartItem } from "../typescript/INterfaces";
 
 interface CartStore {
-  cartItems: CartItem[];
+  cartData: CartObject;
   addItemsToCart: (item: CartItem) => void;
-  setCartItems: (items: CartItem[]) => void;
+  setCartItems: (items: CartObject) => void;
 }
 
 const useCartStore = create<CartStore>((set: any) => ({
-  cartItems: [],
+  cartData: {
+    cartItems: [],
+    totalAmount: 0,
+    totalPrice: 0,
+  },
   addItemsToCart: item =>
     set((state: any) => {
-      const newCartItems = state.cartItems;
-      newCartItems.push(item);
-      localStorage.setItem("cartItems", JSON.stringify([...newCartItems]));
-      return { cartItems: [...newCartItems] };
+      let newCartData: CartObject = { ...state.cartData };
+      let foundedItem = state.cartData.cartItems.find(
+        (cartItem: CartItem) => cartItem.id === item.id
+      );
+      if (foundedItem) {
+        foundedItem.count += 1;
+      } else {
+        newCartData.cartItems = [...state.cartData.cartItems, item];
+      }
+      newCartData.totalAmount += 1;
+      newCartData.totalPrice = +(
+        state.cartData.totalPrice + item.discountedPrice
+      ).toFixed(2);
+      localStorage.setItem("cartItems", JSON.stringify(newCartData));
+      return { cartData: newCartData };
     }),
   setCartItems: items =>
     set(() => ({
-      cartItems: items,
+      cartData: items,
     })),
 }));
 

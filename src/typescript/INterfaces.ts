@@ -73,4 +73,11 @@ export interface Product {
 
 export interface CartItem extends Product {
   count: number;
+  discountedPrice: number;
+}
+
+export interface CartObject {
+  cartItems: CartItem[];
+  totalAmount: number;
+  totalPrice: number;
 }

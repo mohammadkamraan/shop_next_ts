@@ -18,10 +18,10 @@ import { useSession } from "next-auth/react";
 
 import { signOut } from "next-auth/react";
 import useCartStore from "../../hooks/useCartStore";
-import { CartItem } from "../../typescript/INterfaces";
+import { CartObject } from "../../typescript/INterfaces";
 
 const Navbar = () => {
-  const cartItems: CartItem[] = useCartStore((state: any) => state.cartItems);
+  const cartData: CartObject = useCartStore((state: any) => state.cartData);
   const setCartItems = useCartStore((state: any) => state.setCartItems);
 
   const { theme, setTheme } = useTheme();
@@ -53,7 +53,12 @@ const Navbar = () => {
   const logoutHandler = useCallback(() => signOut(), []);
 
   useLayoutEffect(() => {
-    setCartItems(JSON.parse(localStorage.getItem("cartItems") as string) || []);
+    let cartDataInLocalStorage = JSON.parse(
+      localStorage.getItem("cartItems") as string
+    );
+    if (cartDataInLocalStorage) {
+      setCartItems(cartDataInLocalStorage);
+    }
   }, []);
 
   return (
@@ -396,7 +401,7 @@ const Navbar = () => {
             />
           </svg>
           <span className='bg-rose-500 absolute -top-3 -right-2 w-6 h-6 rounded-full flex items-center justify-center text-neutral-50 text-xs'>
-            {status === "authenticated" ? cartItems.length : 0}
+            {status === "authenticated" ? cartData.totalAmount : 0}
           </span>
         </span>
       </div>
