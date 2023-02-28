@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, memo } from "react";
 
 interface OrderSummaryProps {
   quantity: number;
@@ -29,16 +29,17 @@ const OrderSummary: FC<OrderSummaryProps> = ({
   return (
     <div
       className={
-        "dark:border-4 dark:rounded-md dark:border-slate-300 shadow-md w-[100vw] h-72 " +
-        style
+        "dark:border-4 dark:rounded-md dark:border-slate-300 shadow-md " + style
       }
     >
-      <h1>Order Summary</h1>
+      <h1 className='font-bold text-lg'>Order Summary</h1>
       <TotalData header='Total Quantity' total={quantity} style='my-3' />
       <TotalData header='Total Price' total={totalPrice} style='mb-3' />
-      <button>Order</button>
+      <button className='mx-auto mt-10 w-64 block py-2 px-8 bg-rose-700 text-center rounded-lg text-white text-xl ring-1 ring-rose-700 transition-all duration-500 hover:scale-105'>
+        Order
+      </button>
     </div>
   );
 };
 
-export default OrderSummary;
+export default memo(OrderSummary);

@@ -21,7 +21,7 @@ const Cart: NextPage = () => {
         <meta name='author' content='Mohammad mahdi kamran talab' />
       </Head>
       <UserLocation />
-      <section className='relative flex flex-col md:flex-row px-16'>
+      <section className='relative flex flex-col md:flex-row px-16 w-full'>
         <div className='w-8/12 mr-5'>
           <ListCreator
             itemComponent={CartItem}
@@ -32,7 +32,7 @@ const Cart: NextPage = () => {
         <OrderSummary
           quantity={cartData.totalAmount}
           totalPrice={cartData.totalPrice}
-          style='sticky bottom-0 right-0 left-0 md:top-36 md:bottom w-3/12'
+          style='sticky bottom-0 right-0 left-0 md:top-36 md:bottom md:w-4/12 w-[100vw] h-72 px-8 py-12'
         />
       </section>
     </main>
