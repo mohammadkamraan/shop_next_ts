@@ -2,7 +2,7 @@ import { create } from "zustand";
 
 import { CartObject, CartItem } from "../typescript/INterfaces";
 
-interface CartStore {
+export interface CartStore {
   cartData: CartObject;
   addItemsToCart: (item: CartItem) => void;
   setCartItems: (items: CartObject) => void;

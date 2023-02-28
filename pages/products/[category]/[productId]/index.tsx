@@ -64,10 +64,7 @@ const ProductPage: NextPage<ProductProps> = ({ product, interestedInData }) => {
         ...product,
         count,
         discountedPrice: product.discountPercent
-          ? +(
-              product.price -
-              (product.price / 100) * product.discountPercent
-            ).toFixed(2)
+          ? product.price - (product.price / 100) * product.discountPercent
           : product.price,
       });
       toast.success("Added to the cart");

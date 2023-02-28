@@ -1,11 +1,13 @@
 import { NextPage } from "next";
 import Head from "next/head";
+import ListCreator from "../../src/components/listCreator/ListCreator";
 import OrderSummary from "../../src/components/orderSummary/OrderSummary";
 import UserLocation from "../../src/components/userLocation/UserLocation";
-import useCartStore from "../../src/hooks/useCartStore";
+import useCartStore, { CartStore } from "../../src/hooks/useCartStore";
+import CartItem from "../../src/components/cartItem/CartItem";
 
 const Cart: NextPage = () => {
-  const cartItems = useCartStore((state: any) => state.cartItems);
+  const cartData = useCartStore((state: CartStore) => state.cartData);
 
   return (
     <main>
@@ -21,36 +23,16 @@ const Cart: NextPage = () => {
       <UserLocation />
       <section className='relative flex flex-col md:flex-row px-16'>
         <div className='w-8/12 mr-5'>
-          <br></br>
-          <br></br>
-          <br></br>
-          <br></br>
-          <br></br>
-          <br></br>
-          <br></br>
-          <br></br>
-          <br></br>
-          <br></br>
-          <br></br>
-          <br></br>
-          <br></br>
-          <br></br>
-          <br></br>
-          <br></br>
-          <br></br>
-          <br></br>
-          <br></br>
-          <br></br>
-          <br></br>
-          <br></br>
-          <br></br>
-          <br></br>
-          <br></br>
+          <ListCreator
+            itemComponent={CartItem}
+            itemPropsName='cartItem'
+            items={cartData.cartItems}
+          />
         </div>
         <OrderSummary
-          quantity={5}
-          totalPrice={5000}
-          style='sticky bottom-0 right-0 left-0 md:top-36 md:bottom w-4/12'
+          quantity={cartData.totalAmount}
+          totalPrice={cartData.totalPrice}
+          style='sticky bottom-0 right-0 left-0 md:top-36 md:bottom w-3/12'
         />
       </section>
     </main>
