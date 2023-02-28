@@ -37,7 +37,7 @@ const OrderSummary: FC<OrderSummaryProps> = ({
       </h1>
       <TotalData header='Total Quantity' total={quantity} />
       <TotalData header='Total Price' total={totalPrice} />
-      <button className='mx-auto mt-2 md:mt-10 w-full md:w-64 block py-2 px-8 bg-rose-700 text-center rounded-lg text-white text-xl ring-1 ring-rose-700 transition-all duration-500 hover:scale-105'>
+      <button className='mx-auto mt-2 md:mt-10 w-full py-2 px-8 bg-rose-700 text-center rounded-lg text-white text-xl ring-1 ring-rose-700 transition-all duration-500 hover:scale-105'>
         Order
       </button>
     </div>
