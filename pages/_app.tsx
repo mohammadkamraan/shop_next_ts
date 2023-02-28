@@ -8,13 +8,12 @@ import { ThemeProvider } from "next-themes";
 
 import { SessionProvider } from "next-auth/react";
 
-// react-slick css files
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 import Footer from "../src/components/footer/Footer";
 
 import NextNProgress from "nextjs-progressbar";
-import { useContext, useEffect } from "react";
+// react-slick css files
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 function MyApp({ Component, pageProps }: AppProps) {
   const { pathname } = useRouter();
