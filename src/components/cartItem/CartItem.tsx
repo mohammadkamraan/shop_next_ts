@@ -11,16 +11,18 @@ const CartItem: FC<CartItemProps> = ({ cartItem }) => {
   return (
     <article
       role='cart-item'
-      className='flex flex-col justify-center md:justify-between md:flex-row md:items-center mb-3 md:px-10 border-b-2 border-slate-300 h-40'
+      className='flex flex-col justify-center md:justify-between md:flex-row md:items-center mb-3 md:px-10 border-b-2 border-slate-300 h-72 md:h-40'
     >
-      <figure className='w-32 h-32 rounded-md overflow-hidden'>
-        <img
-          className='w-full h-full'
-          src={image as string}
-          alt={title + "image"}
-        />
-      </figure>
-      <p className='w-56'>{title}</p>
+      <div className='h-full flex md:items-center'>
+        <figure className='w-32 h-32 rounded-md overflow-hidden'>
+          <img
+            className='w-full h-full'
+            src={image as string}
+            alt={title + "image"}
+          />
+        </figure>
+        <p className='w-56 sm:ml-20'>{title}</p>
+      </div>
       <div className='h-full flex items-center w-4/12 justify-between'>
         <div className='w-24 h-12 flex items-center justify-between'>
           <button>+</button>
@@ -57,7 +59,7 @@ const CartItem: FC<CartItemProps> = ({ cartItem }) => {
           </p>
           <p className='font-bold'>
             $ {discountedPrice * count}
-            <span className='text-green-400 text-sm font-thin'>
+            <span className='dark:text-green-400 text-teal-700 text-sm font-thin'>
               (-{discountPercent}%)
             </span>
           </p>
