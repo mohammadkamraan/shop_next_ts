@@ -15,7 +15,7 @@ const useCartStore = create<CartStore>((set: any) => ({
     totalPrice: 0,
   },
   addItemsToCart: item =>
-    set((state: any) => {
+    set((state: CartStore) => {
       let newCartData: CartObject = { ...state.cartData };
       let foundedItem = state.cartData.cartItems.find(
         (cartItem: CartItem) => cartItem.id === item.id
@@ -31,6 +31,13 @@ const useCartStore = create<CartStore>((set: any) => ({
       ).toFixed(2);
       localStorage.setItem("cartItems", JSON.stringify(newCartData));
       return { cartData: newCartData };
+    }),
+  incraseCartItemAmount: (index: number, price: number) =>
+    set((state: CartStore) => {
+      const cartData = { ...state.cartData };
+      cartData.cartItems[index].count += 1;
+      cartData.totalAmount += 1;
+      cartData.totalPrice = cartData.totalPrice + price;
     }),
   setCartItems: items =>
     set(() => ({

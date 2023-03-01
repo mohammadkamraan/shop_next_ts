@@ -1,5 +1,6 @@
 import { ChangeEvent, FC, useState, memo, useContext } from "react";
 import { AddToCartFunctionality } from "../../../../context/AddToCartFunctionality";
+import ProductAmountInput from "../../../UI/productAmountInput/ProductAmountInput";
 
 interface ProductPricingProps {
   price: number;
@@ -22,56 +23,14 @@ const ProductPricing: FC<ProductPricingProps> = ({ price, discount }) => {
         ${(price - (price / 100) * discount).toFixed(2)}
         <span className='text-sm text-teal-600'>(-{discount})%</span>
       </p>
-      <div className='flex items-center justify-evenly mt-8 mb-5'>
-        <button
-          onClick={() => {
-            setProductCount(preveCount => preveCount + 1);
-          }}
-        >
-          <svg
-            xmlns='http://www.w3.org/2000/svg'
-            fill='none'
-            viewBox='0 0 24 24'
-            strokeWidth={1.5}
-            stroke='currentColor'
-            className='w-6 h-6'
-          >
-            <path
-              strokeLinecap='round'
-              strokeLinejoin='round'
-              d='M12 4.5v15m7.5-7.5h-15'
-            />
-          </svg>
-        </button>
-        <input
-          onChange={changeHandler}
-          className='w-16 h-10 text-center'
-          type='number'
-          min={1}
-          value={productCount}
-        />
-        <button
-          onClick={() => {
-            if (productCount !== 1)
-              setProductCount(preveCount => preveCount - 1);
-          }}
-        >
-          <svg
-            xmlns='http://www.w3.org/2000/svg'
-            fill='none'
-            viewBox='0 0 24 24'
-            strokeWidth={1.5}
-            stroke='currentColor'
-            className='w-6 h-6'
-          >
-            <path
-              strokeLinecap='round'
-              strokeLinejoin='round'
-              d='M19.5 12h-15'
-            />
-          </svg>
-        </button>
-      </div>
+      <ProductAmountInput
+        isRemoveAble={false}
+        incraseHandler={() => setProductCount(preveCount => preveCount + 1)}
+        decriseHandler={() => setProductCount(preveCount => preveCount - 1)}
+        onChange={changeHandler}
+        value={productCount}
+        styles='w-44 h-10 mt-8 mb-5 mx-auto'
+      />
       <button
         onClick={() =>
           addToCart ? addToCart(productCount) : console.log("test")
