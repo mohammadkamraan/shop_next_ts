@@ -1,15 +1,27 @@
 import { NextPage } from "next";
 import Head from "next/head";
-import ListCreator from "../../src/components/listCreator/ListCreator";
-import OrderSummary from "../../src/components/orderSummary/OrderSummary";
-import UserLocation from "../../src/components/userLocation/UserLocation";
+import { useRouter } from "next/router";
+import { useSession } from "next-auth/react";
+
+import { useLayoutEffect } from "react";
+
 import useCartStore, { CartStore } from "../../src/hooks/useCartStore";
-import CartItem from "../../src/components/cartItem/CartItem";
+
+import UserLocation from "../../src/components/userLocation/UserLocation";
+import CartContent from "../../src/components/cartContent/CartContent";
+import ConditionalRenderer from "../../src/components/conditionalRenderer/ConditionalRenderer";
 
 const Cart: NextPage = () => {
   const cartData = useCartStore((state: CartStore) => state.cartData);
+  const authentication = useSession();
 
-  console.log(cartData.cartItems);
+  const router = useRouter();
+
+  useLayoutEffect(() => {
+    if (authentication.status === "unauthenticated") {
+      router.push("/");
+    }
+  }, []);
 
   return (
     <main>
@@ -23,22 +35,19 @@ const Cart: NextPage = () => {
         <meta name='author' content='Mohammad mahdi kamran talab' />
       </Head>
       <UserLocation />
-      <section className='relative flex flex-col md:flex-row px-0 md:px-16 w-full'>
-        <div className='w-full md:w-8/12 mr-5'>
-          <ListCreator
-            itemComponent={CartItem}
-            itemPropsName='cartItem'
-            items={[...cartData.cartItems]}
-          />
-        </div>
-        <OrderSummary
-          quantity={cartData.totalAmount}
-          totalPrice={cartData.totalPrice}
-          style='sticky bottom-0 right-0 left-0 md:top-36 md:w-4/12 w-[100vw] h-48 md:h-72 px-8 py-4 md:py-12 dark:bg-slate-800 bg-white'
-        />
-      </section>
+      <ConditionalRenderer
+        condition={!!cartData.cartItems.length}
+        whenConditionIsFalse={
+          <p className='inline-flex items-center justify-center text-2xl text-slate-700 dark:text-slate-300 h-[19vh] w-full font-patrick font-bold'>
+            Cart Is empty :)
+          </p>
+        }
+        whenConditionIsTrue={<CartContent cartData={cartData} />}
+      />
     </main>
   );
 };
 
 export default Cart;
+
+// can not use the getStaticProps redirect for now!

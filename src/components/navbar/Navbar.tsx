@@ -385,7 +385,7 @@ const Navbar = () => {
           </Link>
         )}
         <div className='w-0.5 h-7 bg-neutral-300 rounded-lg ml-3 hidden md:inline' />
-        <Link href='cart'>
+        <Link href='/cart'>
           <a className='relative mr-5 ml-5'>
             <svg
               xmlns='http://www.w3.org/2000/svg'

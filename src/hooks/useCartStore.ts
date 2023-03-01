@@ -49,7 +49,6 @@ const useCartStore = create<CartStore>((set: any) => ({
       const totalPrice = +(cartData.totalPrice - price).toFixed(2);
       if (cartData.cartItems[index].count === 1) {
         cartData.cartItems.splice(index, 1);
-        console.log(cartData);
       } else {
         cartData.cartItems[index].count -= 1;
       }
