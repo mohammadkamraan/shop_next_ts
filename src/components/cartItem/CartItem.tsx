@@ -1,14 +1,20 @@
 import { FC } from "react";
+import useCartStore, { CartStore } from "../../hooks/useCartStore";
 import { CartItem } from "../../typescript/INterfaces";
 import ProductAmountInput from "../UI/productAmountInput/ProductAmountInput";
 
 interface CartItemProps {
   cartItem: CartItem;
+  index: number;
 }
 
-const CartItem: FC<CartItemProps> = ({ cartItem }) => {
+const CartItem: FC<CartItemProps> = ({ cartItem, index }) => {
   const { image, title, count, price, discountedPrice, discountPercent } =
     cartItem;
+
+  const { incraseCartItemAmount, decriseCartItemAmount } = useCartStore(
+    (state: CartStore) => state
+  );
 
   return (
     <article
@@ -31,8 +37,18 @@ const CartItem: FC<CartItemProps> = ({ cartItem }) => {
         <div>
           <ProductAmountInput
             value={count}
-            incraseHandler={() => console.log("incrase")}
-            decriseHandler={() => console.log("decrise")}
+            incraseHandler={() =>
+              incraseCartItemAmount(
+                index,
+                discountPercent ? discountPercent : price
+              )
+            }
+            decriseHandler={() =>
+              decriseCartItemAmount(
+                index,
+                discountPercent ? discountPercent : price
+              )
+            }
             onChange={() => {
               console.log("hello");
             }}

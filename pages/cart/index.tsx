@@ -9,6 +9,8 @@ import CartItem from "../../src/components/cartItem/CartItem";
 const Cart: NextPage = () => {
   const cartData = useCartStore((state: CartStore) => state.cartData);
 
+  console.log(cartData.cartItems);
+
   return (
     <main>
       <Head>
@@ -26,7 +28,7 @@ const Cart: NextPage = () => {
           <ListCreator
             itemComponent={CartItem}
             itemPropsName='cartItem'
-            items={cartData.cartItems}
+            items={[...cartData.cartItems]}
           />
         </div>
         <OrderSummary

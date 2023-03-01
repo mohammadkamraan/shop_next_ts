@@ -6,6 +6,8 @@ export interface CartStore {
   cartData: CartObject;
   addItemsToCart: (item: CartItem) => void;
   setCartItems: (items: CartObject) => void;
+  incraseCartItemAmount: (index: number, price: number) => void;
+  decriseCartItemAmount: (index: number, price: number) => void;
 }
 
 const useCartStore = create<CartStore>((set: any) => ({
@@ -37,7 +39,24 @@ const useCartStore = create<CartStore>((set: any) => ({
       const cartData = { ...state.cartData };
       cartData.cartItems[index].count += 1;
       cartData.totalAmount += 1;
-      cartData.totalPrice = cartData.totalPrice + price;
+      cartData.totalPrice = +(cartData.totalPrice + price).toFixed(2);
+      localStorage.setItem("cartItems", JSON.stringify(cartData));
+      return { cartData };
+    }),
+  decriseCartItemAmount: (index: number, price: number) =>
+    set((state: CartStore) => {
+      const cartData = { ...state.cartData };
+      const totalPrice = +(cartData.totalPrice - price).toFixed(2);
+      if (cartData.cartItems[index].count === 1) {
+        cartData.cartItems.splice(index, 1);
+        console.log(cartData);
+      } else {
+        cartData.cartItems[index].count -= 1;
+      }
+      cartData.totalAmount -= 1;
+      cartData.totalPrice = totalPrice ? totalPrice : 0;
+      localStorage.setItem("cartItems", JSON.stringify(cartData));
+      return { cartData };
     }),
   setCartItems: items =>
     set(() => ({
