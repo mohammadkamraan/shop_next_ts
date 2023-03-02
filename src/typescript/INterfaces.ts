@@ -76,8 +76,13 @@ export interface CartItem extends Product {
   discountedPrice: number;
 }
 
+export interface ServerCartData {
+  productId: number;
+  quantity: number;
+}
 export interface CartObject {
   cartItems: CartItem[];
   totalAmount: number;
   totalPrice: number;
+  serverCartData: ServerCartData[];
 }

@@ -42,6 +42,7 @@ export default NextAuth({
     async session({ session }) {
       session.user.isLoggedIn = true;
       session.user.token = userToken;
+      session.user.id = 5;
       return session;
     },
     async jwt({ token }) {

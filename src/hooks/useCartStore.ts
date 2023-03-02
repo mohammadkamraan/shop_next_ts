@@ -12,6 +12,7 @@ export interface CartStore {
 
 const useCartStore = create<CartStore>((set: any) => ({
   cartData: {
+    serverCartData: [],
     cartItems: [],
     totalAmount: 0,
     totalPrice: 0,
@@ -19,13 +20,18 @@ const useCartStore = create<CartStore>((set: any) => ({
   addItemsToCart: item =>
     set((state: CartStore) => {
       let newCartData: CartObject = { ...state.cartData };
-      let foundedItem = state.cartData.cartItems.find(
+      let foundedItemIndex = state.cartData.cartItems.findIndex(
         (cartItem: CartItem) => cartItem.id === item.id
       );
-      if (foundedItem) {
-        foundedItem.count += 1;
+      if (foundedItemIndex >= 0) {
+        newCartData.cartItems[foundedItemIndex].count += 1;
+        newCartData.serverCartData[foundedItemIndex].quantity += 1;
       } else {
         newCartData.cartItems = [...state.cartData.cartItems, item];
+        newCartData.serverCartData = [
+          ...state.cartData.serverCartData,
+          { productId: item.id, quantity: item.count },
+        ];
       }
       newCartData.totalAmount += 1;
       newCartData.totalPrice = +(
@@ -40,6 +46,7 @@ const useCartStore = create<CartStore>((set: any) => ({
       cartData.cartItems[index].count += 1;
       cartData.totalAmount += 1;
       cartData.totalPrice = +(cartData.totalPrice + price).toFixed(2);
+      cartData.serverCartData[index].quantity += 1;
       localStorage.setItem("cartItems", JSON.stringify(cartData));
       return { cartData };
     }),
@@ -49,8 +56,10 @@ const useCartStore = create<CartStore>((set: any) => ({
       const totalPrice = +(cartData.totalPrice - price).toFixed(2);
       if (cartData.cartItems[index].count === 1) {
         cartData.cartItems.splice(index, 1);
+        cartData.serverCartData.splice(index, 1);
       } else {
         cartData.cartItems[index].count -= 1;
+        cartData.serverCartData[index].quantity -= 1;
       }
       cartData.totalAmount -= 1;
       cartData.totalPrice = totalPrice ? totalPrice : 0;

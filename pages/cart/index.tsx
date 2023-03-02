@@ -2,20 +2,33 @@ import { NextPage } from "next";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
-
-import { useLayoutEffect } from "react";
+import { useCallback, useLayoutEffect } from "react";
 
 import useCartStore, { CartStore } from "../../src/hooks/useCartStore";
 
 import UserLocation from "../../src/components/userLocation/UserLocation";
 import CartContent from "../../src/components/cartContent/CartContent";
 import ConditionalRenderer from "../../src/components/conditionalRenderer/ConditionalRenderer";
+import { useSend } from "../../src/hooks/useSend";
 
 const Cart: NextPage = () => {
   const cartData = useCartStore((state: CartStore) => state.cartData);
   const authentication = useSession();
 
+  console.log(authentication);
+
+  const [loading, response, error, sender] = useSend();
+
   const router = useRouter();
+
+  const orderCartHandler = useCallback(async () => {
+    await sender({
+      endPoint: "/carts",
+      body: { products: cartData.serverCartData },
+      method: "POST",
+    });
+    console.log(response, error);
+  }, [cartData.serverCartData.length]);
 
   useLayoutEffect(() => {
     if (authentication.status === "unauthenticated") {
@@ -42,7 +55,13 @@ const Cart: NextPage = () => {
             Cart Is empty :)
           </p>
         }
-        whenConditionIsTrue={<CartContent cartData={cartData} />}
+        whenConditionIsTrue={
+          <CartContent
+            cartData={cartData}
+            loading={loading}
+            onClick={orderCartHandler}
+          />
+        }
       />
     </main>
   );

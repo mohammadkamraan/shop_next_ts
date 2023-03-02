@@ -3,6 +3,8 @@ import { FC, memo } from "react";
 interface OrderSummaryProps {
   quantity: number;
   totalPrice: number;
+  onClick: () => void;
+  loading?: boolean;
   style?: string;
 }
 
@@ -23,6 +25,7 @@ const TotalData: FC<TotalDataProps> = ({ header, total }) => {
 const OrderSummary: FC<OrderSummaryProps> = ({
   quantity,
   totalPrice,
+  onClick,
   style,
 }) => {
   return (
@@ -37,7 +40,10 @@ const OrderSummary: FC<OrderSummaryProps> = ({
       </h1>
       <TotalData header='Total Quantity' total={quantity} />
       <TotalData header='Total Price' total={totalPrice} />
-      <button className='mx-auto mt-2 md:mt-10 w-full py-2 px-8 bg-rose-700 text-center rounded-lg text-white text-xl ring-1 ring-rose-700 transition-all duration-500 hover:scale-105'>
+      <button
+        onClick={onClick}
+        className='mx-auto mt-2 md:mt-10 w-full py-2 px-8 bg-rose-700 text-center rounded-lg text-white text-xl ring-1 ring-rose-700 transition-all duration-500 hover:scale-105'
+      >
         Order
       </button>
     </div>
