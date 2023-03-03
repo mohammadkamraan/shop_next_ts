@@ -72,7 +72,7 @@ const ProductPage: NextPage<ProductProps> = ({ product, interestedInData }) => {
   };
 
   return (
-    <main>
+    <>
       <Head>
         <meta
           name='description'
@@ -85,16 +85,18 @@ const ProductPage: NextPage<ProductProps> = ({ product, interestedInData }) => {
         <meta name='author' content='Mohammad mahdi Kamran' />
         <title>M Shop Product | {product.title}</title>
       </Head>
-      <ToastContainer />
-      <UserLocation lastParam={product.title} />
-      <AddToCartFunctionality.Provider value={addProductToCart}>
-        <ProductDetail product={product} />
-      </AddToCartFunctionality.Provider>
-      <div className='border border-slate-300 mx-16 my-8'>
-        <Possibilities possibilities={possibilities} />
-      </div>
-      <MayInterested products={interestedInData} />
-    </main>
+      <main>
+        <ToastContainer />
+        <UserLocation lastParam={product.title} />
+        <AddToCartFunctionality.Provider value={addProductToCart}>
+          <ProductDetail product={product} />
+        </AddToCartFunctionality.Provider>
+        <div className='border border-slate-300 mx-16 my-8'>
+          <Possibilities possibilities={possibilities} />
+        </div>
+        <MayInterested products={interestedInData} />
+      </main>
+    </>
   );
 };
 

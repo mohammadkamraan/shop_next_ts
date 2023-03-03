@@ -8,6 +8,7 @@ export interface CartStore {
   setCartItems: (items: CartObject) => void;
   incraseCartItemAmount: (index: number, price: number) => void;
   decriseCartItemAmount: (index: number, price: number) => void;
+  clearCartData: () => void;
 }
 
 const useCartStore = create<CartStore>((set: any) => ({
@@ -70,6 +71,18 @@ const useCartStore = create<CartStore>((set: any) => ({
     set(() => ({
       cartData: items,
     })),
+  clearCartData: () =>
+    set(() => {
+      localStorage.removeItem("cartItems");
+      return {
+        cartData: {
+          serverCartData: [],
+          cartItems: [],
+          totalAmount: 0,
+          totalPrice: 0,
+        },
+      };
+    }),
 }));
 
 export default useCartStore;

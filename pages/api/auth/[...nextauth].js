@@ -36,13 +36,13 @@ export default NextAuth({
   ],
   callbacks: {
     async signIn({ user }) {
-      if (user) return true;
+      if (user && userToken) return true;
       return false;
     },
     async session({ session }) {
       session.user.isLoggedIn = true;
       session.user.token = userToken;
-      session.user.id = 5;
+      session.user.id = +Math.random().toFixed(0);
       return session;
     },
     async jwt({ token }) {

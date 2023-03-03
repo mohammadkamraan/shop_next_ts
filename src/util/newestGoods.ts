@@ -9,6 +9,5 @@ export const newestGoods: NewestGoods = data => {
   for (product of data) {
     newestGoods.push({ ...product, discountPercent: discountPercentHandler() });
   }
-  console.log(newestGoods);
   return newestGoods;
 };
