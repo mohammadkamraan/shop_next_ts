@@ -17,7 +17,7 @@ import ProductMenu from "../producMenu/ProductMenu";
 import { useSession } from "next-auth/react";
 
 import { signOut } from "next-auth/react";
-import useCartStore from "../../hooks/useCartStore";
+import useCartStore from "../../store/useCartStore";
 import { CartObject } from "../../typescript/INterfaces";
 
 const Navbar = () => {

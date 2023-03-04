@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
 import { useCallback, useEffect, useLayoutEffect } from "react";
 
-import useCartStore, { CartStore } from "../../src/hooks/useCartStore";
+import useCartStore, { CartStore } from "../../src/store/useCartStore";
 
 import UserLocation from "../../src/components/userLocation/UserLocation";
 import CartContent from "../../src/components/cartContent/CartContent";

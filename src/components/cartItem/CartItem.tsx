@@ -1,5 +1,5 @@
 import { FC } from "react";
-import useCartStore, { CartStore } from "../../hooks/useCartStore";
+import useCartStore, { CartStore } from "../../store/useCartStore";
 import { CartItem } from "../../typescript/INterfaces";
 import ProductAmountInput from "../UI/productAmountInput/ProductAmountInput";
 

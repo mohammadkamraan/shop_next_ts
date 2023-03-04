@@ -20,7 +20,7 @@ import { ProductDetailProps } from "../../../../src/components/productDetail/Pro
 import MayInterested from "../../../../src/components/MayInterested/MayInterested";
 import { Product } from "../../../../src/typescript/INterfaces";
 
-import useCartStore from "../../../../src/hooks/useCartStore";
+import useCartStore from "../../../../src/store/useCartStore";
 import { useSession } from "next-auth/react";
 
 import { toast, ToastContainer } from "react-toastify";
