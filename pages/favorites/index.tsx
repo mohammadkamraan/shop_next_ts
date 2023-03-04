@@ -4,6 +4,7 @@ import ConditionalRenderer from "../../src/components/conditionalRenderer/Condit
 import FavoriteCart from "../../src/components/favoriteCart/FavoriteCart";
 import ListCreator from "../../src/components/listCreator/ListCreator";
 import GridSystem from "../../src/components/UI/gridSystem/GridSystem";
+import UserLocation from "../../src/components/userLocation/UserLocation";
 
 import useFavoritesStore, {
   FavoritesStore,
@@ -29,17 +30,20 @@ const Favorites: NextPage = () => {
         <meta name='author' content='Mohammad mahdi kamran' />
       </Head>
       <main>
+        <UserLocation />
         <section>
           <ConditionalRenderer
             condition={!!favoritesData.length}
             whenConditionIsTrue={
-              <GridSystem needRows={false} gap='gap-4'>
-                <ListCreator
-                  items={favoritesData}
-                  itemComponent={FavoriteCart}
-                  itemPropsName='favorite'
-                />
-              </GridSystem>
+              <div className='px-12'>
+                <GridSystem needRows={false} gap='gap-4'>
+                  <ListCreator
+                    items={[...favoritesData]}
+                    itemComponent={FavoriteCart}
+                    itemPropsName='favorite'
+                  />
+                </GridSystem>
+              </div>
             }
             whenConditionIsFalse={
               <p className='font-patrick'>Nothing favorite</p>

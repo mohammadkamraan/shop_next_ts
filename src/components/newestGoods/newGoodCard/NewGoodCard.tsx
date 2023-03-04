@@ -11,6 +11,7 @@ import useFavoritesStore, {
   FavoritesStore,
 } from "../../../store/userFavoritesStore";
 import ConditionalRenderer from "../../conditionalRenderer/ConditionalRenderer";
+import ProductPrice from "../../productPrice/ProductPrice";
 
 interface NewGoodCardDataComponentProps {
   item: Product;
@@ -63,29 +64,10 @@ const NewGoodCard: FC<NewGoodCardDataComponentProps> = ({ item }) => {
                 <p className='text-slate-500'>{item.title}</p>
               </div>
               <div className='pl-4'>
-                {item.discountPercent !== 0 ? (
-                  <>
-                    <p className='text-rose-600 dark:text-rose-400 font-thin line-through sm:text-lg'>
-                      ${item.price}
-                    </p>
-                    <div className='flex'>
-                      <p className='text-slate-700 dark:text-neutral-300 font-black text-lg sm:text-2xl'>
-                        $
-                        {(
-                          item.price -
-                          (item.price / 100) * (item.discountPercent as number)
-                        ).toFixed(2)}
-                      </p>
-                      <span className='pl-1 pt-3 font-thin text-green-800 dark:text-teal-600'>
-                        (-%{item.discountPercent})
-                      </span>
-                    </div>
-                  </>
-                ) : (
-                  <p className='text-slate-700 dark:text-neutral-300 font-black text-2xl'>
-                    ${item.price}
-                  </p>
-                )}
+                <ProductPrice
+                  price={item.price}
+                  discount={item.discountPercent || 0}
+                />
               </div>
             </div>
           </div>
@@ -107,7 +89,6 @@ const NewGoodCard: FC<NewGoodCardDataComponentProps> = ({ item }) => {
                 fill='currentColor'
                 className='w-5 h-5 fill-rose-500 cursor-pointer'
               >
-                this is a boook
                 <path d='M11.645 20.91l-.007-.003-.022-.012a15.247 15.247 0 01-.383-.218 25.18 25.18 0 01-4.244-3.17C4.688 15.36 2.25 12.174 2.25 8.25 2.25 5.322 4.714 3 7.688 3A5.5 5.5 0 0112 5.052 5.5 5.5 0 0116.313 3c2.973 0 5.437 2.322 5.437 5.25 0 3.925-2.438 7.111-4.739 9.256a25.175 25.175 0 01-4.244 3.17 15.247 15.247 0 01-.383.219l-.022.012-.007.004-.003.001a.752.752 0 01-.704 0l-.003-.001z' />
               </svg>
             </figure>
