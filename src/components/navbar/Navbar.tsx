@@ -19,10 +19,16 @@ import { useSession } from "next-auth/react";
 import { signOut } from "next-auth/react";
 import useCartStore from "../../store/useCartStore";
 import { CartObject } from "../../typescript/INterfaces";
+import useFavoritesStore, {
+  FavoritesStore,
+} from "../../store/userFavoritesStore";
 
 const Navbar = () => {
   const cartData: CartObject = useCartStore((state: any) => state.cartData);
   const setCartItems = useCartStore((state: any) => state.setCartItems);
+  const setFavoritesData = useFavoritesStore(
+    (state: FavoritesStore) => state.initializeFavoritesData
+  );
 
   const { theme, setTheme } = useTheme();
 
@@ -53,11 +59,17 @@ const Navbar = () => {
   const logoutHandler = useCallback(() => signOut(), []);
 
   useLayoutEffect(() => {
-    let cartDataInLocalStorage = JSON.parse(
+    const cartDataInLocalStorage = JSON.parse(
       localStorage.getItem("cartItems") as string
+    );
+    const favoritesDataInLocalStorage = JSON.parse(
+      localStorage.getItem("favorites") as string
     );
     if (cartDataInLocalStorage) {
       setCartItems(cartDataInLocalStorage);
+    }
+    if (favoritesDataInLocalStorage) {
+      setFavoritesData(favoritesDataInLocalStorage);
     }
   }, []);
 

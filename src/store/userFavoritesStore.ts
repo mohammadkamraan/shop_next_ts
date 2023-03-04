@@ -5,7 +5,7 @@ import { Product } from "../typescript/INterfaces";
 export interface FavoritesStore {
   favoritesData: Product[];
   addProductToFavorites: (product: Product) => void;
-  removeProductFromFavorites: (productIndex: number) => void;
+  removeProductFromFavorites: (productId: number) => void;
   initializeFavoritesData: (favorites: Product[]) => void;
 }
 
@@ -17,10 +17,11 @@ const useFavoritesStore = create<FavoritesStore>((set: any) => ({
       localStorage.setItem("favorites", JSON.stringify(newFavorites));
       return { favoritesData: newFavorites };
     }),
-  removeProductFromFavorites: productIndex =>
+  removeProductFromFavorites: productId =>
     set((state: FavoritesStore) => {
-      const newFavorites = [...state.favoritesData];
-      newFavorites.slice(productIndex, 1);
+      const newFavorites = [...state.favoritesData].filter(
+        favorite => favorite.id !== productId
+      );
       if (newFavorites.length) {
         localStorage.setItem("favorites", JSON.stringify(newFavorites));
       } else {
