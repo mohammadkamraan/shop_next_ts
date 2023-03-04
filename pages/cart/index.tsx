@@ -70,7 +70,7 @@ const Cart: NextPage = () => {
         <ConditionalRenderer
           condition={!!cartData.cartItems.length}
           whenConditionIsFalse={
-            <p className='inline-flex items-center justify-center text-2xl text-slate-700 dark:text-slate-300 h-[19vh] w-full font-patrick font-bold'>
+            <p className='inline-flex items-center justify-center text-2xl text-slate-700 dark:text-slate-300 h-[27vh] w-full font-patrick font-bold'>
               Cart Is empty :)
             </p>
           }
