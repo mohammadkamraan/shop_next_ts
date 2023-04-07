@@ -1,8 +1,15 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
-import { ChangeEvent, Dispatch, SetStateAction, SyntheticEvent, useEffect, useState } from "react";
-import DotsLoading from "../../src/components/dotsLoading/DotsLoading";
+import {
+  ChangeEvent,
+  Dispatch,
+  SetStateAction,
+  SyntheticEvent,
+  useEffect,
+  useState,
+} from "react";
+import DotsLoading from "../../src/components/UI/dotsLoading/DotsLoading";
 import ErrorParagraph from "../../src/components/UI/errorParagraph/ErrorParagraph";
 import Note from "../../src/components/UI/Note/Note";
 import RequiredInput from "../../src/components/UI/requiredInpu/RequiredInput";
@@ -10,7 +17,12 @@ import { useSend } from "../../src/hooks/useSend";
 
 import { useRouter } from "next/router";
 
-import { isValidEmail, phoneValidator, arePasswordsEqual, validatorsType } from "../../src/util/validators";
+import {
+  isValidEmail,
+  phoneValidator,
+  arePasswordsEqual,
+  validatorsType,
+} from "../../src/util/validators";
 import { useSession } from "next-auth/react";
 
 interface Validators {
@@ -69,7 +81,8 @@ const Singup: NextPage = () => {
 
   const [checkPassword, setCheckPassword] = useState<string>("");
 
-  const [isCheckPasswordEmpty, setIsCheckPasswordEmpty] = useState<boolean>(false);
+  const [isCheckPasswordEmpty, setIsCheckPasswordEmpty] =
+    useState<boolean>(false);
 
   const [passwordsNotEqual, setPasswordsNotEqual] = useState<boolean>(false);
 
@@ -100,7 +113,9 @@ const Singup: NextPage = () => {
     const { name, value } = event.target;
     stateSetters[name as keyof SetStates](value);
     if (invalidStatesSetter[name as keyof SetInvalidStates]) {
-      invalidStatesSetter[name as keyof SetInvalidStates](!validators[name as keyof Validators](value).isValid);
+      invalidStatesSetter[name as keyof SetInvalidStates](
+        !validators[name as keyof Validators](value).isValid
+      );
     }
   };
 
@@ -158,7 +173,10 @@ const Singup: NextPage = () => {
   return (
     <article className='max-h-screen h-screen flex items-center justify-center font-patrick'>
       <Head>
-        <meta name='description' content='M Shop Singup page. Users can Singup to the website in this page.' />
+        <meta
+          name='description'
+          content='M Shop Singup page. Users can Singup to the website in this page.'
+        />
         <meta name='keywords' content='M shop singup page,Singup,singup' />
         <meta name='author' content='Mohammad mahdi Kamran' />
         <title>M Shop / Singup</title>
@@ -168,14 +186,22 @@ const Singup: NextPage = () => {
           <h1 className='text-slate-700 dark:text-slate-300 text-3xl'>
             <b>login</b>
           </h1>
-          <h2 className='text-lg text-slate-800 dark:text-slate-400 pt-2'>Hi!</h2>
+          <h2 className='text-lg text-slate-800 dark:text-slate-400 pt-2'>
+            Hi!
+          </h2>
           <Note>
-            The Singup is working but actually in the backend logic its dont create a user for every singup (its just
-            for testing)
+            The Singup is working but actually in the backend logic its dont
+            create a user for every singup (its just for testing)
           </Note>
         </header>
-        {passwordsNotEqual && <ErrorParagraph>Your Passwords are not equal</ErrorParagraph>}
-        {error && <ErrorParagraph>{error.message} Please try again later</ErrorParagraph>}
+        {passwordsNotEqual && (
+          <ErrorParagraph>Your Passwords are not equal</ErrorParagraph>
+        )}
+        {error && (
+          <ErrorParagraph>
+            {error.message} Please try again later
+          </ErrorParagraph>
+        )}
         <form onChange={cahngeHandler} onSubmit={submitHandler}>
           {/* userName input */}
           <RequiredInput

@@ -2,10 +2,10 @@ import { NextPage } from "next";
 import Head from "next/head";
 import { ToastContainer } from "react-toastify";
 import ConditionalRenderer from "../../src/components/conditionalRenderer/ConditionalRenderer";
-import FavoriteCart from "../../src/components/favoriteCart/FavoriteCart";
+import FavoriteCard from "../../src/components/UI/favoriteCard/FavoriteCard";
 import ListCreator from "../../src/components/listCreator/ListCreator";
 import GridSystem from "../../src/components/UI/gridSystem/GridSystem";
-import UserLocation from "../../src/components/userLocation/UserLocation";
+import UserLocation from "../../src/components/UI/userLocation/UserLocation";
 
 import useFavoritesStore, {
   FavoritesStore,
@@ -41,7 +41,7 @@ const Favorites: NextPage = () => {
                 <GridSystem needRows={false} gap='gap-4'>
                   <ListCreator
                     items={[...favoritesData]}
-                    itemComponent={FavoriteCart}
+                    itemComponent={FavoriteCard}
                     itemPropsName='favorite'
                   />
                 </GridSystem>

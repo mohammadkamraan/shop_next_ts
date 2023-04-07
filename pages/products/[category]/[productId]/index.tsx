@@ -7,17 +7,17 @@ import { dataFetcher } from "../../../../src/util/requestHandlers";
 import { categories } from "../../../../src/data/categoryOfGoodsData/categoryOfGoodsData";
 
 import { ClientSideCategorie } from "../../../../src/typescript/types";
-import UserLocation from "../../../../src/components/userLocation/UserLocation";
-import ProductDetail from "../../../../src/components/productDetail/ProductDetail";
+import UserLocation from "../../../../src/components/UI/userLocation/UserLocation";
+import ProductDetail from "../../../../src/components/shop/productDetail/ProductDetail";
 
 import { discountPercentHandler } from "../../../../src/util/discountHandler";
 
-import Possibilities from "../../../../src/components/possibilities/Possibilities";
+import Possibilities from "../../../../src/components/shop/possibilities/Possibilities";
 import { possibilities } from "../../../../src/data/possibilitiesData/possibilitiesData";
 import { newestGoods } from "../../../../src/util/newestGoods";
 
-import { ProductDetailProps } from "../../../../src/components/productDetail/ProductDetail";
-import MayInterested from "../../../../src/components/MayInterested/MayInterested";
+import { ProductDetailProps } from "../../../../src/components/shop/productDetail/ProductDetail";
+import MayInterested from "../../../../src/components/shop/MayInterested/MayInterested";
 import { Product } from "../../../../src/typescript/INterfaces";
 
 import useCartStore from "../../../../src/store/useCartStore";

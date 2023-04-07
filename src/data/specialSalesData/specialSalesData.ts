@@ -1,4 +1,4 @@
-import { Item } from "../../components/specialSale/SpecialSaleCard/SpecialSaleCard";
+import { Item } from "../../components/shop/specialSale/SpecialSaleCard/SpecialSaleCard";
 
 type SpecialSales = ReadonlyArray<Item>;
 
@@ -13,7 +13,8 @@ export const specialSales: SpecialSales = [
   },
   {
     backGroudnImage: 'bg-[url("../public/images/home2.webp")]',
-    description: "Romano sofa has an impressive beauty and can multiply the charm of your home decoration.",
+    description:
+      "Romano sofa has an impressive beauty and can multiply the charm of your home decoration.",
     id: 1,
     title: "Romano furniture",
     days: 8,

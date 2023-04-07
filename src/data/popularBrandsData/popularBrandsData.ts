@@ -1,4 +1,4 @@
-import { Brand } from "../../components/popularBrands/PopularBrands";
+import { Brand } from "../../components/shop/popularBrands/PopularBrands";
 
 import addidasLogo from "../../../public/images/brands/003-cash-on-delivery.webp";
 import appleLogo from "../../../public/images/brands/apple.webp";

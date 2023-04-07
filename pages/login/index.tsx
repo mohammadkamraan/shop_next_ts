@@ -10,7 +10,7 @@ import {
 } from "react";
 
 import { useLogin } from "../../src/hooks/useLogin";
-import DotsLoading from "../../src/components/dotsLoading/DotsLoading";
+import DotsLoading from "../../src/components/UI/dotsLoading/DotsLoading";
 import RequiredInput from "../../src/components/UI/requiredInpu/RequiredInput";
 import ErrorParagraph from "../../src/components/UI/errorParagraph/ErrorParagraph";
 import { useSession } from "next-auth/react";

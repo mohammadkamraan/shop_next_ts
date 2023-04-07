@@ -1,19 +1,19 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import Possibilities from "../src/components/possibilities/Possibilities";
-import SpecialOffers from "../src/components/specialOffers/SpecialOffers";
+import Possibilities from "../src/components/shop/possibilities/Possibilities";
+import SpecialOffers from "../src/components/shop/specialOffers/SpecialOffers";
 
 import { dataFetcher } from "../src/util/requestHandlers";
-import CategoryOfGoods from "../src/components/categoryOfGoods/CategoryOfGoods";
+import CategoryOfGoods from "../src/components/shop/categoryOfGoods/CategoryOfGoods";
 import CategoriesSlider from "../src/components/categoriesSlider/CategoriesSlider";
-import NewestGoods from "../src/components/newestGoods/NewestGoods";
+import NewestGoods from "../src/components/shop/newestGoods/NewestGoods";
 
 import { newestGoods } from "../src/util/newestGoods";
-import SpecialSale from "../src/components/specialSale/SpecialSale";
+import SpecialSale from "../src/components/shop/specialSale/SpecialSale";
 
 import { specialSales } from "../src/data/specialSalesData/specialSalesData";
 import { popularBrands } from "../src/data/popularBrandsData/popularBrandsData";
-import PopularBrands from "../src/components/popularBrands/PopularBrands";
+import PopularBrands from "../src/components/shop/popularBrands/PopularBrands";
 
 import { largCategoryOfGoodsData } from "../src/data/categoryOfGoodsData/largCategoryOfGoodData";
 import { categoryOfGoodsDataInSmallMode } from "../src/data/categoryOfGoodsData/categoryOfGoodsData";

@@ -6,8 +6,8 @@ import { useCallback, useEffect, useLayoutEffect } from "react";
 
 import useCartStore, { CartStore } from "../../src/store/useCartStore";
 
-import UserLocation from "../../src/components/userLocation/UserLocation";
-import CartContent from "../../src/components/cartContent/CartContent";
+import UserLocation from "../../src/components/UI/userLocation/UserLocation";
+import CartContent from "../../src/components/cart/cartContent/CartContent";
 import ConditionalRenderer from "../../src/components/conditionalRenderer/ConditionalRenderer";
 import { useSend } from "../../src/hooks/useSend";
 import { toast, ToastContainer } from "react-toastify";

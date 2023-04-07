@@ -2,13 +2,13 @@ import "../styles/globals.css";
 import type { AppProps } from "next/app";
 import { useRouter } from "next/router";
 
-import Navbar from "../src/components/./navbar/Navbar";
+import Navbar from "../src/components/layout/navbar/Navbar";
 
 import { ThemeProvider } from "next-themes";
 
 import { SessionProvider } from "next-auth/react";
 
-import Footer from "../src/components/footer/Footer";
+import Footer from "../src/components/layout/footer/Footer";
 
 import NextNProgress from "nextjs-progressbar";
 // react-slick css files
