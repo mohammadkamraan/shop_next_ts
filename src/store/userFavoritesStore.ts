@@ -13,7 +13,7 @@ const useFavoritesStore = create<FavoritesStore>((set: any) => ({
   favoritesData: [],
   addProductToFavorites: product =>
     set((state: FavoritesStore) => {
-      const newFavorites = [...state.favoritesData, product];
+      const newFavorites = [product, ...state.favoritesData];
       localStorage.setItem("favorites", JSON.stringify(newFavorites));
       return { favoritesData: newFavorites };
     }),

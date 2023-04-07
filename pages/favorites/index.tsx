@@ -1,5 +1,6 @@
 import { NextPage } from "next";
 import Head from "next/head";
+import { ToastContainer } from "react-toastify";
 import ConditionalRenderer from "../../src/components/conditionalRenderer/ConditionalRenderer";
 import FavoriteCart from "../../src/components/favoriteCart/FavoriteCart";
 import ListCreator from "../../src/components/listCreator/ListCreator";
@@ -30,6 +31,7 @@ const Favorites: NextPage = () => {
         <meta name='author' content='Mohammad mahdi kamran' />
       </Head>
       <main>
+        <ToastContainer />
         <UserLocation />
         <section>
           <ConditionalRenderer

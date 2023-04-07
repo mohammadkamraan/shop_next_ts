@@ -49,7 +49,9 @@ const Cart: NextPage = () => {
       removeCartData();
     }
     if (error) {
-      toast.error("Falid to order please try again later.");
+      toast.error("Falid to order please try again later.", {
+        position: toast.POSITION.TOP_RIGHT,
+      });
     }
   }, [response, error]);
 
