@@ -1,6 +1,6 @@
 import { NextPage } from "next";
 import Head from "next/head";
-import { ToastContainer } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import ConditionalRenderer from "../../src/components/conditionalRenderer/ConditionalRenderer";
 import FavoriteCard from "../../src/components/UI/favoriteCard/FavoriteCard";
 import ListCreator from "../../src/components/listCreator/ListCreator";
@@ -10,11 +10,43 @@ import UserLocation from "../../src/components/UI/userLocation/UserLocation";
 import useFavoritesStore, {
   FavoritesStore,
 } from "../../src/store/userFavoritesStore";
+import { CartItem, Product } from "../../src/typescript/INterfaces";
+import useCartStore from "../../src/store/useCartStore";
+
+import "react-toastify/dist/ReactToastify.css";
+
+export type FavoriteHandlers = (favorite: Product) => void;
 
 const Favorites: NextPage = () => {
   const { favoritesData, removeProductFromFavorites } = useFavoritesStore(
     (state: FavoritesStore) => state
   );
+
+  const { addItemsToCart } = useCartStore();
+
+  const addProductToCartHandler: FavoriteHandlers = favorite => {
+    const cartItem: CartItem = {
+      ...favorite,
+      count: 1,
+      discountedPrice: favorite.discountPercent
+        ? +(
+            favorite.price -
+            (favorite.price / 100) * (favorite.discountPercent as number)
+          ).toFixed(2)
+        : favorite.price,
+    };
+    addItemsToCart(cartItem);
+    toast.success("Added to the cart", {
+      position: toast.POSITION.TOP_RIGHT,
+    });
+  };
+
+  const removeProductFromFavoritesHandler: FavoriteHandlers = favorite => {
+    removeProductFromFavorites(favorite.id);
+    toast.success("Removed From Favorites", {
+      position: toast.POSITION.TOP_RIGHT,
+    });
+  };
 
   return (
     <>
@@ -43,6 +75,10 @@ const Favorites: NextPage = () => {
                     items={[...favoritesData]}
                     itemComponent={FavoriteCard}
                     itemPropsName='favorite'
+                    extraProps={{
+                      removeProductFromFavoritesHandler,
+                      addProductToCartHandler,
+                    }}
                   />
                 </GridSystem>
               </div>

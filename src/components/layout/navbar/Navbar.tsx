@@ -297,7 +297,7 @@ const Navbar = () => {
           </div>
         </div>
       </div>
-      <div className='flex items-center md:order-1 w-full mt-3'>
+      <div className='flex items-center md:order-1 w-full mt-3 justify-evenly'>
         <Link href='/'>
           <a className='font-caveat font-black text-4xl text-rose-500 px-4 hidden md:inline'>
             M shop
@@ -326,7 +326,12 @@ const Navbar = () => {
           </div>
         </div>
         <Link href='/favorites'>
-          <a className='text-slate-700 dark:text-slate-400 flex items-center justify-between border border-stone-200 shadow-sm p-1 rounded-md mr-3 hover:text-stone-200 hover:bg-slate-700 transition-all duration-300 dark:hover:bg-slate-400 dark:hover:text-stone-100'>
+          <a
+            className='text-slate-700 dark:text-slate-400 md:flex items-center 
+            justify-between border border-stone-200 shadow-sm p-1
+            rounded-md mr-3 hover:text-stone-200 hover:bg-slate-700 transition-all
+            duration-300 dark:hover:bg-slate-400 dark:hover:text-stone-100 hidden'
+          >
             Favorites
             <svg
               xmlns='http://www.w3.org/2000/svg'
@@ -390,6 +395,24 @@ const Navbar = () => {
             </a>
           </Link>
         )}
+        <Link href='/favorites'>
+          <a className='md:hidden text-slate-700 dark:text-slate-400 pl-12'>
+            <svg
+              xmlns='http://www.w3.org/2000/svg'
+              fill='none'
+              viewBox='0 0 24 24'
+              strokeWidth={2}
+              stroke='currentColor'
+              className='w-6 h-6'
+            >
+              <path
+                strokeLinecap='round'
+                strokeLinejoin='round'
+                d='M16.5 3.75V16.5L12 14.25 7.5 16.5V3.75m9 0H18A2.25 2.25 0 0120.25 6v12A2.25 2.25 0 0118 20.25H6A2.25 2.25 0 013.75 18V6A2.25 2.25 0 016 3.75h1.5m9 0h-9'
+              />
+            </svg>
+          </a>
+        </Link>
         {status === "authenticated" ? (
           <button onClick={logoutHandler} className='inline md:hidden ml-12'>
             <svg

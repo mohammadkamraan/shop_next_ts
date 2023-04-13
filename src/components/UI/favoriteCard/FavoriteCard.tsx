@@ -1,51 +1,21 @@
 import { FC, memo } from "react";
 
-import useFavoritesStore, {
-  FavoritesStore,
-} from "../../../store/userFavoritesStore";
-import useCartStore, { CartStore } from "../../../store/useCartStore";
-
-import { CartItem, Product } from "../../../typescript/INterfaces";
+import { Product } from "../../../typescript/INterfaces";
 import ProductPrice from "../productPrice/ProductPrice";
-import { toast } from "react-toastify";
+
+import type { FavoriteHandlers } from "../../../../pages/favorites";
 
 interface FavoriteCartProps {
   favorite: Product;
+  addProductToCartHandler: FavoriteHandlers;
+  removeProductFromFavoritesHandler: FavoriteHandlers;
 }
 
-const FavoriteCard: FC<FavoriteCartProps> = ({ favorite }) => {
-  const addItemsToCart = useCartStore(
-    (state: CartStore) => state.addItemsToCart
-  );
-
-  const removeProductFromFavorites = useFavoritesStore(
-    (state: FavoritesStore) => state.removeProductFromFavorites
-  );
-
-  const addProductToCartHandler = () => {
-    const cartItem: CartItem = {
-      ...favorite,
-      count: 1,
-      discountedPrice: favorite.discountPercent
-        ? +(
-            favorite.price -
-            (favorite.price / 100) * (favorite.discountPercent as number)
-          ).toFixed(2)
-        : favorite.price,
-    };
-    addItemsToCart(cartItem);
-    toast.success("Added to the cart", {
-      position: toast.POSITION.TOP_RIGHT,
-    });
-  };
-
-  const removeProductFromFavoritesHandler = () => {
-    removeProductFromFavorites(favorite.id);
-    toast.success("Added to the cart", {
-      position: toast.POSITION.TOP_RIGHT,
-    });
-  };
-
+const FavoriteCard: FC<FavoriteCartProps> = ({
+  favorite,
+  removeProductFromFavoritesHandler,
+  addProductToCartHandler,
+}) => {
   return (
     <article
       role='card'
@@ -67,7 +37,7 @@ const FavoriteCard: FC<FavoriteCartProps> = ({ favorite }) => {
       </div>
       <div className='flex px-5 items-center justify-between absolute bottom-3 w-full'>
         <button
-          onClick={addProductToCartHandler}
+          onClick={() => addProductToCartHandler(favorite)}
           className='inline-flex items-center ring-2 dark:ring-rose-500 ring-rose-700 px-7 rounded-md py-1 text-rose-700 dark:text-rose-500 shadow-sm shadow-rose-700 dark:shadow-rose-500'
         >
           <svg
@@ -87,7 +57,7 @@ const FavoriteCard: FC<FavoriteCartProps> = ({ favorite }) => {
           ADD TO CART
         </button>
         <button
-          onClick={removeProductFromFavoritesHandler}
+          onClick={() => removeProductFromFavoritesHandler(favorite)}
           className='inline-flex items-center text-neutral-400 ring-2 ring-neutral-400 shadow-sm shadow-neutral-400 rounded-md px-5 py-1'
         >
           <svg
