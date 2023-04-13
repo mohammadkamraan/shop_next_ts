@@ -26,10 +26,10 @@ const CartOverviewItem: FC<CartOverviewItemProps> = ({ cartItem, index }) => {
           value={cartItem.count}
           isRemoveAble={true}
           decriseHandler={() => {
-            decriseCartItemAmount(index, cartItem.price);
+            decriseCartItemAmount(index, cartItem.discountedPrice);
           }}
           incraseHandler={() => {
-            incraseCartItemAmount(index, cartItem.price);
+            incraseCartItemAmount(index, cartItem.discountedPrice);
           }}
           onChange={() => {
             console.log("changed");

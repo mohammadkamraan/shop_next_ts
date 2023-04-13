@@ -325,6 +325,25 @@ const Navbar = () => {
             />
           </div>
         </div>
+        <Link href='/favorites'>
+          <a className='text-slate-700 dark:text-slate-400 flex items-center justify-between border border-stone-200 shadow-sm p-1 rounded-md mr-3 hover:text-stone-200 hover:bg-slate-700 transition-all duration-300 dark:hover:bg-slate-400 dark:hover:text-stone-100'>
+            Favorites
+            <svg
+              xmlns='http://www.w3.org/2000/svg'
+              fill='none'
+              viewBox='0 0 24 24'
+              strokeWidth={1.5}
+              stroke='currentColor'
+              className='w-5 h-5'
+            >
+              <path
+                strokeLinecap='round'
+                strokeLinejoin='round'
+                d='M16.5 3.75V16.5L12 14.25 7.5 16.5V3.75m9 0H18A2.25 2.25 0 0120.25 6v12A2.25 2.25 0 0118 20.25H6A2.25 2.25 0 013.75 18V6A2.25 2.25 0 016 3.75h1.5m9 0h-9'
+              />
+            </svg>
+          </a>
+        </Link>
         {status === "authenticated" ? (
           <button
             onClick={logoutHandler}
