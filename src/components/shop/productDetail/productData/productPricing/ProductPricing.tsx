@@ -1,5 +1,6 @@
 import { ChangeEvent, FC, useState, memo, useContext } from "react";
 import { AddToCartFunctionality } from "../../../../../context/AddToCartFunctionality";
+import Button from "../../../../UI/button/Button";
 import ProductAmountInput from "../../../../UI/productAmountInput/ProductAmountInput";
 
 interface ProductPricingProps {
@@ -31,11 +32,12 @@ const ProductPricing: FC<ProductPricingProps> = ({ price, discount }) => {
         value={productCount}
         styles='w-44 h-10 mt-8 mb-5 mx-auto'
       />
-      <button
+      <Button
+        isScaleAble
         onClick={() =>
           addToCart ? addToCart(productCount) : console.log("test")
         }
-        className='mx-auto mt-2 w-44 block py-3 px-4 bg-rose-700 text-center rounded-lg text-white text-xl ring-1 ring-rose-700 transition-all duration-500 hover:scale-105'
+        styles='mx-auto mt-2 w-44 block py-3 px-4 text-center rounded-lg text-xl'
       >
         <p className='inline-flex justify-center items-center'>
           <svg
@@ -54,7 +56,7 @@ const ProductPricing: FC<ProductPricingProps> = ({ price, discount }) => {
           </svg>
           ADD TO CART
         </p>
-      </button>
+      </Button>
     </div>
   );
 };

@@ -32,6 +32,7 @@ const Card: FC<CardComponentProps> = ({
       onClick={event => {
         if (preventDefailt) {
           event.preventDefault();
+          event.stopPropagation();
         }
       }}
       className={`${shadows[shadowSize]} ${radiuses[radiusSize]} shadow-slate-700 bg-white dark:bg-slate-800 `.concat(

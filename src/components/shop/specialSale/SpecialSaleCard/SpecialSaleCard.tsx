@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { FC } from "react";
+import Anchor from "../../../UI/anchor/Anchor";
 
 import GlassTimeDown from "../../../UI/timeDown/glassTimeDown/GlassTimeDown";
 
@@ -31,9 +32,12 @@ const SpecialSaleCard: FC<SpecialSaleCardComponentProps> = ({ item }) => {
           </p>
         </header>
         <Link href='/'>
-          <a className='my-5 ml-3 md:ml-32 w-12 md:w-28 py-0 md:py-3 px-1 bg-rose-700 text-center rounded-lg text-white text-sm ring-1 ring-rose-700 transition-all duration-500 hover:scale-105'>
+          <Anchor
+            isScaleAble
+            styles='my-5 ml-3 md:ml-32 w-12 md:w-28 py-0 md:py-3 px-1 text-center rounded-lg text-sm'
+          >
             See Product
-          </a>
+          </Anchor>
         </Link>
         <div className='w-2/3 mx-auto mb-4'>
           <GlassTimeDown days={days} />

@@ -7,6 +7,7 @@ import { ICategoryOfGood } from "../../../../typescript/INterfaces";
 import type { tailwindBreakPoints } from "../../../../typescript/types";
 
 import { firstLetterCapitalizer } from "../../../../util/firstLetterCapitalizer";
+import Anchor from "../../../UI/anchor/Anchor";
 
 interface IComponentProps {
   item: any | ICategoryOfGood;
@@ -69,9 +70,12 @@ const LargeCategoryOfGoodsItem: FC<IComponentProps> = ({ item }) => {
         </header>
         <p className='text-slate-700 dark:text-slate-200'>{item.paragraph}</p>
         <Link href={item.productsLink}>
-          <a className='bg-rose-700 px-4 py-2 rounded-md text-white inline-block transition-all duration-300 hover:scale-90 mt-2'>
+          <Anchor
+            isScaleAble
+            styles='px-4 py-2 rounded-md inline-block mt-2 cursor-pointer'
+          >
             see all products
-          </a>
+          </Anchor>
         </Link>
       </div>
       <figure className={item.imageOrder === 1 ? "order-1" : ""}>

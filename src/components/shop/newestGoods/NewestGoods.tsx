@@ -2,6 +2,7 @@ import Link from "next/link";
 import { FC, memo } from "react";
 import { Product } from "../../../typescript/INterfaces";
 import ListCreator from "../../listCreator/ListCreator";
+import Anchor from "../../UI/anchor/Anchor";
 import GridSystem from "../../UI/gridSystem/GridSystem";
 import NewGoodCard from "./newGoodCard/NewGoodCard";
 
@@ -23,9 +24,12 @@ const NewestGoods: FC<NewestGoodsComponentProps> = ({ goods }) => {
         />
       </GridSystem>
       <Link href='/'>
-        <a className='mx-auto my-5 w-64 block py-3 px-8 bg-rose-700 text-center rounded-lg text-white text-xl ring-1 ring-rose-700 transition-all duration-500 hover:scale-105'>
+        <Anchor
+          isScaleAble
+          styles='mx-auto my-5 w-64 block py-3 px-8 text-center text-xl rounded-lg'
+        >
           See All New Products
-        </a>
+        </Anchor>
       </Link>
     </section>
   );

@@ -1,5 +1,6 @@
 import { FC, memo } from "react";
 import ConditionalRenderer from "../../conditionalRenderer/ConditionalRenderer";
+import Button from "../../UI/button/Button";
 import DotsLoading from "../../UI/dotsLoading/DotsLoading";
 
 interface OrderSummaryProps {
@@ -43,17 +44,18 @@ const OrderSummary: FC<OrderSummaryProps> = ({
       </h1>
       <TotalData header='Total Quantity' total={quantity} />
       <TotalData header='Total Price' total={totalPrice} />
-      <button
+      <Button
+        isScaleAble
         onClick={onClick}
-        className='mx-auto mt-2 md:mt-10 w-full py-2 px-8 bg-rose-700 text-center rounded-lg text-white text-xl ring-1 ring-rose-700 transition-all duration-500 hover:scale-105'
         disabled={!!loading}
+        styles='mx-auto mt-2 md:mt-10 w-full py-2 px-8 text-center rounded-lg text-xl'
       >
         <ConditionalRenderer
           condition={!!loading}
           whenConditionIsTrue={<DotsLoading color='white' size='small' />}
           whenConditionIsFalse={"Order"}
         />
-      </button>
+      </Button>
     </div>
   );
 };

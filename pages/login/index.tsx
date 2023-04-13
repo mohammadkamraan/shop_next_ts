@@ -17,6 +17,8 @@ import { useSession } from "next-auth/react";
 
 import { useRouter } from "next/router";
 import Note from "../../src/components/UI/Note/Note";
+import Button from "../../src/components/UI/button/Button";
+import ConditionalRenderer from "../../src/components/conditionalRenderer/ConditionalRenderer";
 
 interface StatesSetter {
   usernameInput: Dispatch<SetStateAction<string>>;
@@ -113,13 +115,17 @@ const Login: NextPage = () => {
             isInvalide={isPasswordEmpty}
             inputType='password'
           />
-          <button
+          <Button
             type='submit'
-            className='w-full bg-rose-700 mt-5 py-4 rounded-md text-white text-2xl'
+            styles='w-full mt-5 py-4 rounded-md text-2xl'
             disabled={loading}
           >
-            {loading ? <DotsLoading color='white' size='small' /> : "Login"}
-          </button>
+            <ConditionalRenderer
+              condition={loading}
+              whenConditionIsFalse='Login'
+              whenConditionIsTrue={<DotsLoading color='white' size='small' />}
+            />
+          </Button>
         </form>
         <div className='my-5'>
           <Link href='/singup'>
