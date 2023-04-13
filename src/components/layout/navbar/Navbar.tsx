@@ -9,6 +9,7 @@ import {
 import Backdrop from "../backdrop/Backdrop";
 import Sidebar from "../sidebar/Sidebar";
 import SidebarMenu from "../sidebar/sidebarMenu/SidebarMenu";
+import CartOverview from "../../cart/cartOverview/CartOverview";
 
 import { items } from "../../../data/sidebarData/Sidebar";
 
@@ -22,6 +23,7 @@ import { CartObject } from "../../../typescript/INterfaces";
 import useFavoritesStore, {
   FavoritesStore,
 } from "../../../store/userFavoritesStore";
+import ConditionalRenderer from "../../conditionalRenderer/ConditionalRenderer";
 
 const Navbar = () => {
   const cartData: CartObject = useCartStore((state: any) => state.cartData);
@@ -29,6 +31,8 @@ const Navbar = () => {
   const setFavoritesData = useFavoritesStore(
     (state: FavoritesStore) => state.initializeFavoritesData
   );
+
+  const [showCartOverview, setShowCartOverview] = useState<boolean>(false);
 
   const { theme, setTheme } = useTheme();
 
@@ -51,6 +55,10 @@ const Navbar = () => {
   const [sidebarMenuItems, setSidebarMenuItems] = useState<
     ReadonlyArray<items>
   >([]);
+
+  const toggleCartOverviewHandler = () => {
+    setShowCartOverview(isShown => !isShown);
+  };
 
   const toggleThemeMode = () => {
     setTheme(theme === "light" ? "dark" : "light");
@@ -398,7 +406,11 @@ const Navbar = () => {
         )}
         <div className='w-0.5 h-7 bg-neutral-300 rounded-lg ml-3 hidden md:inline' />
         <Link href='/cart'>
-          <a className='relative mr-5 ml-5'>
+          <a
+            className='relative mr-5 ml-5'
+            onMouseEnter={toggleCartOverviewHandler}
+            onMouseLeave={toggleCartOverviewHandler}
+          >
             <svg
               xmlns='http://www.w3.org/2000/svg'
               className='h-7 w-7 text-slate-700 ml-3 dark:text-slate-300'
@@ -415,6 +427,11 @@ const Navbar = () => {
             </svg>
             <span className='bg-rose-500 absolute -top-3 -right-2 w-6 h-6 rounded-full flex items-center justify-center text-neutral-50 text-xs'>
               {status === "authenticated" ? cartData.totalAmount : 0}
+              <ConditionalRenderer
+                condition={showCartOverview}
+                whenConditionIsTrue={<CartOverview />}
+                whenConditionIsFalse={null}
+              />
             </span>
           </a>
         </Link>

@@ -1,7 +1,23 @@
+import Link from "next/link";
 import { FC } from "react";
+import useCartStore from "../../../store/useCartStore";
+import Card from "../../UI/Card/Card";
 
 const CartOverview: FC = () => {
-  return <></>;
+  const { cartData } = useCartStore();
+
+  return (
+    <Card styles='hidden md:block w-80 h-96 absolute top-10 -left-72 cursor-auto overflow-y-auto'>
+      <header className='w-full flex justify-between px-4 mt-2'>
+        <h6 className='text-slate-700 dark:text-slate-300 text-lg'>
+          {cartData.totalAmount} Product
+        </h6>
+        <Link href='/cart'>
+          <a className='text-sky-600 dark:text-sky-500 text-lg'>See Cart</a>
+        </Link>
+      </header>
+    </Card>
+  );
 };
 
 export default CartOverview;
