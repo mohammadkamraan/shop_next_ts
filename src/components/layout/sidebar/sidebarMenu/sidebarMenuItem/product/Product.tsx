@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { products } from "../../../../../data/sidebarData/Sidebar";
+import { products } from "../../../../../../data/sidebarData/Sidebar";
 
 interface componentProps {
   product: products;
