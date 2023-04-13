@@ -19,7 +19,7 @@ const Sidebar = ({
 }: componentProps) => {
   return (
     <aside
-      className={`fixed top-0 h-screen w-5/6 bg-neutral-50 dark:bg-slate-900 z-[2] md:hidden transition-all duration-500 ${
+      className={`fixed top-0 h-screen w-5/6 bg-neutral-50 dark:bg-slate-900 z-50 md:hidden transition-all duration-500 font-patrick ${
         !show && "-translate-x-full"
       } flex flex-col`}
     >

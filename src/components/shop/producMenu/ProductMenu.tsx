@@ -21,9 +21,9 @@ const ProductMenu = ({
   return (
     <section
       onMouseLeave={() => showMenu(false)}
-      className={`bg-white dark:bg-slate-900 rounded-t-sm rounded-b-xl w-[97vw] h-[30rem] absolute top-full hidden transition-all duration-500  ${
+      className={`bg-white dark:bg-slate-900 rounded-t-sm rounded-b-xl w-[97vw] h-[30rem] absolute top-32 left-3 hidden transition-all duration-500  ${
         show ? "opacity-100 visible" : "opacity-0 invisible"
-      } place-self-center z-[4] md:grid md:grid-cols-12 overflow-hidden shadow-lg shadow-neutral-700 dark:shadow-stone-100`}
+      } place-self-center z-10 md:grid md:grid-cols-12 overflow-hidden shadow-lg shadow-neutral-700 dark:shadow-stone-100 font-patrick`}
     >
       <div className='h-full py-5 px-3 col-span-2 flex flex-col border-r-2'>
         <ListCreator

@@ -14,7 +14,7 @@ interface componentProps {
 const SidebarMenu = ({ show, setClose, menuItems }: componentProps) => {
   return (
     <aside
-      className={`fixed top-0 h-screen w-5/6 bg-neutral-50 dark:bg-slate-900 z-[2] md:hidden transition-all duration-500 flex flex-col text-slate-700 dark:text-slate-300 ${
+      className={`fixed top-0 h-screen w-5/6 bg-neutral-50 dark:bg-slate-900 z-50 md:hidden transition-all duration-500 flex flex-col text-slate-700 dark:text-slate-300 font-patrick ${
         show ? "" : "-translate-x-full"
       }`}
     >

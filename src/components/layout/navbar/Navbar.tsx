@@ -24,6 +24,7 @@ import useFavoritesStore, {
   FavoritesStore,
 } from "../../../store/userFavoritesStore";
 import ConditionalRenderer from "../../conditionalRenderer/ConditionalRenderer";
+import Portal from "../../portal/Portal";
 
 const Navbar = () => {
   const cartData: CartObject = useCartStore((state: any) => state.cartData);
@@ -33,6 +34,8 @@ const Navbar = () => {
   );
 
   const [showCartOverview, setShowCartOverview] = useState<boolean>(false);
+
+  const [reactDocument, setReactDocument] = useState<null | Document>(null);
 
   const { theme, setTheme } = useTheme();
 
@@ -79,6 +82,7 @@ const Navbar = () => {
     if (favoritesDataInLocalStorage) {
       setFavoritesData(favoritesDataInLocalStorage);
     }
+    setReactDocument(document);
   }, []);
 
   return (
@@ -427,37 +431,45 @@ const Navbar = () => {
             </svg>
             <span className='bg-rose-500 absolute -top-3 -right-2 w-6 h-6 rounded-full flex items-center justify-center text-neutral-50 text-xs'>
               {status === "authenticated" ? cartData.totalAmount : 0}
-              <ConditionalRenderer
-                condition={showCartOverview}
-                whenConditionIsTrue={<CartOverview />}
-                whenConditionIsFalse={null}
-              />
+              {reactDocument && (
+                <Portal nodeElement={document.body}>
+                  <ConditionalRenderer
+                    condition={showCartOverview && status === "authenticated"}
+                    whenConditionIsTrue={<CartOverview />}
+                    whenConditionIsFalse={null}
+                  />
+                </Portal>
+              )}
             </span>
           </a>
         </Link>
       </div>
-      <Sidebar
-        show={showSidebar}
-        setClose={setShowSidebar}
-        toggleMenu={setShowSidebarMenu}
-        setMenuItems={setSidebarMenuItems}
-      />
-      <SidebarMenu
-        show={showSidebarMenu}
-        setClose={setShowSidebarMenu}
-        menuItems={sidebarMenuItems}
-      />
-      <ProductMenu
-        show={showProductMenu}
-        showMenu={setProductMenu}
-        setProductItem={setSidebarMenuItems}
-        productItems={sidebarMenuItems}
-      />
-      <Backdrop
-        show={showSidebar}
-        setClose={setShowSidebar}
-        setCloseMenu={setShowSidebarMenu}
-      />
+      {reactDocument && (
+        <Portal nodeElement={document.body}>
+          <Sidebar
+            show={showSidebar}
+            setClose={setShowSidebar}
+            toggleMenu={setShowSidebarMenu}
+            setMenuItems={setSidebarMenuItems}
+          />
+          <SidebarMenu
+            show={showSidebarMenu}
+            setClose={setShowSidebarMenu}
+            menuItems={sidebarMenuItems}
+          />
+          <ProductMenu
+            show={showProductMenu}
+            showMenu={setProductMenu}
+            setProductItem={setSidebarMenuItems}
+            productItems={sidebarMenuItems}
+          />
+          <Backdrop
+            show={showSidebar}
+            setClose={setShowSidebar}
+            setCloseMenu={setShowSidebarMenu}
+          />
+        </Portal>
+      )}
     </nav>
   );
 };

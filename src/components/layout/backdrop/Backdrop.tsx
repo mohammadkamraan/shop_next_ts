@@ -14,7 +14,9 @@ const Backdrop = ({ show, setClose, setCloseMenu }: componentProps) => {
         setClose(false);
         setCloseMenu(false);
       }}
-      className={`md:hidden fixed top-0 bottom-0 left-0 right-0 bg-neutral-700 bg-opacity-50 ${!show && "hidden"}`}
+      className={`md:hidden fixed top-0 bottom-0 z-20 left-0 right-0 bg-neutral-700 bg-opacity-50 ${
+        !show && "hidden"
+      } h-screen overflow-y-hidden`}
     />
   );
 };
