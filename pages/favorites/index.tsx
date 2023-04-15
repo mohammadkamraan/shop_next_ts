@@ -67,12 +67,12 @@ const Favorites: NextPage = () => {
         <UserLocation />
         <section>
           <ConditionalRenderer
-            condition={!!favoritesData.length}
+            condition={!!favoritesData.favorites.length}
             whenConditionIsTrue={
               <div className='px-12'>
                 <GridSystem needRows={false} gap='gap-4'>
                   <ListCreator
-                    items={[...favoritesData]}
+                    items={[...favoritesData.favorites]}
                     itemComponent={FavoriteCard}
                     itemPropsName='favorite'
                     extraProps={{

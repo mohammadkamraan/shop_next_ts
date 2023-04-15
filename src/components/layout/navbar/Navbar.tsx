@@ -28,10 +28,6 @@ import Portal from "../../portal/Portal";
 
 const Navbar = () => {
   const cartData: CartObject = useCartStore((state: any) => state.cartData);
-  const setCartItems = useCartStore((state: any) => state.setCartItems);
-  const setFavoritesData = useFavoritesStore(
-    (state: FavoritesStore) => state.initializeFavoritesData
-  );
 
   const [showCartOverview, setShowCartOverview] = useState<boolean>(false);
 
@@ -70,18 +66,6 @@ const Navbar = () => {
   const logoutHandler = useCallback(() => signOut(), []);
 
   useLayoutEffect(() => {
-    const cartDataInLocalStorage = JSON.parse(
-      localStorage.getItem("cartItems") as string
-    );
-    const favoritesDataInLocalStorage = JSON.parse(
-      localStorage.getItem("favorites") as string
-    );
-    if (cartDataInLocalStorage) {
-      setCartItems(cartDataInLocalStorage);
-    }
-    if (favoritesDataInLocalStorage) {
-      setFavoritesData(favoritesDataInLocalStorage);
-    }
     setReactDocument(document);
   }, []);
 

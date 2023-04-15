@@ -86,3 +86,8 @@ export interface CartObject {
   totalPrice: number;
   serverCartData: ServerCartData[];
 }
+
+export interface FavoriteData {
+  favorites: Product[];
+  favoritesId: number[] | string[];
+}

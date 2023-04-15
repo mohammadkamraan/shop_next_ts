@@ -44,8 +44,6 @@ const StarsRating: FC<StarsRatingComponentProps> = ({ stars }) => {
     return arrayOfStars;
   }, [stars]);
 
-  console.log();
-
   return (
     <div role='rating' className='flex'>
       <ListCreator

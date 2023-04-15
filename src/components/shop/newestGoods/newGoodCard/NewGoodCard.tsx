@@ -23,18 +23,8 @@ interface NewGoodCardDataComponentProps {
 // }
 
 const NewGoodCard: FC<NewGoodCardDataComponentProps> = ({ item }) => {
-  const { addProductToFavorites, removeProductFromFavorites } =
+  const { addProductToFavorites, removeProductFromFavorites, favoritesData } =
     useFavoritesStore((state: FavoritesStore) => state);
-
-  const [isSelected, setIsSelected] = useState<boolean>(false);
-
-  // const favoritesHandlers: FavoritesHandlers = useMemo(
-  //   () => ({
-  //     false: addProductToFavorites,
-  //     true: removeProductFromFavorites,
-  //   }),
-  //   []
-  // );
 
   return (
     <div
@@ -76,13 +66,14 @@ const NewGoodCard: FC<NewGoodCardDataComponentProps> = ({ item }) => {
       {/* like, share,add to cart */}
       <div className='absolute bottom-5 sm:top-0 sm:left-0 bg-slate-300 dark:bg-slate-900  bg-opacity-50 sm:bg-opacity-25 sm:dark:bg-opacity-15 dark:text-slate-400 rounded-lg sm:rounded-2xl w-2/5 h-8 sm:h-28 sm:w-8 items-center flex sm:flex-col justify-evenly shadow-md'>
         <ConditionalRenderer
-          condition={isSelected}
+          condition={
+            (favoritesData.favoritesId as number[]).indexOf(item.id) > -1
+          }
           whenConditionIsTrue={
             <figure>
               <svg
                 onClick={() => {
                   removeProductFromFavorites(item.id);
-                  setIsSelected(!isSelected);
                 }}
                 xmlns='http://www.w3.org/2000/svg'
                 viewBox='0 0 24 24'
@@ -98,7 +89,6 @@ const NewGoodCard: FC<NewGoodCardDataComponentProps> = ({ item }) => {
               <svg
                 onClick={() => {
                   addProductToFavorites(item);
-                  setIsSelected(!isSelected);
                 }}
                 xmlns='http://www.w3.org/2000/svg'
                 fill='none'
