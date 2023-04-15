@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from "react";
+import { FC, useMemo } from "react";
 import ListCreator from "../../listCreator/ListCreator";
 
 interface StarsRatingComponentProps {
@@ -29,24 +29,22 @@ const StarRate: FC<StarRateComponentProps> = ({ fill }) => {
 };
 
 const StarsRating: FC<StarsRatingComponentProps> = ({ stars }) => {
-  const [starsArray, setStarsArray] = useState<boolean[]>([]);
+  // const [starsArray, setStarsArray] = useState<boolean[]>([]);
 
-  const starsArrayHandler = () => {
-    const starsArr = starsArray;
+  const starsArray = useMemo(() => {
+    const arrayOfStars = [];
     let index = 0;
     for (index; index < 5; index++) {
       if (stars > index) {
-        starsArr.push(true);
+        arrayOfStars.push(true);
       } else {
-        starsArr.push(false);
+        arrayOfStars.push(false);
       }
     }
-    setStarsArray([...starsArr]);
-  };
+    return arrayOfStars;
+  }, [stars]);
 
-  useEffect(() => {
-    starsArrayHandler();
-  }, []);
+  console.log();
 
   return (
     <div role='rating' className='flex'>
