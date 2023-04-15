@@ -14,11 +14,11 @@ import NextNProgress from "nextjs-progressbar";
 // react-slick css files
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { useLayoutEffect } from "react";
 import useCartStore from "../src/store/useCartStore";
 import useFavoritesStore, {
   FavoritesStore,
 } from "../src/store/userFavoritesStore";
+import useInitialize from "../src/hooks/useInitialize";
 
 function MyApp({ Component, pageProps }: AppProps) {
   const { pathname } = useRouter();
@@ -30,21 +30,11 @@ function MyApp({ Component, pageProps }: AppProps) {
     (state: FavoritesStore) => state.initializeFavoritesData
   );
 
-  useLayoutEffect(() => {
-    const cartDataInLocalStorage = JSON.parse(
-      localStorage.getItem("cartItems") as string
-    );
-    const favoritesDataInLocalStorage = JSON.parse(
-      localStorage.getItem("favorites") as string
-    );
-    if (cartDataInLocalStorage) {
-      setCartItems(cartDataInLocalStorage);
-    }
-    if (favoritesDataInLocalStorage) {
-      console.log(favoritesDataInLocalStorage);
-      setFavoritesData(favoritesDataInLocalStorage);
-    }
-  }, []);
+  useInitialize([
+    { handler: setCartItems, keyInStorage: "cartItems" },
+    { handler: setFavoritesData, keyInStorage: "favorites" },
+  ]);
+
   return (
     <ThemeProvider attribute='class'>
       <SessionProvider session={pageProps.pageProps}>
