@@ -1,3 +1,6 @@
+import { type } from "os";
+import { CartItem, Product } from "./INterfaces";
+
 export type tailwindGridRows =
   | "row-auto"
   | "row-span-1"
@@ -38,3 +41,9 @@ export type ClientSideCategorie =
   | "womenCloth"
   | "jewelery"
   | "electronics";
+
+export type AddProduct = (product: Product) => void;
+
+export type RemoveProductFromFavorites = (productId: number) => void;
+
+export type AddItemsToCart = (item: CartItem) => void;

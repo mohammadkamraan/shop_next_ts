@@ -2,10 +2,15 @@ import { create } from "zustand";
 
 import { FavoriteData, Product } from "../typescript/INterfaces";
 
+import type {
+  AddProduct,
+  RemoveProductFromFavorites,
+} from "../typescript/types";
+
 export interface FavoritesStore {
   favoritesData: FavoriteData;
-  addProductToFavorites: (product: Product) => void;
-  removeProductFromFavorites: (productId: number) => void;
+  addProductToFavorites: AddProduct;
+  removeProductFromFavorites: RemoveProductFromFavorites;
   initializeFavoritesData: (favorites: Product[]) => void;
 }
 

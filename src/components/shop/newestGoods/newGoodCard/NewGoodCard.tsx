@@ -1,31 +1,42 @@
 import Image from "next/image";
 import Link from "next/link";
-import { FC, useMemo, useState } from "react";
+import { FC } from "react";
 
 import { categories } from "../../../../data/categoryOfGoodsData/categoryOfGoodsData";
 import { Product } from "../../../../typescript/INterfaces";
 import StarsRating from "../../../UI/starsRating/StarsRating";
-// images
-import dicountIcon from "../../../../../public/images/discount-icon/discount-icon.webp";
-import useFavoritesStore, {
-  FavoritesStore,
-} from "../../../../store/userFavoritesStore";
+
 import ConditionalRenderer from "../../../conditionalRenderer/ConditionalRenderer";
 import ProductPrice from "../../../UI/productPrice/ProductPrice";
 
+import { domain } from "../../../../constants";
+
+import { FavoriteData } from "../../../../typescript/INterfaces";
+import type {
+  AddProduct,
+  RemoveProductFromFavorites,
+} from "../../../../typescript/types";
+
+// images
+import dicountIcon from "../../../../../public/images/discount-icon/discount-icon.webp";
+
 interface NewGoodCardDataComponentProps {
   item: Product;
+  favoritesData: FavoriteData;
+  addProductToFavorites: AddProduct;
+  removeProductFromFavorites: RemoveProductFromFavorites;
+  addItemToCartHandler: AddProduct;
+  handleCopyClick: (text: string) => void;
 }
 
-// interface FavoritesHandlers {
-//   true: (productIndex: number) => void;
-//   false: (produt: Product) => void;
-// }
-
-const NewGoodCard: FC<NewGoodCardDataComponentProps> = ({ item }) => {
-  const { addProductToFavorites, removeProductFromFavorites, favoritesData } =
-    useFavoritesStore((state: FavoritesStore) => state);
-
+const NewGoodCard: FC<NewGoodCardDataComponentProps> = ({
+  item,
+  favoritesData,
+  addItemToCartHandler,
+  addProductToFavorites,
+  removeProductFromFavorites,
+  handleCopyClick,
+}) => {
   return (
     <div
       role='card'
@@ -106,7 +117,14 @@ const NewGoodCard: FC<NewGoodCardDataComponentProps> = ({ item }) => {
             </figure>
           }
         />
-        <figure className='transition-all duration-300 hover:text-rose-600 cursor-pointer'>
+        <figure
+          onClick={() => {
+            handleCopyClick(
+              `${domain}/products/${categories[item.category]}/${item.id}`
+            );
+          }}
+          className='transition-all duration-300 hover:text-rose-600 cursor-pointer'
+        >
           <svg
             xmlns='http://www.w3.org/2000/svg'
             fill='none'
@@ -122,7 +140,12 @@ const NewGoodCard: FC<NewGoodCardDataComponentProps> = ({ item }) => {
             />
           </svg>
         </figure>
-        <figure className='transition-all duration-300 hover:text-rose-600 cursor-pointer'>
+        <figure
+          onClick={() => {
+            addItemToCartHandler(item);
+          }}
+          className='transition-all duration-300 hover:text-rose-600 cursor-pointer'
+        >
           <svg
             xmlns='http://www.w3.org/2000/svg'
             fill='none'
