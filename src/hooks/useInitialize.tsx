@@ -1,4 +1,4 @@
-import { useCallback, useLayoutEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 interface Initializers {
   handler: Function;
@@ -20,7 +20,7 @@ const useInitialize = (initializers: Initializers[]) => {
     setIsInitialized(true);
   }, [initializers]);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     initializeHandler();
   }, [initializeHandler]);
 

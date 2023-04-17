@@ -37,9 +37,9 @@ const Cart: NextPage = () => {
 
   useLayoutEffect(() => {
     if (authentication.status === "unauthenticated") {
-      router.push("/");
+      router.replace("/");
     }
-  }, []);
+  }, [authentication.status]);
 
   useEffect(() => {
     if (response) {

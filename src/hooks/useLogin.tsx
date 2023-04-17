@@ -14,8 +14,10 @@ export const useLogin = () => {
   const login = async (options: LoginOptions) => {
     setErrorMessage("");
     setLoading(true);
-    const loginData = await signIn("login", { ...options, redirect: false });
-    console.log(loading);
+    const loginData = await signIn("credentials", {
+      ...options,
+      redirect: false,
+    });
     setErrorMessage(loginData?.error ? loginData.error : "");
     setLoading(false);
   };

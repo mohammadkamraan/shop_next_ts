@@ -26,7 +26,7 @@ const NewestGoods: FC<NewestGoodsComponentProps> = ({ goods }) => {
 
   const addItemToCartHandler = (product: Product) => {
     if (status === "loading") {
-      toast.info("Your auth status is undifined");
+      toast.info("Your auth status is unknown");
     } else if (status === "unauthenticated") {
       toast.error("Please first login ", {
         position: toast.POSITION.TOP_RIGHT,
