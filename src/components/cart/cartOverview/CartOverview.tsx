@@ -1,6 +1,7 @@
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { FC, useCallback } from "react";
+import { EndPoints } from "../../../constants";
 import { useSend } from "../../../hooks/useSend";
 import useCartStore from "../../../store/useCartStore";
 import ConditionalRenderer from "../../conditionalRenderer/ConditionalRenderer";
@@ -19,8 +20,8 @@ const CartOverview: FC = () => {
 
   const orderCartHandler = useCallback(async () => {
     await sender({
-      endPoint: "carts",
-      body: {
+      url: EndPoints.CART,
+      data: {
         products: cartData.serverCartData,
         userId: data?.user?.id,
         date: `${new Date().getFullYear()}-${new Date().getMonth()}-${new Date().getDate()}`,
