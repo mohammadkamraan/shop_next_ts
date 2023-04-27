@@ -5,7 +5,7 @@ import houseCategoryImage from "../../../public/images/categoryImages/house-cate
 import sportCatergoryImage from "../../../public/images/categoryImages/sport-category.webp";
 import stationeryCategoryImage from "../../../public/images/categoryImages/stationery-category.webp";
 import toyCategoryImage from "../../../public/images/categoryImages/toy-category.webp";
-import { ICategoryOfGood } from "../../typescript/INterfaces";
+import { ICategoryOfGood } from "../../typescript/interfaces";
 
 export const largCategoryOfGoodsData: ICategoryOfGood[] = [
   {
@@ -44,7 +44,8 @@ export const largCategoryOfGoodsData: ICategoryOfGood[] = [
     backgroundColor: "bg-amber-400",
     darkModeBackground: "dark:bg-fuchsia-900",
     cardHeader: "Cosmetic Products",
-    paragraph: "Anti-allergy products suitable for all skin types from reputable brands",
+    paragraph:
+      "Anti-allergy products suitable for all skin types from reputable brands",
     flexDiracion: "flex-row",
     gridRowsClassName: "row-span-2",
     gridCoulsClassName: "col-span-4",

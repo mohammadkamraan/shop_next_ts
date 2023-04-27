@@ -1,5 +1,9 @@
-import { type } from "os";
-import { CartItem, Product } from "./INterfaces";
+import {
+  CartItem,
+  FormControlState,
+  Product,
+  FormControlCreatorArgument,
+} from "./interfaces";
 
 export type tailwindGridRows =
   | "row-auto"
@@ -47,3 +51,14 @@ export type AddProduct = (product: Product) => void;
 export type RemoveProductFromFavorites = (productId: number) => void;
 
 export type AddItemsToCart = (item: CartItem) => void;
+
+export type AuthenticateStatus =
+  | "authenticated"
+  | "loading"
+  | "unauthenticated";
+
+export type FormReset = (option?: FormControlState) => FormControlState;
+
+export type FormControlCreator = (
+  forms: FormControlCreatorArgument[]
+) => FormControlState;

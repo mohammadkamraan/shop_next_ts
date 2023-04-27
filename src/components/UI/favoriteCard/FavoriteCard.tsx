@@ -1,20 +1,27 @@
 import { FC, memo } from "react";
 
-import { Product } from "../../../typescript/INterfaces";
+import { Product } from "../../../typescript/interfaces";
 import ProductPrice from "../productPrice/ProductPrice";
 
+import type { AddItemsToCart } from "../../../store/useCartStore";
+import type { AddProductToCart } from "../../../util/addProductToCart";
 import type { FavoriteHandlers } from "../../../../pages/favorites";
+import type { AuthenticateStatus } from "../../../typescript/types";
 
 interface FavoriteCartProps {
   favorite: Product;
-  addProductToCartHandler: FavoriteHandlers;
+  addProductToCartHandler: AddProductToCart;
   removeProductFromFavoritesHandler: FavoriteHandlers;
+  addToCartHandler: AddItemsToCart;
+  status: AuthenticateStatus;
 }
 
 const FavoriteCard: FC<FavoriteCartProps> = ({
   favorite,
   removeProductFromFavoritesHandler,
   addProductToCartHandler,
+  addToCartHandler,
+  status,
 }) => {
   return (
     <article
@@ -37,7 +44,14 @@ const FavoriteCard: FC<FavoriteCartProps> = ({
       </div>
       <div className='flex px-5 items-center justify-between absolute bottom-3 w-full'>
         <button
-          onClick={() => addProductToCartHandler(favorite)}
+          onClick={() =>
+            addProductToCartHandler({
+              product: favorite,
+              count: 1,
+              status,
+              handler: addToCartHandler,
+            })
+          }
           className='inline-flex items-center ring-2 dark:ring-rose-500 ring-rose-700 px-7 rounded-md py-1 text-rose-700 dark:text-rose-500 shadow-sm shadow-rose-700 dark:shadow-rose-500'
         >
           <svg

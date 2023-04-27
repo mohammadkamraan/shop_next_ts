@@ -1,9 +1,10 @@
 import { FC, memo } from "react";
-import { CartObject } from "../../../typescript/INterfaces";
+import { CartObject } from "../../../typescript/interfaces";
 
 import CartItem from "../cartItem/CartItem";
 import ListCreator from "../../listCreator/ListCreator";
 import OrderSummary from "../orderSummary/OrderSummary";
+import useCartStore from "../../../store/useCartStore";
 
 interface CartContentProps {
   cartData: CartObject;
@@ -12,6 +13,7 @@ interface CartContentProps {
 }
 
 const CartContent: FC<CartContentProps> = ({ cartData, onClick, loading }) => {
+  const { decriseCartItemAmount, incraseCartItemAmount } = useCartStore();
   return (
     <section className='relative flex flex-col md:flex-row px-0 md:px-16 w-full'>
       <div className='w-full md:w-8/12 mr-5'>
@@ -19,6 +21,7 @@ const CartContent: FC<CartContentProps> = ({ cartData, onClick, loading }) => {
           itemComponent={CartItem}
           itemPropsName='cartItem'
           items={[...cartData.cartItems]}
+          extraProps={{ decriseCartItemAmount, incraseCartItemAmount }}
         />
       </div>
       <OrderSummary

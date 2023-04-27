@@ -3,7 +3,7 @@ import Link from "next/link";
 import { FC } from "react";
 
 // typescript interfaces and (or) types
-import { ICategoryOfGood } from "../../../../typescript/INterfaces";
+import { ICategoryOfGood } from "../../../../typescript/interfaces";
 import type { tailwindBreakPoints } from "../../../../typescript/types";
 
 import { firstLetterCapitalizer } from "../../../../util/firstLetterCapitalizer";

@@ -2,7 +2,7 @@ import { NextPage } from "next";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
-import { useCallback, useEffect, useLayoutEffect } from "react";
+import { useCallback, useEffect } from "react";
 
 import useCartStore, { CartStore } from "../../src/store/useCartStore";
 
@@ -11,6 +11,7 @@ import CartContent from "../../src/components/cart/cartContent/CartContent";
 import ConditionalRenderer from "../../src/components/conditionalRenderer/ConditionalRenderer";
 import { useSend } from "../../src/hooks/useSend";
 import { toast, ToastContainer } from "react-toastify";
+import { EndPoints } from "../../src/constants";
 
 const Cart: NextPage = () => {
   const cartData = useCartStore((state: CartStore) => state.cartData);
@@ -25,8 +26,8 @@ const Cart: NextPage = () => {
 
   const orderCartHandler = useCallback(async () => {
     await sender({
-      endPoint: "carts",
-      body: {
+      url: EndPoints.CART,
+      data: {
         products: cartData.serverCartData,
         userId: authentication.data?.user?.id,
         date: `${new Date().getFullYear()}-${new Date().getMonth()}-${new Date().getDate()}`,
@@ -35,7 +36,7 @@ const Cart: NextPage = () => {
     });
   }, [cartData.serverCartData.length]);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (authentication.status === "unauthenticated") {
       router.replace("/");
     }

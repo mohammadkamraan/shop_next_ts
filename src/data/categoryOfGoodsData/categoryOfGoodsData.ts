@@ -1,7 +1,12 @@
+// import {
+//   ICategoryOfGoodInSmallMode,
+//   ClientProductsCategories,
+// } from "../../typescript/Interfaces";
+
 import {
   ICategoryOfGoodInSmallMode,
   ClientProductsCategories,
-} from "../../typescript/INterfaces";
+} from "../../typescript/interfaces";
 
 import beautyCategoryIcon from "../../../public/images/category-icon/beauty-category.webp";
 import digitalCategoryIcon from "../../../public/images/category-icon/digital-category.webp";

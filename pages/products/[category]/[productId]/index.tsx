@@ -1,30 +1,32 @@
 import { NextPage } from "next";
 import Head from "next/head";
+import { useSession } from "next-auth/react";
+
+import { ToastContainer } from "react-toastify";
 
 import { AddToCartFunctionality } from "../../../../src/context/AddToCartFunctionality";
 
-import { dataFetcher } from "../../../../src/util/requestHandlers";
+import { requestHandler } from "../../../../src/util/requestHandlers";
+import { discountPercentHandler } from "../../../../src/util/discountHandler";
+import { newestGoods } from "../../../../src/util/newestGoods";
+import { addProductToCartHandler } from "../../../../src/util/addProductToCart";
+
 import { categories } from "../../../../src/data/categoryOfGoodsData/categoryOfGoodsData";
+import { possibilities } from "../../../../src/data/possibilitiesData/possibilitiesData";
+
+import useCartStore from "../../../../src/store/useCartStore";
 
 import { ClientSideCategorie } from "../../../../src/typescript/types";
 import UserLocation from "../../../../src/components/UI/userLocation/UserLocation";
 import ProductDetail from "../../../../src/components/shop/productDetail/ProductDetail";
-
-import { discountPercentHandler } from "../../../../src/util/discountHandler";
-
 import Possibilities from "../../../../src/components/shop/possibilities/Possibilities";
-import { possibilities } from "../../../../src/data/possibilitiesData/possibilitiesData";
-import { newestGoods } from "../../../../src/util/newestGoods";
+import MayInterested from "../../../../src/components/shop/MayInterested/MayInterested";
 
 import { ProductDetailProps } from "../../../../src/components/shop/productDetail/ProductDetail";
-import MayInterested from "../../../../src/components/shop/MayInterested/MayInterested";
-import { Product } from "../../../../src/typescript/INterfaces";
+import { Product } from "../../../../src/typescript/interfaces";
 
-import useCartStore from "../../../../src/store/useCartStore";
-import { useSession } from "next-auth/react";
-
-import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { EndPoints } from "../../../../src/constants";
 
 export type Categories =
   | "electronics"
@@ -37,8 +39,8 @@ interface Params {
   category: ClientSideCategorie;
 }
 
-interface Pathes {
-  params: ReadonlyArray<Params>;
+interface Path {
+  params: Params;
 }
 
 interface ProductProps extends ProductDetailProps {
@@ -53,22 +55,12 @@ const ProductPage: NextPage<ProductProps> = ({ product, interestedInData }) => {
   const { status } = useSession();
 
   const addProductToCart: AddProductToCart = count => {
-    if (status === "loading") {
-      toast.info("Your auth status is undifined");
-    } else if (status === "unauthenticated") {
-      toast.error("Please first login ", {
-        position: toast.POSITION.TOP_RIGHT,
-      });
-    } else {
-      addItemsToCart({
-        ...product,
-        count,
-        discountedPrice: product.discountPercent
-          ? product.price - (product.price / 100) * product.discountPercent
-          : product.price,
-      });
-      toast.success("Added to the cart");
-    }
+    addProductToCartHandler({
+      count,
+      status,
+      handler: addItemsToCart,
+      product,
+    });
   };
 
   return (
@@ -103,29 +95,43 @@ const ProductPage: NextPage<ProductProps> = ({ product, interestedInData }) => {
 export default ProductPage;
 
 export const getStaticPaths = async () => {
-  const [data] = await dataFetcher("products");
-  // makes an array of objects that every object has
-  // params key and the value of the params key is an object with productId and category keys
-  const pathes: Pathes = data?.map((product: any) => {
-    return {
-      params: {
-        productId: product.id.toString(),
-        category: categories[product.category],
-      },
-    };
+  const [data, error] = await requestHandler<Product[]>({
+    method: "GET",
+    url: EndPoints.PRODUCTS,
   });
 
+  let paths: Path[] = [];
+
+  if (!error) {
+    // makes an array of objects that every object has
+    // params key and the value of the params key is an object with productId and category keys
+    paths = data.map(product => {
+      return {
+        params: {
+          productId: product.id.toString(),
+          category: categories[product.category],
+        },
+      };
+    });
+  }
+
   return {
-    paths: pathes,
-    fallback: false,
+    paths,
+    fallback: error ? true : false,
   };
 };
 
 export const getStaticProps = async (context: any) => {
   const { productId } = context.params;
-  const [data, error] = await dataFetcher(`products/${productId}`);
+  const [data, error] = await requestHandler<Product>({
+    method: "GET",
+    url: `${EndPoints.PRODUCTS}/${productId}`,
+  });
 
-  const [products, ProductError] = await dataFetcher("products");
+  const [products, ProductError] = await requestHandler<Product[]>({
+    method: "GET",
+    url: EndPoints.PRODUCTS,
+  });
 
   const interestedInData = newestGoods(products.slice(8, 20));
 

@@ -4,7 +4,7 @@ import Slider from "react-slick";
 import GeneralProductCard from "../generalProductCard/GeneralProductCard";
 
 import { specialProducts } from "../../../../data/slidersData/slidersData";
-import { Product } from "../../../../typescript/INterfaces";
+import { Product } from "../../../../typescript/interfaces";
 
 interface ScrollAbleCardsProps {
   products: Product[];

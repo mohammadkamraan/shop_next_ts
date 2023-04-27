@@ -1,17 +1,23 @@
-import { useSession } from "next-auth/react";
 import Link from "next/link";
+import { useSession } from "next-auth/react";
+
 import { FC, memo } from "react";
-import { toast, ToastContainer } from "react-toastify";
+
 import useCartStore from "../../../store/useCartStore";
 import useFavoritesStore from "../../../store/userFavoritesStore";
-import { Product } from "../../../typescript/INterfaces";
-import ListCreator from "../../listCreator/ListCreator";
+
 import Anchor from "../../UI/anchor/Anchor";
 import GridSystem from "../../UI/gridSystem/GridSystem";
 import NewGoodCard from "./newGoodCard/NewGoodCard";
+import ListCreator from "../../listCreator/ListCreator";
+import SectionHeader from "../../UI/sectionHeader/SectionHeader";
+import { ToastContainer } from "react-toastify";
+
+import { addProductToCartHandler } from "../../../util/addProductToCart";
+
+import { Product } from "../../../typescript/interfaces";
 
 import "react-toastify/dist/ReactToastify.css";
-
 interface NewestGoodsComponentProps {
   goods: Product[];
 }
@@ -25,40 +31,21 @@ const NewestGoods: FC<NewestGoodsComponentProps> = ({ goods }) => {
   const { addItemsToCart } = useCartStore();
 
   const addItemToCartHandler = (product: Product) => {
-    if (status === "loading") {
-      toast.info("Your auth status is unknown");
-    } else if (status === "unauthenticated") {
-      toast.error("Please first login ", {
-        position: toast.POSITION.TOP_RIGHT,
-      });
-    } else {
-      addItemsToCart({
-        ...product,
-        count: 1,
-        discountedPrice: product.discountPercent
-          ? product.price - (product.price / 100) * product.discountPercent
-          : product.price,
-      });
-      toast.success("Added to the cart");
-    }
-  };
-
-  const handleCopyClick = async (text: string) => {
-    try {
-      await navigator.clipboard.writeText(text);
-      toast.success("Link Copied To Clipboard");
-    } catch {
-      toast.error("someThing Went wrong :(");
-    }
+    addProductToCartHandler({
+      product,
+      handler: addItemsToCart,
+      count: 1,
+      status,
+    });
   };
 
   return (
     <>
       <ToastContainer />
       <section className='font-patrick px-8 sm:px-24 w-full'>
-        <header className='py-12 text-slate-800 text-4xl text-center'>
+        <SectionHeader>
           <h6>Newest Goods</h6>
-        </header>
+        </SectionHeader>
         <GridSystem gap='gap-5' needRows={false}>
           <ListCreator
             items={goods}
@@ -68,7 +55,6 @@ const NewestGoods: FC<NewestGoodsComponentProps> = ({ goods }) => {
               addProductToFavorites,
               addItemToCartHandler,
               removeProductFromFavorites,
-              handleCopyClick,
               favoritesData,
             }}
           />

@@ -1,9 +1,7 @@
-import { axiosRequest } from "../../../src/axios/axios";
-import NextAuth, { NextAuthOptions } from "next-auth";
+import { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { requestHandler } from "../../../src/util/requestHandlers";
 import nextAuth from "next-auth";
-// import * as Auth from "../../../lib/auth";
 
 interface Credentials {
   username: string;
@@ -23,14 +21,14 @@ export const nextAuthOptions: NextAuthOptions = {
       async authorize(credentials): Promise<any> {
         const { username, password, endPoint } = credentials as Credentials;
         try {
-          const response = await requestHandler({
-            body: { username, password },
+          const [response] = await requestHandler<{ token: string }>({
+            data: { username, password },
             method: "POST",
-            endPoint,
+            url: endPoint,
           });
           return {
             user: {
-              token: response[0].token,
+              token: response.token,
               id: 6,
             },
           };

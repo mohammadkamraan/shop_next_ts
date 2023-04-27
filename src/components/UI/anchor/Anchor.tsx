@@ -1,11 +1,13 @@
-import { FC, memo, useMemo } from "react";
+import { forwardRef, memo, useMemo } from "react";
 
 interface AnchorProps extends React.HTMLProps<HTMLAnchorElement> {
   styles?: string;
   isScaleAble?: boolean;
 }
 
-const Anchor: FC<AnchorProps> = props => {
+const Anchor = forwardRef((props: AnchorProps, ref) => {
+  const { styles, isScaleAble, ...anchorTagProps } = props;
+
   const scaleClassesHandler = useMemo(() => {
     if (props.isScaleAble) {
       return "transition-all duration-500 hover:scale-105";
@@ -15,7 +17,8 @@ const Anchor: FC<AnchorProps> = props => {
 
   return (
     <a
-      {...(props as any)}
+      ref={ref}
+      {...(anchorTagProps as any)}
       className={`ring-1 ring-rose-700 bg-rose-700 text-white ${scaleClassesHandler} `.concat(
         props.styles as string
       )}
@@ -23,6 +26,6 @@ const Anchor: FC<AnchorProps> = props => {
       {props.children}
     </a>
   );
-};
+});
 
 export default memo(Anchor);

@@ -1,67 +1,62 @@
 import { NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
-import {
-  ChangeEvent,
-  Dispatch,
-  SetStateAction,
-  useEffect,
-  useState,
-} from "react";
+import { useRouter } from "next/router";
+import { useSession } from "next-auth/react";
+
+import { ChangeEvent, useEffect, useReducer } from "react";
 
 import { useLogin } from "../../src/hooks/useLogin";
 import DotsLoading from "../../src/components/UI/dotsLoading/DotsLoading";
 import RequiredInput from "../../src/components/UI/requiredInpu/RequiredInput";
 import ErrorParagraph from "../../src/components/UI/errorParagraph/ErrorParagraph";
-import { useSession } from "next-auth/react";
-
-import { useRouter } from "next/router";
-import Note from "../../src/components/UI/Note/Note";
 import Button from "../../src/components/UI/button/Button";
+import Note from "../../src/components/UI/Note/Note";
 import ConditionalRenderer from "../../src/components/conditionalRenderer/ConditionalRenderer";
 
-interface StatesSetter {
-  usernameInput: Dispatch<SetStateAction<string>>;
-  passwordInput: Dispatch<SetStateAction<string>>;
-}
+import { EndPoints } from "../../src/constants";
+import { formControl } from "../../src/util/formControll";
+import { loginForm } from "./loginForm";
+import AccountMode from "../../src/components/UI/accountMode/AccountMode";
 
 const Login: NextPage = () => {
   const [loading, errorMessage, login] = useLogin();
 
+  const [form, formValidation] = useReducer(formControl, loginForm);
+
   const { data }: any = useSession();
 
-  const [username, setUsername] = useState<string>("");
-  const [isUsernameEmpty, setIsUsernameEmpty] = useState<boolean>(false);
-  const [password, setPassword] = useState<string>("");
-  const [isPasswordEmpty, setIsPasswordEmpty] = useState<boolean>(false);
-
   const router = useRouter();
-
-  const stateSetters: StatesSetter = {
-    usernameInput: setUsername,
-    passwordInput: setPassword,
-  };
-
   const formChangeHandler = (event: ChangeEvent<HTMLFormElement>) => {
     const { name, value } = event.target;
-    stateSetters[name as keyof StatesSetter](value);
-    setIsPasswordEmpty(false);
-    setIsUsernameEmpty(false);
+    formValidation({
+      name,
+      value,
+      isDirty: true,
+      isTouched: form[name].isTouched,
+    });
+  };
+
+  const onBlurHandler = (event: ChangeEvent<HTMLInputElement>) => {
+    const { name } = event.target;
+    formValidation({
+      ...form[name],
+      isTouched: true,
+      name,
+    });
   };
 
   const formSubmitHandler = async (event: ChangeEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (username && password) {
-      login({ password, username, endPoint: "auth/login" });
-      // s({ body: { password, username }, endPoint: "auth/login", method: "POST" });
-    } else {
-      setIsPasswordEmpty(true);
-      setIsUsernameEmpty(true);
-    }
+    login({
+      username: form.usernameInput.value,
+      password: form.passwordInput.value,
+      endPoint: EndPoints.LOGIN,
+    });
   };
 
   useEffect(() => {
-    if (data) {
+    if (data && Object.keys(data).length) {
       router.replace("/");
     }
   }, [data]);
@@ -99,26 +94,32 @@ const Login: NextPage = () => {
         <form onChange={formChangeHandler} onSubmit={formSubmitHandler}>
           {/* userName input */}
           <RequiredInput
-            value={username}
+            inputOnBlur={onBlurHandler}
+            value={form.usernameInput.value}
             label='UserName'
             inputName='usernameInput'
             inputPlaceHolder='Please Enter Your Username'
-            isInvalide={isUsernameEmpty}
+            isInvalid={
+              !form.usernameInput.isValid && form.usernameInput.isDirty
+            }
             inputType='text'
           />
           {/* password input */}
           <RequiredInput
-            value={password}
+            inputOnBlur={onBlurHandler}
+            value={form.passwordInput.value}
             label='Password'
             inputName='passwordInput'
             inputPlaceHolder='Please Enter Your Password'
-            isInvalide={isPasswordEmpty}
+            isInvalid={
+              !form.passwordInput.isValid && form.passwordInput.isDirty
+            }
             inputType='password'
           />
           <Button
             type='submit'
             styles='w-full mt-5 py-4 rounded-md text-2xl'
-            disabled={loading}
+            disabled={loading || !form.isValid}
           >
             <ConditionalRenderer
               condition={loading}
@@ -127,14 +128,11 @@ const Login: NextPage = () => {
             />
           </Button>
         </form>
-        <div className='my-5'>
-          <Link href='/singup'>
-            <a className='text-slate-700 dark:text-slate-400 text-lg'>
-              Do not You Have An Account?{" "}
-              <span className='text-sky-400'>Sign Up</span>
-            </a>
-          </Link>
-        </div>
+        <AccountMode
+          to='/signup'
+          text="You don't have account? "
+          destination=' Signup'
+        />
       </section>
     </article>
   );

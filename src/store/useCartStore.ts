@@ -1,13 +1,17 @@
 import { create } from "zustand";
 
-import { CartObject, CartItem } from "../typescript/INterfaces";
+import { CartObject, CartItem } from "../typescript/interfaces";
+
+export type AddItemsToCart = (item: CartItem) => void;
+
+export type ChangeCartItemAmmount = (index: number, price: number) => void;
 
 export interface CartStore {
   cartData: CartObject;
-  addItemsToCart: (item: CartItem) => void;
+  addItemsToCart: AddItemsToCart;
   setCartItems: (items: CartObject) => void;
-  incraseCartItemAmount: (index: number, price: number) => void;
-  decriseCartItemAmount: (index: number, price: number) => void;
+  incraseCartItemAmount: ChangeCartItemAmmount;
+  decriseCartItemAmount: ChangeCartItemAmmount;
   clearCartData: () => void;
 }
 

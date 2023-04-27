@@ -1,15 +1,15 @@
 import { FC, memo } from "react";
+
 import GridSystem from "../../UI/gridSystem/GridSystem";
 import LargeCategoryOfGoodItem from "./largeCategoryOfGoodsItem/LargeCategoryOfGoodsItem";
-
 import SmallCategoryOfGoodItem from "./smallCategoryOfGoodItem/SmallCategoryOfGoodItem";
-
 import ListCreator from "../../listCreator/ListCreator";
+import SectionHeader from "../../UI/sectionHeader/SectionHeader";
 
 import {
   ICategoryOfGoodInSmallMode,
   ICategoryOfGood,
-} from "../../../typescript/INterfaces";
+} from "../../../typescript/interfaces";
 
 interface CategoryOfGoodsProps {
   categoriesInLargeMode: ICategoryOfGood[];
@@ -22,11 +22,9 @@ const CategoryOfGoods: FC<CategoryOfGoodsProps> = ({
 }) => {
   return (
     <section className='w-full h-4/6 font-patrick'>
-      <header>
-        <h6 className='text-slate-800 text-4xl text-center my-5 dark:text-slate-300'>
-          Category of Goods
-        </h6>
-      </header>
+      <SectionHeader>
+        <h6>Category of Goods</h6>
+      </SectionHeader>
       <div className='h-[75vh] px-16 py-2 hidden xl:block'>
         <GridSystem needRows={true} gap='gap-4'>
           <ListCreator

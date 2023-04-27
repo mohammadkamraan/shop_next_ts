@@ -1,25 +1,27 @@
 import type { NextPage } from "next";
 import Head from "next/head";
+
 import Possibilities from "../src/components/shop/possibilities/Possibilities";
 import SpecialOffers from "../src/components/shop/specialOffers/SpecialOffers";
-
-import { dataFetcher } from "../src/util/requestHandlers";
 import CategoryOfGoods from "../src/components/shop/categoryOfGoods/CategoryOfGoods";
 import CategoriesSlider from "../src/components/categoriesSlider/CategoriesSlider";
 import NewestGoods from "../src/components/shop/newestGoods/NewestGoods";
-
-import { newestGoods } from "../src/util/newestGoods";
 import SpecialSale from "../src/components/shop/specialSale/SpecialSale";
+import PopularBrands from "../src/components/shop/popularBrands/PopularBrands";
+
+import { requestHandler } from "../src/util/requestHandlers";
+import { newestGoods } from "../src/util/newestGoods";
 
 import { specialSales } from "../src/data/specialSalesData/specialSalesData";
 import { popularBrands } from "../src/data/popularBrandsData/popularBrandsData";
-import PopularBrands from "../src/components/shop/popularBrands/PopularBrands";
-
 import { largCategoryOfGoodsData } from "../src/data/categoryOfGoodsData/largCategoryOfGoodData";
 import { categoryOfGoodsDataInSmallMode } from "../src/data/categoryOfGoodsData/categoryOfGoodsData";
 import { possibilities } from "../src/data/possibilitiesData/possibilitiesData";
 
-import { Product } from "../src/typescript/INterfaces";
+import { EndPoints } from "../src/constants";
+
+import { Product } from "../src/typescript/interfaces";
+import CategorySlide from "../src/components/categoriesSlider/categorySlide/CategorySlide";
 
 interface HomeProps {
   newestGoodsData: Product[];
@@ -32,12 +34,29 @@ const Home: NextPage<HomeProps> = ({ newestGoodsData }) => {
         <meta name='description' content='Nextjs online shop github project' />
         <meta
           name='keywords'
-          content='HTML,Tailwincss,Javascript,Reactjs,Nextjs,Redux,Redux-toolkit'
+          content='HTML,Tailwindcss,Javascript,Reactjs,Nextjs,zustand'
         />
         <meta name='author' content='Mohammad mahdi Kamran' />
         <title>M Shop</title>
       </Head>
-      <CategoriesSlider />
+      <CategoriesSlider>
+        <CategorySlide
+          header='Beauty and Comfort'
+          image='bg-[url("../public/images/fashion-banner.webp")]'
+        >
+          You will find the best fabrics, the hottest designs,
+          <br /> and the most popular brands at reasonable prices.
+          <br /> Look your best and stand out among the crowd.
+        </CategorySlide>
+        <CategorySlide
+          header='Have the best Experiences'
+          image='bg-[url(../public/images/digital-banner.webp)]'
+        >
+          We provide the best Experience with the most popular Brands
+          <br />. With a warranty of 18 months
+          <br />, you can be confident in your choice
+        </CategorySlide>
+      </CategoriesSlider>
       <Possibilities possibilities={possibilities} />
       <SpecialOffers products={newestGoodsData} />
       <CategoryOfGoods
@@ -52,7 +71,10 @@ const Home: NextPage<HomeProps> = ({ newestGoodsData }) => {
 };
 
 export const getStaticProps = async () => {
-  const [data, error] = await dataFetcher("products");
+  const [data, error] = await requestHandler<Product[]>({
+    method: "GET",
+    url: EndPoints.PRODUCTS,
+  });
   if (error) {
     return {
       redirect: {

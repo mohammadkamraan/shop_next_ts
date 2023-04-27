@@ -1,5 +1,8 @@
 import { NextPage } from "next";
 import Head from "next/head";
+
+import { addProductToCartHandler } from "../../src/util/addProductToCart";
+
 import { toast, ToastContainer } from "react-toastify";
 import ConditionalRenderer from "../../src/components/conditionalRenderer/ConditionalRenderer";
 import FavoriteCard from "../../src/components/UI/favoriteCard/FavoriteCard";
@@ -10,10 +13,11 @@ import UserLocation from "../../src/components/UI/userLocation/UserLocation";
 import useFavoritesStore, {
   FavoritesStore,
 } from "../../src/store/userFavoritesStore";
-import { CartItem, Product } from "../../src/typescript/INterfaces";
-import useCartStore from "../../src/store/useCartStore";
+import { Product } from "../../src/typescript/interfaces";
 
 import "react-toastify/dist/ReactToastify.css";
+import { useSession } from "next-auth/react";
+import useCartStore from "../../src/store/useCartStore";
 
 export type FavoriteHandlers = (favorite: Product) => void;
 
@@ -22,24 +26,9 @@ const Favorites: NextPage = () => {
     (state: FavoritesStore) => state
   );
 
-  const { addItemsToCart } = useCartStore();
+  const addToCartHandler = useCartStore(state => state.addItemsToCart);
 
-  const addProductToCartHandler: FavoriteHandlers = favorite => {
-    const cartItem: CartItem = {
-      ...favorite,
-      count: 1,
-      discountedPrice: favorite.discountPercent
-        ? +(
-            favorite.price -
-            (favorite.price / 100) * (favorite.discountPercent as number)
-          ).toFixed(2)
-        : favorite.price,
-    };
-    addItemsToCart(cartItem);
-    toast.success("Added to the cart", {
-      position: toast.POSITION.TOP_RIGHT,
-    });
-  };
+  const { status } = useSession();
 
   const removeProductFromFavoritesHandler: FavoriteHandlers = favorite => {
     removeProductFromFavorites(favorite.id);
@@ -78,6 +67,8 @@ const Favorites: NextPage = () => {
                     extraProps={{
                       removeProductFromFavoritesHandler,
                       addProductToCartHandler,
+                      addToCartHandler,
+                      status,
                     }}
                   />
                 </GridSystem>

@@ -1,42 +1,28 @@
 import { axiosRequest } from "../axios/axios";
 
-export interface sendOptions {
-  method: "POST" | "PUT" | "DELETE";
-  endPoint: string;
-  body: any;
+export interface RequestOptions {
+  method: "GET" | "POST" | "PUT" | "PATCH" | "DELETE";
+  url: string;
+  data?: any;
+  params?: { [key: string]: string };
 }
 
-type FetcherHandler = (endPoint: string) => any;
-
-type Request = (options: sendOptions) => any;
-
-export const dataFetcher: FetcherHandler = async endPoint => {
-  let response;
-  let ErrorData;
-  try {
-    const { data } = await axiosRequest.get(endPoint);
-    response = data;
-    ErrorData = null;
-  } catch (error) {
-    ErrorData = error;
-    response = null;
-  }
-  return [response, ErrorData];
-};
+type Request = <RequestData>(
+  options: RequestOptions
+) => Promise<[RequestData, any, number | null]>;
 
 export const requestHandler: Request = async options => {
   let response;
+  let requestStatus;
   let errorData;
   try {
-    const { data } = await axiosRequest({
-      url: options.endPoint,
-      method: options.method,
-      data: options.body,
-    });
+    const { data, status } = await axiosRequest(options);
     response = data;
+    requestStatus = status;
   } catch (error) {
     errorData = error;
     response = null;
+    requestStatus = null;
   }
-  return [response, errorData];
+  return [response, errorData, requestStatus];
 };

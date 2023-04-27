@@ -5,7 +5,10 @@ interface validatorsValue {
 
 export type validatorsType = (value: string) => validatorsValue;
 
-export type passwordsChecker = (password: string, checkPassWord: string) => boolean;
+export type passwordsChecker = (
+  password: string,
+  checkPassWord: string
+) => boolean;
 
 export const isValidEmail: validatorsType = email => {
   let invalidMessage: string;
@@ -64,9 +67,22 @@ export const phoneValidator: validatorsType = phoneNumber => {
 };
 
 // this function checks if the password and confirm password in equel returns true if it is not return false
-export const arePasswordsEqual: passwordsChecker = (password, checkPassWord) => {
+export const arePasswordsEqual: passwordsChecker = (
+  password,
+  checkPassWord
+) => {
   if (password === checkPassWord) {
     return true;
   }
   return false;
+};
+
+export const isValueEmpty: validatorsType = value => {
+  let invalidMessage: any = "";
+  let isValid: boolean = true;
+  if (!value.trim().length) {
+    invalidMessage = "this field can not be empty";
+    isValid = false;
+  }
+  return { invalidMessage, isValid };
 };

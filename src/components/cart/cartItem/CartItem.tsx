@@ -1,20 +1,25 @@
 import { FC } from "react";
-import useCartStore, { CartStore } from "../../../store/useCartStore";
-import { CartItem } from "../../../typescript/INterfaces";
+
 import ProductAmountInput from "../../UI/productAmountInput/ProductAmountInput";
+
+import { CartItem } from "../../../typescript/interfaces";
+import type { ChangeCartItemAmmount } from "../../../store/useCartStore";
 
 interface CartItemProps {
   cartItem: CartItem;
   index: number;
+  incraseCartItemAmount: ChangeCartItemAmmount;
+  decriseCartItemAmount: ChangeCartItemAmmount;
 }
 
-const CartItem: FC<CartItemProps> = ({ cartItem, index }) => {
+const CartItem: FC<CartItemProps> = ({
+  cartItem,
+  index,
+  incraseCartItemAmount,
+  decriseCartItemAmount,
+}) => {
   const { image, title, count, price, discountedPrice, discountPercent } =
     cartItem;
-
-  const { incraseCartItemAmount, decriseCartItemAmount } = useCartStore(
-    (state: CartStore) => state
-  );
 
   return (
     <article

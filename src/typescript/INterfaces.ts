@@ -3,6 +3,7 @@ import type {
   tailwindGridRows,
   tailwindGridCols,
   ClientSideCategorie,
+  FormReset,
 } from "./types";
 
 import type { Categories } from "../../pages/products/[category]/[productId]/index";
@@ -90,4 +91,32 @@ export interface CartObject {
 export interface FavoriteData {
   favorites: Product[];
   favoritesId: number[] | string[];
+}
+
+export interface FormControlStateOptions {
+  value: any;
+  validators?: any[];
+  isValid: boolean;
+  isTouched: boolean;
+  validation: any;
+  isDirty: boolean;
+}
+
+export interface FormControlState {
+  reset: FormReset | any;
+  isValid: boolean | any;
+  [key: string]: FormControlStateOptions | any;
+}
+
+export interface FormControlAction {
+  name: string;
+  value: string;
+  isTouched: boolean;
+  isDirty: boolean;
+}
+
+export interface FormControlCreatorArgument {
+  value: string;
+  name: string;
+  validators?: any[];
 }
