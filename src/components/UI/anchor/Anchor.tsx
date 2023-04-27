@@ -28,4 +28,6 @@ const Anchor = forwardRef((props: AnchorProps, ref) => {
   );
 });
 
+Anchor.displayName = "Anchor";
+
 export default memo(Anchor);
