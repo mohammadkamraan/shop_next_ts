@@ -15,7 +15,7 @@ import { ToastContainer } from "react-toastify";
 
 import { addProductToCartHandler } from "../../../util/addProductToCart";
 
-import { Product } from "../../../typescript/interfaces";
+import { Product } from "../../../typescript/Interfaces";
 
 import "react-toastify/dist/ReactToastify.css";
 interface NewestGoodsComponentProps {

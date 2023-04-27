@@ -1,6 +1,6 @@
 import { FC, memo, useCallback, useState } from "react";
 import useFavoritesStore from "../../../../store/userFavoritesStore";
-import { Product } from "../../../../typescript/interfaces";
+import { Product } from "../../../../typescript/Interfaces";
 import ListCreator from "../../../listCreator/ListCreator";
 import Like from "../../../UI/icons/like/Like";
 import Share from "../../../UI/icons/share/Share";

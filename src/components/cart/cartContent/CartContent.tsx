@@ -1,5 +1,5 @@
 import { FC, memo } from "react";
-import { CartObject } from "../../../typescript/interfaces";
+import { CartObject } from "../../../typescript/Interfaces";
 
 import CartItem from "../cartItem/CartItem";
 import ListCreator from "../../listCreator/ListCreator";

@@ -3,7 +3,7 @@ import {
   FormControlState,
   Product,
   FormControlCreatorArgument,
-} from "./interfaces";
+} from "./Interfaces";
 
 export type tailwindGridRows =
   | "row-auto"

@@ -3,7 +3,7 @@ import Link from "next/link";
 
 import { FC, memo } from "react";
 
-import { Product } from "../../../../typescript/interfaces";
+import { Product } from "../../../../typescript/Interfaces";
 
 import { categories } from "../../../../data/categoryOfGoodsData/categoryOfGoodsData";
 

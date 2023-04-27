@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { Product } from "../../../../typescript/interfaces";
+import { Product } from "../../../../typescript/Interfaces";
 
 interface CartIconProps {
   onAddToCart: (product: Product) => void;

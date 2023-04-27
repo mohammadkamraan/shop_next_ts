@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { FC } from "react";
 
-import { ICategoryOfGoodInSmallMode } from "../../../../typescript/interfaces";
+import { ICategoryOfGoodInSmallMode } from "../../../../typescript/Interfaces";
 
 interface ISmallCategoryOfGoodItem {
   category: ICategoryOfGoodInSmallMode;

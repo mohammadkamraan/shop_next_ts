@@ -6,7 +6,7 @@
 import {
   ICategoryOfGoodInSmallMode,
   ClientProductsCategories,
-} from "../../typescript/interfaces";
+} from "../../typescript/Interfaces";
 
 import beautyCategoryIcon from "../../../public/images/category-icon/beauty-category.webp";
 import digitalCategoryIcon from "../../../public/images/category-icon/digital-category.webp";

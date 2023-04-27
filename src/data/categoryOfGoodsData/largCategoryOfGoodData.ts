@@ -5,7 +5,7 @@ import houseCategoryImage from "../../../public/images/categoryImages/house-cate
 import sportCatergoryImage from "../../../public/images/categoryImages/sport-category.webp";
 import stationeryCategoryImage from "../../../public/images/categoryImages/stationery-category.webp";
 import toyCategoryImage from "../../../public/images/categoryImages/toy-category.webp";
-import { ICategoryOfGood } from "../../typescript/interfaces";
+import { ICategoryOfGood } from "../../typescript/Interfaces";
 
 export const largCategoryOfGoodsData: ICategoryOfGood[] = [
   {

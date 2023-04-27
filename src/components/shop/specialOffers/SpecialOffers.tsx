@@ -2,7 +2,7 @@ import { FC, memo } from "react";
 
 import ScrollAbleCards from "../../UI/generalProductCards/scrollAbleCards/ScrollAbleCards";
 
-import { Product } from "../../../typescript/interfaces";
+import { Product } from "../../../typescript/Interfaces";
 
 interface SpecialOffersProps {
   products: Product[];

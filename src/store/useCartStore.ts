@@ -1,6 +1,6 @@
 import { create } from "zustand";
 
-import { CartObject, CartItem } from "../typescript/interfaces";
+import { CartObject, CartItem } from "../typescript/Interfaces";
 
 export type AddItemsToCart = (item: CartItem) => void;
 

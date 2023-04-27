@@ -3,12 +3,12 @@ import Link from "next/link";
 import { FC } from "react";
 
 import { categories } from "../../../../data/categoryOfGoodsData/categoryOfGoodsData";
-import { Product } from "../../../../typescript/interfaces";
+import { Product } from "../../../../typescript/Interfaces";
 import StarsRating from "../../../UI/starsRating/StarsRating";
 
 import ProductPrice from "../../../UI/productPrice/ProductPrice";
 
-import { FavoriteData } from "../../../../typescript/interfaces";
+import { FavoriteData } from "../../../../typescript/Interfaces";
 import type {
   AddProduct,
   RemoveProductFromFavorites,

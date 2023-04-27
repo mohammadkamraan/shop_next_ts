@@ -2,7 +2,7 @@ import { FC, memo } from "react";
 import ProductImages from "./ProductImage/ProductImages";
 
 import ProductData from "./productData/ProductData";
-import { Product } from "../../../typescript/interfaces";
+import { Product } from "../../../typescript/Interfaces";
 
 export interface ProductDetailProps {
   product: Product;

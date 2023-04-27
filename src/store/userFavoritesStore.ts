@@ -1,6 +1,6 @@
 import { create } from "zustand";
 
-import { FavoriteData, Product } from "../typescript/interfaces";
+import { FavoriteData, Product } from "../typescript/Interfaces";
 
 import type {
   AddProduct,
