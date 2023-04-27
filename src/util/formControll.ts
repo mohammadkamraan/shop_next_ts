@@ -1,4 +1,7 @@
-import { FormControlState, FormControlAction } from "../typescript/Interfaces";
+import {
+  FormControlState,
+  FormControlAction,
+} from "../typescript/AppInterfaces";
 import { FormControlCreator } from "../typescript/types";
 
 export const formControl = (

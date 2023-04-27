@@ -1,4 +1,4 @@
-import { FormControlState } from "../../src/typescript/Interfaces";
+import { FormControlState } from "../../src/typescript/AppInterfaces";
 import { formControlCreator } from "../../src/util/formControll";
 import {
   isValidEmail,

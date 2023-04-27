@@ -3,7 +3,7 @@ import useCartStore from "../../../../store/useCartStore";
 import ProductAmountInput from "../../../UI/productAmountInput/ProductAmountInput";
 import ProductPrice from "../../../UI/productPrice/ProductPrice";
 
-import { CartItem } from "../../../../typescript/Interfaces";
+import { CartItem } from "../../../../typescript/AppInterfaces";
 
 interface CartOverviewItemProps {
   cartItem: CartItem;

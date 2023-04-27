@@ -1,5 +1,5 @@
 import { discountPercentHandler } from "./discountHandler";
-import { Product } from "../typescript/Interfaces";
+import { Product } from "../typescript/AppInterfaces";
 
 type NewestGoods = (data: Product[]) => Product[];
 

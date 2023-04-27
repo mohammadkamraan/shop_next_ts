@@ -13,7 +13,7 @@ import UserLocation from "../../src/components/UI/userLocation/UserLocation";
 import useFavoritesStore, {
   FavoritesStore,
 } from "../../src/store/userFavoritesStore";
-import type { Product } from "../../src/typescript/Interfaces";
+import type { Product } from "../../src/typescript/AppInterfaces";
 
 import "react-toastify/dist/ReactToastify.css";
 import { useSession } from "next-auth/react";

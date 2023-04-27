@@ -2,7 +2,7 @@ import { FC } from "react";
 
 import ProductAmountInput from "../../UI/productAmountInput/ProductAmountInput";
 
-import { CartItem } from "../../../typescript/Interfaces";
+import { CartItem } from "../../../typescript/AppInterfaces";
 import type { ChangeCartItemAmmount } from "../../../store/useCartStore";
 
 interface CartItemProps {

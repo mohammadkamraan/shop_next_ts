@@ -20,7 +20,7 @@ import { possibilities } from "../src/data/possibilitiesData/possibilitiesData";
 
 import { EndPoints } from "../src/constants";
 
-import { Product } from "../src/typescript/Interfaces";
+import { Product } from "../src/typescript/AppInterfaces";
 import CategorySlide from "../src/components/categoriesSlider/categorySlide/CategorySlide";
 
 interface HomeProps {

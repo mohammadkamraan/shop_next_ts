@@ -23,7 +23,7 @@ import Possibilities from "../../../../src/components/shop/possibilities/Possibi
 import MayInterested from "../../../../src/components/shop/MayInterested/MayInterested";
 
 import { ProductDetailProps } from "../../../../src/components/shop/productDetail/ProductDetail";
-import { Product } from "../../../../src/typescript/Interfaces";
+import { Product } from "../../../../src/typescript/AppInterfaces";
 
 import "react-toastify/dist/ReactToastify.css";
 import { EndPoints } from "../../../../src/constants";

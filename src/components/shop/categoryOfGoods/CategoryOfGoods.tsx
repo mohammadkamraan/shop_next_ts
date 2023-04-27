@@ -9,7 +9,7 @@ import SectionHeader from "../../UI/sectionHeader/SectionHeader";
 import {
   ICategoryOfGoodInSmallMode,
   ICategoryOfGood,
-} from "../../../typescript/Interfaces";
+} from "../../../typescript/AppInterfaces";
 
 interface CategoryOfGoodsProps {
   categoriesInLargeMode: ICategoryOfGood[];

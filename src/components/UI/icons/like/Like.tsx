@@ -4,7 +4,7 @@ import useFavoritesStore from "../../../../store/userFavoritesStore";
 
 import ConditionalRenderer from "../../../conditionalRenderer/ConditionalRenderer";
 
-import { Product } from "../../../../typescript/Interfaces";
+import { Product } from "../../../../typescript/AppInterfaces";
 
 interface LikeProps {
   onAddToFavorites: (item: Product) => void;

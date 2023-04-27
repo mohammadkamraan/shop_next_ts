@@ -3,7 +3,7 @@ import { toast } from "react-toastify";
 import { Domain } from "../../../../constants";
 import { categories } from "../../../../data/categoryOfGoodsData/categoryOfGoodsData";
 
-import { Product } from "../../../../typescript/Interfaces";
+import { Product } from "../../../../typescript/AppInterfaces";
 
 interface ShareProps {
   product: Product;

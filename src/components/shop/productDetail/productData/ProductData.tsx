@@ -1,6 +1,6 @@
 import { FC, memo } from "react";
 
-import { Product } from "../../../../typescript/Interfaces";
+import { Product } from "../../../../typescript/AppInterfaces";
 import StarsRating from "../../../UI/starsRating/StarsRating";
 import ProductPricing from "./productPricing/ProductPricing";
 

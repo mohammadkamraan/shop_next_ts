@@ -1,5 +1,5 @@
 import { FC, memo } from "react";
-import { Product } from "../../../typescript/Interfaces";
+import { Product } from "../../../typescript/AppInterfaces";
 
 import ScrollAbleCards from "../../UI/generalProductCards/scrollAbleCards/ScrollAbleCards";
 

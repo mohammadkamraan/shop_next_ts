@@ -1,7 +1,7 @@
 import { AddItemsToCart } from "../store/useCartStore";
 import { toast } from "react-toastify";
 
-import { Product } from "../typescript/Interfaces";
+import { Product } from "../typescript/AppInterfaces";
 import type { AuthenticateStatus } from "../typescript/types";
 
 interface IAddProductToCart {

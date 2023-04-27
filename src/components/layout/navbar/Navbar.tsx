@@ -19,7 +19,7 @@ import { useSession } from "next-auth/react";
 
 import { signOut } from "next-auth/react";
 import useCartStore from "../../../store/useCartStore";
-import { CartObject } from "../../../typescript/Interfaces";
+import { CartObject } from "../../../typescript/AppInterfaces";
 import ConditionalRenderer from "../../conditionalRenderer/ConditionalRenderer";
 import Portal from "../../portal/Portal";
 
