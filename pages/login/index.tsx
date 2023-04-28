@@ -56,7 +56,7 @@ const Login: NextPage = () => {
   };
 
   useEffect(() => {
-    if (Object.keys(data).length) {
+    if (data && Object.keys(data).length) {
       router.push("/");
     }
   }, [data]);
