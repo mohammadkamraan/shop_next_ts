@@ -36,7 +36,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   return (
     <ThemeProvider attribute='class'>
-      <SessionProvider session={pageProps}>
+      <SessionProvider session={pageProps.session}>
         <div className='bg-gray-100 dark:bg-slate-900'>
           {!WITHOUT_lAYOUT_ROUTES.includes(pathname) && <Navbar />}
           <NextNProgress />

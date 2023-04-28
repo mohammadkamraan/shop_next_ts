@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { useReducer, useState, memo, useCallback, useEffect } from "react";
+import { useReducer, useState, memo, useEffect } from "react";
 import Backdrop from "../backdrop/Backdrop";
 import Sidebar from "../sidebar/Sidebar";
 import SidebarMenu from "../sidebar/sidebarMenu/SidebarMenu";
@@ -508,4 +508,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default memo(Navbar);
