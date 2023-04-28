@@ -62,7 +62,7 @@ const Navbar = () => {
     setReactDocument(document);
   }, []);
 
-  console.log(status);
+  console.log(status, data);
 
   return (
     <nav
