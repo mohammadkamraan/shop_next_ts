@@ -15,7 +15,7 @@ const Button: FC<ButtonProps> = props => {
 
   return (
     <button
-      className={`ring-1 ring-rose-700 bg-rose-700 text-white disabled:bg-white disabled:text-rose-700 ${scaleClassesHandler} `.concat(
+      className={`ring-1 ring-rose-700 bg-rose-700 text-white disabled:bg-white disabled:text-rose-700 disabled:dark:bg-slate-800 ${scaleClassesHandler} `.concat(
         props.styles as string
       )}
       {...(props as any)}

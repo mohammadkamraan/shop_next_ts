@@ -60,6 +60,8 @@ const Navbar = () => {
     setReactDocument(document);
   }, []);
 
+  console.log(status);
+
   return (
     <nav
       className='flex flex-col w-full font-patrick bg-gray-100 sticky z-10 top-0 border-b 
