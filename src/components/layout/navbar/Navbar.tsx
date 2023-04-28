@@ -54,7 +54,9 @@ const Navbar = () => {
     setTheme(theme === "light" ? "dark" : "light");
   };
 
-  const logoutHandler = useCallback(() => signOut(), []);
+  const logoutHandler = () => {
+    signOut();
+  };
 
   useEffect(() => {
     setReactDocument(document);
