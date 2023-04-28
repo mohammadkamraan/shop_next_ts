@@ -1,7 +1,7 @@
 import { NextPage } from "next";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import { useSession } from "next-auth/react";
+import { getSession, useSession } from "next-auth/react";
 
 import { ChangeEvent, useEffect, useReducer } from "react";
 
@@ -123,7 +123,7 @@ const Login: NextPage = () => {
             <ConditionalRenderer
               condition={loading}
               whenConditionIsFalse='Login'
-              whenConditionIsTrue={<DotsLoading color='white' size='small' />}
+              whenConditionIsTrue={<DotsLoading color='rose' size='small' />}
             />
           </Button>
         </form>
@@ -138,3 +138,22 @@ const Login: NextPage = () => {
 };
 
 export default Login;
+
+export const getStaticProps = async (context: any) => {
+  const jwt = await getSession();
+
+  if (!jwt) {
+    return {
+      redirect: {
+        permanent: false,
+        destination: "/",
+      },
+    };
+  }
+
+  return {
+    props: {
+      hello: "hello",
+    },
+  };
+};
