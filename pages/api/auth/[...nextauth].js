@@ -3,13 +3,13 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import { requestHandler } from "../../../src/util/requestHandlers";
 import nextAuth from "next-auth";
 
-interface Credentials {
-  username: string;
-  password: string;
-  endPoint: string;
-}
+// interface Credentials {
+//   username: string;
+//   password: string;
+//   endPoint: string;
+// }
 
-export const nextAuthOptions: NextAuthOptions = {
+export const nextAuthOptions = {
   session: { strategy: "jwt" },
   pages: {
     signIn: "/login",
@@ -18,14 +18,17 @@ export const nextAuthOptions: NextAuthOptions = {
     CredentialsProvider({
       type: "credentials",
       credentials: {},
-      async authorize(credentials): Promise<any> {
-        const { username, password, endPoint } = credentials as Credentials;
+      async authorize(credentials) {
+        const { username, password, endPoint } = credentials;
         try {
-          const [response] = await requestHandler<{ token: string }>({
-            data: { username, password },
-            method: "POST",
-            url: endPoint,
-          });
+          const [response] =
+            (await requestHandler) <
+            { token: string } >
+            {
+              data: { username, password },
+              method: "POST",
+              url: endPoint,
+            };
           return {
             user: {
               token: response.token,
@@ -39,10 +42,10 @@ export const nextAuthOptions: NextAuthOptions = {
     }),
   ],
   callbacks: {
-    session(params): any {
+    session(params) {
       return { ...params };
     },
-    jwt(params: any): any {
+    jwt(params) {
       return { ...params };
     },
   },
