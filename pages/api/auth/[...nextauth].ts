@@ -11,11 +11,6 @@ interface Credentials {
 
 export const nextAuthOptions: NextAuthOptions = {
   session: { strategy: "jwt" },
-  pages: {
-    signIn: "/login",
-  },
-  secret:
-    "lfkjaslkdfjlaksjdflkjasusfkajsdlkfjalskdjf;gkajdlfkjalskjfijelakjelkjflsakjdflaksdjalksdj",
   providers: [
     CredentialsProvider({
       type: "credentials",
