@@ -1,10 +1,10 @@
-import { FormControlState } from "../../src/typescript/AppInterfaces";
-import { formControlCreator } from "../../src/util/formControll";
+import { FormControlState } from "../../typescript/AppInterfaces";
+import { formControlCreator } from "../../util/formControll";
 import {
   isValidEmail,
   isValueEmpty,
   phoneValidator,
-} from "../../src/util/validators";
+} from "../../util/validators";
 
 export const signupForm: FormControlState = formControlCreator([
   { value: "", validators: [isValidEmail], name: "emailInput" },

@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 
 import { ChangeEvent, SyntheticEvent, useEffect, useReducer } from "react";
 
-import { signupForm } from "./singupForm";
+import { signupForm } from "../../src/data/auth/singupForm";
 
 import DotsLoading from "../../src/components/UI/dotsLoading/DotsLoading";
 import ErrorParagraph from "../../src/components/UI/errorParagraph/ErrorParagraph";

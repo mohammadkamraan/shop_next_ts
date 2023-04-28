@@ -16,7 +16,7 @@ import ConditionalRenderer from "../../src/components/conditionalRenderer/Condit
 
 import { EndPoints } from "../../src/constants";
 import { formControl } from "../../src/util/formControll";
-import { loginForm } from "./loginForm";
+import { loginForm } from "../../src/data/auth/loginForm";
 import AccountMode from "../../src/components/UI/accountMode/AccountMode";
 
 const Login: NextPage = () => {
