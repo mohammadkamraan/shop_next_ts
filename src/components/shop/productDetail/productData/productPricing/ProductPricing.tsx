@@ -34,9 +34,7 @@ const ProductPricing: FC<ProductPricingProps> = ({ price, discount }) => {
       />
       <Button
         isScaleAble
-        onClick={() =>
-          addToCart ? addToCart(productCount) : console.log("test")
-        }
+        onClick={() => (addToCart ? addToCart(productCount) : null)}
         styles='mx-auto mt-2 w-44 block py-3 px-4 text-center rounded-lg text-xl'
       >
         <p className='inline-flex justify-center items-center'>
