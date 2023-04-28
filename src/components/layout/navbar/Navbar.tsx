@@ -1,11 +1,5 @@
 import Link from "next/link";
-import {
-  useReducer,
-  useState,
-  memo,
-  useCallback,
-  useLayoutEffect,
-} from "react";
+import { useReducer, useState, memo, useCallback, useEffect } from "react";
 import Backdrop from "../backdrop/Backdrop";
 import Sidebar from "../sidebar/Sidebar";
 import SidebarMenu from "../sidebar/sidebarMenu/SidebarMenu";
@@ -32,7 +26,7 @@ const Navbar = () => {
 
   const { theme, setTheme } = useTheme();
 
-  const { status } = useSession();
+  const { status, data } = useSession();
 
   const [languageSelect, setLanguageSelect] = useReducer(state => {
     return !state;
@@ -62,7 +56,7 @@ const Navbar = () => {
 
   const logoutHandler = useCallback(() => signOut(), []);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     setReactDocument(document);
   }, []);
 

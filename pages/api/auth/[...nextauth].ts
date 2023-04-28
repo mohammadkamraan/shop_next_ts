@@ -14,6 +14,8 @@ export const nextAuthOptions: NextAuthOptions = {
   pages: {
     signIn: "/login",
   },
+  secret:
+    "lfkjaslkdfjlaksjdflkjasusfkajsdlkfjalskdjf;gkajdlfkjalskjfijelakjelkjflsakjdflaksdjalksdj",
   providers: [
     CredentialsProvider({
       type: "credentials",

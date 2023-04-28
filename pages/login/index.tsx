@@ -56,8 +56,8 @@ const Login: NextPage = () => {
   };
 
   useEffect(() => {
-    if (data && Object.keys(data).length) {
-      router.replace("/");
+    if (Object.keys(data).length) {
+      router.push("/");
     }
   }, [data]);
 
