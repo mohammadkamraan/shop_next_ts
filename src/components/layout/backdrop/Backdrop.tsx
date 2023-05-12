@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, FC, SetStateAction } from "react";
 
 interface componentProps {
   show: boolean;
@@ -6,7 +6,7 @@ interface componentProps {
   setCloseMenu: Dispatch<SetStateAction<boolean>>;
 }
 
-const Backdrop = ({ show, setClose, setCloseMenu }: componentProps) => {
+const Backdrop: FC<componentProps> = ({ show, setClose, setCloseMenu }) => {
   return (
     <div
       role='backdrop'
@@ -14,9 +14,9 @@ const Backdrop = ({ show, setClose, setCloseMenu }: componentProps) => {
         setClose(false);
         setCloseMenu(false);
       }}
-      className={`md:hidden fixed top-0 bottom-0 z-20 left-0 right-0 bg-neutral-700 bg-opacity-50 ${
+      className={`md:hidden fixed top-0 w-screen h-screen z-20 bg-neutral-700 bg-opacity-50 overflow-hidden ${
         !show && "hidden"
-      } h-screen overflow-y-hidden`}
+      }`}
     />
   );
 };

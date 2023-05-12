@@ -1,16 +1,12 @@
-import { useState } from "react";
+import { FC, useState } from "react";
 import { items } from "../../../../../data/sidebarData/Sidebar";
 import ListCreator from "../../../../listCreator/ListCreator";
 import Product from "./product/Product";
 
-interface componentProps {
+interface ComponentProps {
   menuItem: items;
 }
-const SidebarMenuItem = ({ menuItem }: componentProps) => {
-  // const [detail, setDetail] = useReducer((state: boolean) => {
-  //   return !state;
-  // }, false);
-
+const SidebarMenuItem: FC<ComponentProps> = ({ menuItem }) => {
   const [detail, setDetail] = useState<boolean>(false);
 
   return (
@@ -35,8 +31,8 @@ const SidebarMenuItem = ({ menuItem }: componentProps) => {
         </svg>
       </button>
       <div
-        className={`overflow-hidden mt-4 border-l-4 border-slate-400  transition-all duration-700 ${
-          detail ? "h-full" : "h-0"
+        className={`overflow-hidden mt-4 border-l-4 border-slate-400 ${
+          detail ? "max-h-[30rem] h-full" : "h-0"
         }`}
       >
         <div className='flex flex-col ml-8 text-xl'>

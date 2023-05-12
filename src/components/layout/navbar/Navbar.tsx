@@ -111,7 +111,11 @@ const Navbar = () => {
             <p className='cursor-pointer'>The Best-Sells</p>
           </a>
         </Link>
-        <div className='mr-6 relative hidden md:inline'>
+        <div
+          tabIndex={1}
+          onBlur={() => setLanguageSelect()}
+          className='mr-6 relative hidden md:inline'
+        >
           <button
             onClick={setLanguageSelect}
             className='inline-flex items-center'
@@ -182,8 +186,12 @@ const Navbar = () => {
             />
           </svg>
         </button>
-        {/* what i want */}
-        <div onClick={setShowSetting} className='inline md:hidden relative'>
+        <div
+          tabIndex={1}
+          onBlur={setShowSetting}
+          onClick={setShowSetting}
+          className='inline md:hidden relative'
+        >
           <svg
             xmlns='http://www.w3.org/2000/svg'
             fill='none'
